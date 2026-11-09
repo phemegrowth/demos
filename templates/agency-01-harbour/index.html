@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Harbour &amp; Co. Estate Agents: homes for sale and to let in Cyprus and Greece</title>
+  <meta name="description" content="Harbour &amp; Co. sells and lets villas, apartments and penthouses in Limassol, Larnaca, Paphos, Nicosia, Protaras, Glyfada, Voula and Kifisia. Named agents, written valuations, no pressure.">
+  <meta property="og:title" content="Harbour &amp; Co. Estate Agents">
+  <meta property="og:description" content="Homes sold and let with care in Cyprus and Greece since 1998.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="./assets/img/villa-14.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="header" id="header">
+    <div class="wrap header__in">
+      <a class="brand" href="./index.html" aria-label="Harbour and Co. Estate Agents, home">
+        <span class="brand__name">Harbour &amp; Co.</span>
+        <span class="brand__sub">Estate Agents</span>
+      </a>
+      <nav class="nav" aria-label="Main">
+        <a href="./listings.html?mode=buy">Buy</a>
+        <a href="./listings.html?mode=rent">Rent</a>
+        <a href="./contact.html#valuation">Sell</a>
+        <a href="./about.html">About</a>
+        <a href="./contact.html">Contact</a>
+      </nav>
+      <div class="header__right">
+        <div class="lang" aria-label="Language">
+          <span aria-current="true">EN</span><span class="sep" aria-hidden="true">/</span><a href="#" aria-disabled="true" title="Greek version to follow">EL</a>
+        </div>
+        <a class="btn" href="./contact.html#valuation">Free valuation</a>
+        <button class="menu-btn" type="button" aria-expanded="false" aria-controls="drawer" aria-label="Open menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+  <div class="drawer" id="drawer" aria-hidden="true">
+    <nav aria-label="Mobile">
+      <a class="drawer__link" href="./listings.html?mode=buy">Buy</a>
+      <a class="drawer__link" href="./listings.html?mode=rent">Rent</a>
+      <a class="drawer__link" href="./contact.html#valuation">Sell</a>
+      <a class="drawer__link" href="./about.html">About</a>
+      <a class="drawer__link" href="./contact.html">Contact</a>
+    </nav>
+    <div class="drawer__meta">
+      <a href="tel:+35799000000">+357 99 000 000</a>
+      <a href="mailto:hello@harbourandco.cy">hello@harbourandco.cy</a>
+      <span>12 Harbour Street, Limassol 3041, Cyprus</span>
+    </div>
+  </div>
+
+  <main id="main">
+
+    <!-- Hero: headline block, wide photo, overlapping search panel -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap">
+        <div class="hero__text">
+          <div class="stack">
+            <p class="label">Estate agents in Cyprus and Greece</p>
+            <h1 id="hero-title">Homes sold and let with care, since 1998.</h1>
+          </div>
+          <p class="lede">Villas, apartments and penthouses in Limassol, Larnaca, Paphos, Nicosia, Protaras, Glyfada, Voula and Kifisia. One named agent from the first call to the keys.</p>
+        </div>
+      </div>
+      <div class="wrap">
+        <div class="hero__media">
+          <img class="kenburns" src="./assets/img/villa-14.jpg" width="1800" height="1199" alt="Infinity pool of a villa overlooking a calm bay in the late afternoon" fetchpriority="high">
+        </div>
+        <div class="search" id="search" role="search" aria-label="Search homes">
+          <div class="search__mode" role="group" aria-label="Buy or rent">
+            <button type="button" data-mode="buy" aria-pressed="true">Buy</button>
+            <button type="button" data-mode="rent" aria-pressed="false">Rent</button>
+          </div>
+          <input type="hidden" name="mode" value="buy">
+          <div class="search__fields">
+            <div class="field">
+              <label for="s-area">Area</label>
+              <select id="s-area" name="area">
+                <option value="">Any area</option>
+                <option value="limassol">Limassol</option>
+                <option value="larnaca">Larnaca</option>
+                <option value="paphos">Paphos</option>
+                <option value="nicosia">Nicosia</option>
+                <option value="protaras">Protaras</option>
+                <option value="glyfada">Glyfada</option>
+                <option value="voula">Voula</option>
+                <option value="kifisia">Kifisia</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="s-type">Type</label>
+              <select id="s-type" name="type">
+                <option value="">Any type</option>
+                <option value="villa">Villa</option>
+                <option value="house">House</option>
+                <option value="apartment">Apartment</option>
+                <option value="penthouse">Penthouse</option>
+                <option value="townhouse">Townhouse</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="s-budget">Budget</label>
+              <select id="s-budget" name="budget" data-budget>
+                <option value="">Any budget</option>
+              </select>
+            </div>
+            <button class="btn" type="button" data-search-go>Search homes</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured listings -->
+    <section class="section" aria-labelledby="featured-title">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="stack">
+            <p class="label">Selected homes</p>
+            <h2 id="featured-title">Three homes worth a visit this week.</h2>
+          </div>
+          <a class="link link--arrow" href="./listings.html"><span>All homes</span></a>
+        </div>
+        <div class="tiles">
+          <article class="tile reveal">
+            <div class="tile__media">
+              <img src="./assets/img/villa-09.jpg" width="960" height="1200" alt="Stone villa with a long pool and cypress trees, Agios Tychonas" loading="lazy">
+              <span class="tag">New</span>
+            </div>
+            <p class="tile__price">€1,850,000 <small>For sale</small></p>
+            <h3 class="tile__title"><a class="tile__link" href="./listing.html">Villa Kyma, Agios Tychonas, Limassol</a></h3>
+            <p class="tile__meta"><span>4 beds</span><span>320 m²</span><span>Plot 1,100 m²</span></p>
+          </article>
+          <article class="tile reveal">
+            <div class="tile__media">
+              <img src="./assets/img/apt-04.jpg" width="960" height="1200" alt="Pale stone apartment building with deep balconies against a blue sky" loading="lazy">
+            </div>
+            <p class="tile__price">€495,000 <small>For sale</small></p>
+            <h3 class="tile__title"><a class="tile__link" href="./listing.html">Two-bedroom apartment, Neapolis, Limassol</a></h3>
+            <p class="tile__meta"><span>2 beds</span><span>98 m²</span><span>3rd floor</span></p>
+          </article>
+          <article class="tile reveal">
+            <div class="tile__media">
+              <img src="./assets/img/sea-04.jpg" width="1200" height="900" alt="White house above the sea with flowering gardens, Peyia" loading="lazy">
+              <span class="tag tag--reduced">Reduced</span>
+            </div>
+            <p class="tile__price">€1,240,000 <small>For sale</small></p>
+            <h3 class="tile__title"><a class="tile__link" href="./listing.html">Sea-view house, Peyia, Paphos</a></h3>
+            <p class="tile__meta"><span>3 beds</span><span>240 m²</span><span>Plot 780 m²</span></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sell with us: dark, two columns -->
+    <section class="section on-dark" aria-labelledby="sell-title" id="sell">
+      <div class="wrap sell">
+        <div class="sell__media reveal">
+          <img src="./assets/img/keys-02.jpg" width="1200" height="800" alt="A hand holding house keys at the entrance of a bright hallway" loading="lazy">
+        </div>
+        <div class="flow reveal">
+          <p class="label">Sell with us</p>
+          <h2 id="sell-title">What happens when you list a home with us.</h2>
+          <ol class="steps">
+            <li>
+              <div>
+                <h3>A valuation in writing.</h3>
+                <p>We compare recent sales on your street, not asking prices, and give you the number and the reasoning on paper.</p>
+              </div>
+            </li>
+            <li>
+              <div>
+                <h3>Photography, video and a floor plan.</h3>
+                <p>A professional shoot, drone footage where it helps, and a measured plan. Ready within 7 days of instruction.</p>
+              </div>
+            </li>
+            <li>
+              <div>
+                <h3>Buyers we already know.</h3>
+                <p>Your home goes first to our registered buyers, then to the portals and our own channels in 4 languages.</p>
+              </div>
+            </li>
+            <li>
+              <div>
+                <h3>One agent for every viewing.</h3>
+                <p>The same person meets each buyer, reports back the same day and negotiates on your behalf.</p>
+              </div>
+            </li>
+            <li>
+              <div>
+                <h3>Through to completion.</h3>
+                <p>We work with your lawyer on the contract, the deposit and the transfer so nothing stalls.</p>
+              </div>
+            </li>
+          </ol>
+          <div class="stack">
+            <a class="btn" href="./contact.html#valuation">Free valuation</a>
+            <p class="muted">Or call <a class="link" href="tel:+35799000000">+357 99 000 000</a> and ask for Elena.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Agents -->
+    <section class="section" aria-labelledby="agents-title">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="stack">
+            <p class="label">The people</p>
+            <h2 id="agents-title">Four agents. One of them is yours from start to finish.</h2>
+          </div>
+          <a class="link link--arrow" href="./about.html"><span>About the agency</span></a>
+        </div>
+        <div class="agents">
+          <article class="agent reveal">
+            <div class="agent__photo"><img src="./assets/img/portrait-03.jpg" width="1200" height="675" alt="Elena Charalambous, Director, in a grey suit" loading="lazy"></div>
+            <h3>Elena Charalambous</h3>
+            <p class="agent__role">Director. Sales, Limassol and Paphos.</p>
+            <p class="agent__langs">Greek, English, Russian</p>
+            <a class="link" href="https://wa.me/35799000000?text=Hello%20Elena">WhatsApp Elena</a>
+          </article>
+          <article class="agent reveal">
+            <div class="agent__photo"><img src="./assets/img/portrait-04.jpg" width="675" height="1200" alt="Andreas Petrou, Senior agent, seated at his desk" loading="lazy"></div>
+            <h3>Andreas Petrou</h3>
+            <p class="agent__role">Senior agent. Larnaca, Nicosia and Protaras.</p>
+            <p class="agent__langs">Greek, English</p>
+            <a class="link" href="https://wa.me/35799000000?text=Hello%20Andreas">WhatsApp Andreas</a>
+          </article>
+          <article class="agent reveal">
+            <div class="agent__photo"><img src="./assets/img/portrait-01.jpg" width="1200" height="675" alt="Mei Lin Georgiou, Lettings manager, smiling in the office" loading="lazy"></div>
+            <h3>Mei Lin Georgiou</h3>
+            <p class="agent__role">Lettings manager. Cyprus, all areas.</p>
+            <p class="agent__langs">English, Mandarin, Greek</p>
+            <a class="link" href="https://wa.me/35799000000?text=Hello%20Mei%20Lin">WhatsApp Mei Lin</a>
+          </article>
+          <article class="agent reveal">
+            <div class="agent__photo"><img src="./assets/img/portrait-05.jpg" width="800" height="1200" alt="Nikos Vlachos, Agent for Greece, in the office" loading="lazy"></div>
+            <h3>Nikos Vlachos</h3>
+            <p class="agent__role">Agent, Greece. Glyfada, Voula and Kifisia.</p>
+            <p class="agent__langs">Greek, English, German</p>
+            <a class="link" href="https://wa.me/35799000000?text=Hello%20Nikos">WhatsApp Nikos</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section on-paper" aria-labelledby="quotes-title">
+      <div class="wrap quotes" id="quotes">
+        <div class="quotes__side reveal">
+          <p class="label">Clients</p>
+          <h2 id="quotes-title" class="t-3">In their words.</h2>
+          <div class="quotes__nav">
+            <button class="quotes__btn" type="button" data-quote="prev" aria-label="Previous testimonial">&larr;</button>
+            <span class="quotes__count" aria-live="polite"><span data-quote-current>1</span> / <span data-quote-total>3</span></span>
+            <button class="quotes__btn" type="button" data-quote="next" aria-label="Next testimonial">&rarr;</button>
+          </div>
+        </div>
+        <div class="quotes__track reveal" tabindex="0" aria-roledescription="carousel" aria-label="Client testimonials">
+          <figure class="quote is-active">
+            <div class="quote__mark" aria-hidden="true">&ldquo;</div>
+            <blockquote>They valued our house at a number we thought was low. It sold in 5 weeks, at asking, to a buyer they already had on file.</blockquote>
+            <figcaption><strong>Maria and Stelios K.</strong><span>Sold a house in Agios Tychonas, Limassol</span></figcaption>
+          </figure>
+          <figure class="quote">
+            <div class="quote__mark" aria-hidden="true">&ldquo;</div>
+            <blockquote>We bought from abroad. Elena did three video viewings, pointed out a damp patch herself, and found us a lawyer. Nothing was rushed.</blockquote>
+            <figcaption><strong>Thomas R.</strong><span>Bought an apartment in Limassol, from Germany</span></figcaption>
+          </figure>
+          <figure class="quote">
+            <div class="quote__mark" aria-hidden="true">&ldquo;</div>
+            <blockquote>Our apartment in Voula was let within two weeks, to tenants with references we could actually check.</blockquote>
+            <figcaption><strong>Katerina D.</strong><span>Landlord, Voula, Greece</span></figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Areas we cover -->
+    <section class="section" aria-labelledby="areas-title">
+      <div class="wrap areas">
+        <div class="areas__side reveal">
+          <p class="label">Where we work</p>
+          <h2 id="areas-title">Eight areas. Two countries. One standard.</h2>
+          <p class="muted" style="margin-top: 16px">The count is what we have listed today. Ask about anything coming soon.</p>
+          <div class="areas__media">
+            <img src="./assets/img/aerial-01.jpg" width="1200" height="900" alt="Aerial view of Limassol Marina with yachts and apartment buildings" loading="lazy">
+          </div>
+        </div>
+        <ul class="area-list reveal">
+          <li><a href="./listings.html?area=limassol"><span class="area-list__name">Limassol <small>Cyprus</small></span><span class="area-list__count"><b data-count="limassol">3</b> homes</span></a></li>
+          <li><a href="./listings.html?area=larnaca"><span class="area-list__name">Larnaca <small>Cyprus</small></span><span class="area-list__count"><b data-count="larnaca">1</b> home</span></a></li>
+          <li><a href="./listings.html?area=paphos"><span class="area-list__name">Paphos <small>Cyprus</small></span><span class="area-list__count"><b data-count="paphos">1</b> home</span></a></li>
+          <li><a href="./listings.html?area=nicosia"><span class="area-list__name">Nicosia <small>Cyprus</small></span><span class="area-list__count"><b data-count="nicosia">1</b> home</span></a></li>
+          <li><a href="./listings.html?area=protaras"><span class="area-list__name">Protaras <small>Cyprus</small></span><span class="area-list__count"><b data-count="protaras">1</b> home</span></a></li>
+          <li><a href="./listings.html?area=glyfada"><span class="area-list__name">Glyfada <small>Greece</small></span><span class="area-list__count"><b data-count="glyfada">1</b> home</span></a></li>
+          <li><a href="./listings.html?area=voula"><span class="area-list__name">Voula <small>Greece</small></span><span class="area-list__count"><b data-count="voula">1</b> home</span></a></li>
+          <li><a href="./listings.html?area=kifisia"><span class="area-list__name">Kifisia <small>Greece</small></span><span class="area-list__count"><b data-count="kifisia">1</b> home</span></a></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Contact form -->
+    <section class="section on-paper" aria-labelledby="contact-title" id="contact">
+      <div class="wrap contact">
+        <div class="contact__side reveal">
+          <div class="flow">
+            <p class="label">Get in touch</p>
+            <h2 id="contact-title">Tell us what you are looking for.</h2>
+            <p class="muted">We reply within one working day. If it is urgent, call or send a WhatsApp and the agent for your area picks up.</p>
+          </div>
+          <div class="contact__lines" style="margin-top: 32px">
+            <div><p class="label label--plain">Limassol office</p><span>12 Harbour Street, Limassol 3041, Cyprus</span></div>
+            <div><p class="label label--plain">Phone</p><a class="link" href="tel:+35799000000">+357 99 000 000</a></div>
+            <div><p class="label label--plain">Email</p><a class="link" href="mailto:hello@harbourandco.cy">hello@harbourandco.cy</a></div>
+            <div><p class="label label--plain">Hours</p><span>Monday to Friday 9:00 to 18:00, Saturday 10:00 to 14:00</span></div>
+          </div>
+        </div>
+        <form class="form reveal" name="enquiry" method="post" action="./thanks.html" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+          <input type="hidden" name="form-name" value="enquiry">
+          <p class="visually-hidden"><label>Leave this field empty <input name="bot-field"></label></p>
+          <div class="form__row">
+            <div class="field">
+              <label for="f-name">Name</label>
+              <input id="f-name" name="name" type="text" autocomplete="name" required>
+              <p class="field__msg" aria-live="polite"></p>
+            </div>
+            <div class="field">
+              <label for="f-phone">Phone</label>
+              <input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required>
+              <p class="field__msg" aria-live="polite"></p>
+            </div>
+          </div>
+          <div class="form__row">
+            <div class="field">
+              <label for="f-email">Email</label>
+              <input id="f-email" name="email" type="email" autocomplete="email" required>
+              <p class="field__msg" aria-live="polite"></p>
+            </div>
+            <div class="field">
+              <label for="f-budget">Budget</label>
+              <select id="f-budget" name="budget">
+                <option value="">Select a range</option>
+                <option>Up to €500,000</option>
+                <option>€500,000 to €1,000,000</option>
+                <option>€1,000,000 to €2,000,000</option>
+                <option>Over €2,000,000</option>
+                <option>Renting, up to €2,000 a month</option>
+                <option>Renting, over €2,000 a month</option>
+              </select>
+              <p class="field__msg" aria-live="polite"></p>
+            </div>
+          </div>
+          <div class="field">
+            <label for="f-message">Message</label>
+            <textarea id="f-message" name="message" required placeholder="Area, type of home, timing, anything that matters to you."></textarea>
+            <p class="field__msg" aria-live="polite"></p>
+          </div>
+          <label class="form__consent"><input type="checkbox" name="consent" value="yes" required> <span>I agree to be contacted about my enquiry. See the privacy notice.</span></label>
+          <p class="field__msg" data-consent-msg aria-live="polite"></p>
+          <p class="form__status" aria-live="polite"></p>
+          <button class="btn" type="submit">Send enquiry</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer on-dark">
+    <div class="wrap">
+      <div class="footer__grid">
+        <div class="stack">
+          <a class="brand" href="./index.html"><span class="brand__name">Harbour &amp; Co.</span><span class="brand__sub">Estate Agents</span></a>
+          <p class="muted" style="max-width: 36ch">Licensed estate agents in Cyprus and Greece. Sales, lettings and valuations since 1998.</p>
+        </div>
+        <div class="footer__col">
+          <h4>Homes</h4>
+          <ul>
+            <li><a href="./listings.html?mode=buy">For sale</a></li>
+            <li><a href="./listings.html?mode=rent">To let</a></li>
+            <li><a href="./contact.html#valuation">Free valuation</a></li>
+            <li><a href="./about.html">About us</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Offices</h4>
+          <ul>
+            <li>12 Harbour Street, Limassol 3041</li>
+            <li>4 Lazaraki Street, Glyfada 166 75</li>
+            <li><a href="tel:+35799000000">+357 99 000 000</a></li>
+            <li><a href="mailto:hello@harbourandco.cy">hello@harbourandco.cy</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Follow</h4>
+          <ul>
+            <li><a href="https://instagram.com/" rel="noopener">Instagram</a></li>
+            <li><a href="https://facebook.com/" rel="noopener">Facebook</a></li>
+            <li><a href="https://linkedin.com/" rel="noopener">LinkedIn</a></li>
+            <li><a href="https://youtube.com/" rel="noopener">YouTube</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2026 Harbour &amp; Co. Estate Agents Ltd. <a href="#">Privacy</a> &middot; <a href="#">Cookies</a></p>
+        <p>Website by <a href="https://phemegrowth.com" rel="noopener">Pheme Growth</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <a class="wa-float" href="https://wa.me/35799000000" aria-label="Chat on WhatsApp" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 1.8a8.2 8.2 0 1 1-4.2 15.3l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 0 1 12 3.8Zm-3 4.4c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3 2.4 1 2.9.8 3.4.7.5 0 1.7-.7 1.9-1.4.2-.6.2-1.2.2-1.3l-.5-.3-1.8-.9c-.2-.1-.4-.1-.6.1l-.8 1c-.2.2-.3.2-.6.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.3-.4.8-1.4.1-.2 0-.4 0-.5l-.9-2c-.2-.5-.4-.4-.6-.4H9Z"/></svg>
+  </a>
+  <div class="phone-bar" aria-label="Quick contact">
+    <a href="tel:+35799000000"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></svg>Call</a>
+    <a href="https://wa.me/35799000000" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 1.8a8.2 8.2 0 1 1-4.2 15.3l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 0 1 12 3.8Z"/></svg>WhatsApp</a>
+  </div>
+
+  <script src="./app.js" defer></script>
+</body>
+</html>

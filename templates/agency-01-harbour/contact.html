@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact Harbour &amp; Co. Estate Agents: enquiries and free valuations</title>
+  <meta name="description" content="Call, WhatsApp or send the form. Ask for a free written valuation of your home in Cyprus or Greece. Offices in Limassol and Glyfada.">
+  <meta property="og:title" content="Contact Harbour &amp; Co. Estate Agents: enquiries and free valuations">
+  <meta property="og:description" content="Call, WhatsApp or send the form. Ask for a free written valuation of your home in Cyprus or Greece. Offices in Limassol and Glyfada.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="./assets/img/keys-03.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="header" id="header">
+    <div class="wrap header__in">
+      <a class="brand" href="./index.html" aria-label="Harbour and Co. Estate Agents, home">
+        <span class="brand__name">Harbour &amp; Co.</span>
+        <span class="brand__sub">Estate Agents</span>
+      </a>
+      <nav class="nav" aria-label="Main">
+        <a href="./listings.html?mode=buy">Buy</a>
+        <a href="./listings.html?mode=rent">Rent</a>
+        <a href="./contact.html#valuation">Sell</a>
+        <a href="./about.html">About</a>
+        <a href="./contact.html" aria-current="page">Contact</a>
+      </nav>
+      <div class="header__right">
+        <div class="lang" aria-label="Language">
+          <span aria-current="true">EN</span><span class="sep" aria-hidden="true">/</span><a href="#" aria-disabled="true" title="Greek version to follow">EL</a>
+        </div>
+        <a class="btn" href="./contact.html#valuation">Free valuation</a>
+        <button class="menu-btn" type="button" aria-expanded="false" aria-controls="drawer" aria-label="Open menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+  <div class="drawer" id="drawer" aria-hidden="true">
+    <nav aria-label="Mobile">
+      <a class="drawer__link" href="./listings.html?mode=buy">Buy</a>
+      <a class="drawer__link" href="./listings.html?mode=rent">Rent</a>
+      <a class="drawer__link" href="./contact.html#valuation">Sell</a>
+      <a class="drawer__link" href="./about.html">About</a>
+      <a class="drawer__link" href="./contact.html">Contact</a>
+    </nav>
+    <div class="drawer__meta">
+      <a href="tel:+35799000000">+357 99 000 000</a>
+      <a href="mailto:hello@harbourandco.cy">hello@harbourandco.cy</a>
+      <span>12 Harbour Street, Limassol 3041, Cyprus</span>
+    </div>
+  </div>
+
+  <main id="main">
+
+    <section class="page-head" aria-labelledby="contact-title">
+      <div class="wrap">
+        <p class="crumbs"><a href="./index.html">Home</a><span>Contact</span></p>
+        <p class="label">Contact</p>
+        <h1 id="contact-title" style="margin-top: 12px">Talk to the agent for your area.</h1>
+        <p class="lede muted">Buying, renting, selling or letting: send the form or call. We reply within one working day, usually sooner.</p>
+      </div>
+    </section>
+
+    <section class="section section--flush-top" aria-label="Enquiry form" id="valuation">
+      <div class="wrap contact">
+        <div class="contact__side reveal">
+          <div class="contact-photo">
+            <img src="./assets/img/keys-03.jpg" width="857" height="1200" alt="A hand holding a key with a small house keyring" fetchpriority="high">
+          </div>
+          <div class="contact__lines" style="margin-top: 32px">
+            <div><p class="label label--plain">Phone</p><a class="link" href="tel:+35799000000">+357 99 000 000</a></div>
+            <div><p class="label label--plain">WhatsApp</p><a class="link" href="https://wa.me/35799000000" rel="noopener">Message us</a></div>
+            <div><p class="label label--plain">Email</p><a class="link" href="mailto:hello@harbourandco.cy">hello@harbourandco.cy</a></div>
+          </div>
+        </div>
+        <form class="form reveal" id="contact-form" name="contact" method="post" action="./thanks.html" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+          <input type="hidden" name="form-name" value="contact">
+          <p class="visually-hidden"><label>Leave this field empty <input name="bot-field"></label></p>
+          <div class="form-switch" role="radiogroup" aria-label="What is this about">
+            <label><input type="radio" name="topic" value="enquiry" checked><span>General enquiry</span></label>
+            <label><input type="radio" name="topic" value="valuation"><span>Free valuation</span></label>
+          </div>
+          <div class="form__row">
+            <div class="field">
+              <label for="c-name">Name</label>
+              <input id="c-name" name="name" type="text" autocomplete="name" required>
+              <p class="field__msg" aria-live="polite"></p>
+            </div>
+            <div class="field">
+              <label for="c-phone">Phone</label>
+              <input id="c-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required>
+              <p class="field__msg" aria-live="polite"></p>
+            </div>
+          </div>
+          <div class="form__single">
+            <div class="field">
+              <label for="c-email">Email</label>
+              <input id="c-email" name="email" type="email" autocomplete="email" required>
+              <p class="field__msg" aria-live="polite"></p>
+            </div>
+          </div>
+          <div class="form__row" data-variant="enquiry">
+            <div class="field">
+              <label for="c-iam">I am</label>
+              <select id="c-iam" name="i-am">
+                <option value="">Select one</option>
+                <option>Buying</option>
+                <option>Renting</option>
+                <option>A landlord</option>
+                <option>Something else</option>
+              </select>
+              <p class="field__msg" aria-live="polite"></p>
+            </div>
+            <div class="field">
+              <label for="c-budget">Budget</label>
+              <select id="c-budget" name="budget">
+                <option value="">Select a range</option>
+                <option>Up to €500,000</option>
+                <option>€500,000 to €1,000,000</option>
+                <option>€1,000,000 to €2,000,000</option>
+                <option>Over €2,000,000</option>
+                <option>Renting, up to €2,000 a month</option>
+                <option>Renting, over €2,000 a month</option>
+              </select>
+              <p class="field__msg" aria-live="polite"></p>
+            </div>
+          </div>
+          <div class="form__row" data-variant="valuation">
+            <div class="field">
+              <label for="c-ptype">Property type</label>
+              <select id="c-ptype" name="property-type">
+                <option value="">Select a type</option>
+                <option value="villa">Villa</option>
+                <option value="house">House</option>
+                <option value="apartment">Apartment</option>
+                <option value="penthouse">Penthouse</option>
+                <option value="townhouse">Townhouse</option>
+                <option value="plot">Plot</option>
+              </select>
+              <p class="field__msg" aria-live="polite"></p>
+            </div>
+            <div class="field">
+              <label for="c-parea">Area</label>
+              <select id="c-parea" name="property-area">
+                <option value="">Select an area</option>
+                <option value="limassol">Limassol</option>
+                <option value="larnaca">Larnaca</option>
+                <option value="paphos">Paphos</option>
+                <option value="nicosia">Nicosia</option>
+                <option value="protaras">Protaras</option>
+                <option value="glyfada">Glyfada</option>
+                <option value="voula">Voula</option>
+                <option value="kifisia">Kifisia</option>
+                <option value="other">Other</option>
+              </select>
+              <p class="field__msg" aria-live="polite"></p>
+            </div>
+          </div>
+          <div class="field" data-variant="valuation">
+            <label for="c-size">Approximate size, m²</label>
+            <input id="c-size" name="property-size" type="number" inputmode="numeric" min="10" step="1" placeholder="For example 180">
+            <p class="field__msg" aria-live="polite"></p>
+          </div>
+          <div class="field">
+            <label for="c-message">Message</label>
+            <textarea id="c-message" name="message" required placeholder="Tell us about the home, the area and your timing."></textarea>
+            <p class="field__msg" aria-live="polite"></p>
+          </div>
+          <label class="form__consent"><input type="checkbox" name="consent" value="yes" required> <span>I agree to be contacted about my enquiry. See the privacy notice.</span></label>
+          <p class="field__msg" data-consent-msg aria-live="polite"></p>
+          <p class="form__status" aria-live="polite"></p>
+          <button class="btn" type="submit" data-submit-label="Send enquiry" data-submit-valuation="Request my valuation">Send enquiry</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="section on-paper" aria-labelledby="offices-title">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="stack">
+            <p class="label">Offices</p>
+            <h2 id="offices-title">Two offices, open six days.</h2>
+          </div>
+        </div>
+        <div class="offices">
+          <div class="office reveal">
+            <h3>Limassol</h3>
+            <p>12 Harbour Street<br>Limassol 3041, Cyprus</p>
+            <p><a class="link" href="tel:+35799000000">+357 99 000 000</a></p>
+            <p class="muted">Monday to Friday 9:00 to 18:00<br>Saturday 10:00 to 14:00</p>
+            <p><a class="link" href="https://maps.google.com/?q=Limassol" rel="noopener">Directions</a></p>
+          </div>
+          <div class="office reveal">
+            <h3>Glyfada</h3>
+            <p>4 Lazaraki Street<br>Glyfada 166 75, Greece</p>
+            <p><a class="link" href="tel:+35799000000">+30 210 000 0000</a></p>
+            <p class="muted">Monday to Friday 10:00 to 18:00<br>Saturday by appointment</p>
+            <p><a class="link" href="https://maps.google.com/?q=Glyfada" rel="noopener">Directions</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer on-dark">
+    <div class="wrap">
+      <div class="footer__grid">
+        <div class="stack">
+          <a class="brand" href="./index.html"><span class="brand__name">Harbour &amp; Co.</span><span class="brand__sub">Estate Agents</span></a>
+          <p class="muted" style="max-width: 36ch">Licensed estate agents in Cyprus and Greece. Sales, lettings and valuations since 1998.</p>
+        </div>
+        <div class="footer__col">
+          <h4>Homes</h4>
+          <ul>
+            <li><a href="./listings.html?mode=buy">For sale</a></li>
+            <li><a href="./listings.html?mode=rent">To let</a></li>
+            <li><a href="./contact.html#valuation">Free valuation</a></li>
+            <li><a href="./about.html">About us</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Offices</h4>
+          <ul>
+            <li>12 Harbour Street, Limassol 3041</li>
+            <li>4 Lazaraki Street, Glyfada 166 75</li>
+            <li><a href="tel:+35799000000">+357 99 000 000</a></li>
+            <li><a href="mailto:hello@harbourandco.cy">hello@harbourandco.cy</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Follow</h4>
+          <ul>
+            <li><a href="https://instagram.com/" rel="noopener">Instagram</a></li>
+            <li><a href="https://facebook.com/" rel="noopener">Facebook</a></li>
+            <li><a href="https://linkedin.com/" rel="noopener">LinkedIn</a></li>
+            <li><a href="https://youtube.com/" rel="noopener">YouTube</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2026 Harbour &amp; Co. Estate Agents Ltd. <a href="#">Privacy</a> &middot; <a href="#">Cookies</a></p>
+        <p>Website by <a href="https://phemegrowth.com" rel="noopener">Pheme Growth</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <a class="wa-float" href="https://wa.me/35799000000" aria-label="Chat on WhatsApp" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 1.8a8.2 8.2 0 1 1-4.2 15.3l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 0 1 12 3.8Zm-3 4.4c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3 2.4 1 2.9.8 3.4.7.5 0 1.7-.7 1.9-1.4.2-.6.2-1.2.2-1.3l-.5-.3-1.8-.9c-.2-.1-.4-.1-.6.1l-.8 1c-.2.2-.3.2-.6.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.3-.4.8-1.4.1-.2 0-.4 0-.5l-.9-2c-.2-.5-.4-.4-.6-.4H9Z"/></svg>
+  </a>
+  <div class="phone-bar" aria-label="Quick contact">
+    <a href="tel:+35799000000"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></svg>Call</a>
+    <a href="https://wa.me/35799000000" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 1.8a8.2 8.2 0 1 1-4.2 15.3l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 0 1 12 3.8Z"/></svg>WhatsApp</a>
+  </div>
+
+  <script src="./app.js" defer></script>
+</body>
+</html>

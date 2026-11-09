@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Homes for sale and to let in Cyprus and Greece: Harbour &amp; Co.</title>
+  <meta name="description" content="Villas, apartments, penthouses and townhouses for sale and to let in Limassol, Larnaca, Paphos, Nicosia, Protaras, Glyfada, Voula and Kifisia.">
+  <meta property="og:title" content="Homes for sale and to let in Cyprus and Greece: Harbour &amp; Co.">
+  <meta property="og:description" content="Villas, apartments, penthouses and townhouses for sale and to let in Limassol, Larnaca, Paphos, Nicosia, Protaras, Glyfada, Voula and Kifisia.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="./assets/img/villa-09.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="header" id="header">
+    <div class="wrap header__in">
+      <a class="brand" href="./index.html" aria-label="Harbour and Co. Estate Agents, home">
+        <span class="brand__name">Harbour &amp; Co.</span>
+        <span class="brand__sub">Estate Agents</span>
+      </a>
+      <nav class="nav" aria-label="Main">
+        <a href="./listings.html?mode=buy">Buy</a>
+        <a href="./listings.html?mode=rent">Rent</a>
+        <a href="./contact.html#valuation">Sell</a>
+        <a href="./about.html">About</a>
+        <a href="./contact.html">Contact</a>
+      </nav>
+      <div class="header__right">
+        <div class="lang" aria-label="Language">
+          <span aria-current="true">EN</span><span class="sep" aria-hidden="true">/</span><a href="#" aria-disabled="true" title="Greek version to follow">EL</a>
+        </div>
+        <a class="btn" href="./contact.html#valuation">Free valuation</a>
+        <button class="menu-btn" type="button" aria-expanded="false" aria-controls="drawer" aria-label="Open menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+  <div class="drawer" id="drawer" aria-hidden="true">
+    <nav aria-label="Mobile">
+      <a class="drawer__link" href="./listings.html?mode=buy">Buy</a>
+      <a class="drawer__link" href="./listings.html?mode=rent">Rent</a>
+      <a class="drawer__link" href="./contact.html#valuation">Sell</a>
+      <a class="drawer__link" href="./about.html">About</a>
+      <a class="drawer__link" href="./contact.html">Contact</a>
+    </nav>
+    <div class="drawer__meta">
+      <a href="tel:+35799000000">+357 99 000 000</a>
+      <a href="mailto:hello@harbourandco.cy">hello@harbourandco.cy</a>
+      <span>12 Harbour Street, Limassol 3041, Cyprus</span>
+    </div>
+  </div>
+
+  <main id="main">
+
+    <section class="page-head" aria-labelledby="list-title">
+      <div class="wrap">
+        <p class="crumbs"><a href="./index.html">Home</a><span>Homes</span></p>
+        <p class="label">For sale and to let</p>
+        <h1 id="list-title" style="margin-top: 12px">Every home we have today.</h1>
+        <p class="lede muted">Filter by area, type, bedrooms and price. Each listing has one agent who has walked the property and can answer in detail.</p>
+      </div>
+    </section>
+
+    <div class="filters" id="filters">
+      <div class="wrap filters__in" id="filter-form" role="search" aria-label="Filter homes">
+        <div class="seg" role="group" aria-label="Buy or rent">
+          <button type="button" data-mode="buy" aria-pressed="true">Buy</button>
+          <button type="button" data-mode="rent" aria-pressed="false">Rent</button>
+        </div>
+        <div class="filters__row">
+          <div class="field">
+            <label for="fl-type">Type</label>
+            <select id="fl-type" name="type">
+                <option value="">Any type</option>
+                <option value="villa">Villa</option>
+                <option value="house">House</option>
+                <option value="apartment">Apartment</option>
+                <option value="penthouse">Penthouse</option>
+                <option value="townhouse">Townhouse</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="fl-area">Area</label>
+            <select id="fl-area" name="area">
+                <option value="">Any area</option>
+                <option value="limassol">Limassol</option>
+                <option value="larnaca">Larnaca</option>
+                <option value="paphos">Paphos</option>
+                <option value="nicosia">Nicosia</option>
+                <option value="protaras">Protaras</option>
+                <option value="glyfada">Glyfada</option>
+                <option value="voula">Voula</option>
+                <option value="kifisia">Kifisia</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="fl-beds">Bedrooms</label>
+            <select id="fl-beds" name="beds">
+              <option value="">Any</option>
+              <option value="1">1 or more</option>
+              <option value="2">2 or more</option>
+              <option value="3">3 or more</option>
+              <option value="4">4 or more</option>
+              <option value="5">5 or more</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="fl-budget">Price</label>
+            <select id="fl-budget" name="budget" data-budget>
+              <option value="">Any price</option>
+            </select>
+          </div>
+        </div>
+        <div class="filters__summary">
+          <p class="filters__count"><span data-result-count>10</span> homes</p>
+          <div class="field" style="min-width: 150px">
+            <label for="fl-sort" class="visually-hidden">Sort</label>
+            <select id="fl-sort" name="sort" aria-label="Sort by">
+              <option value="">Newest first</option>
+              <option value="asc">Price, low to high</option>
+              <option value="desc">Price, high to low</option>
+            </select>
+          </div>
+          <button class="filters__reset" type="button" data-reset>Clear</button>
+        </div>
+      </div>
+    </div>
+
+    <section class="section section--tight" aria-label="Results">
+      <div class="wrap">
+        <div class="tiles" id="results">
+          <article class="tile reveal" data-mode="buy" data-type="villa" data-area="limassol" data-beds="4" data-price="1850000">
+            <div class="tile__media">
+              <img src="./assets/img/villa-09.jpg" width="960" height="1200" alt="Stone villa with a long pool and cypress trees, Agios Tychonas">
+              <span class="tag">New</span>
+            </div>
+            <p class="tile__price">€1,850,000 <small>For sale</small></p>
+            <h3 class="tile__title"><a class="tile__link" href="./listing.html">Villa Kyma, Agios Tychonas, Limassol</a></h3>
+            <p class="tile__meta"><span>Villa</span><span>4 beds</span><span>320 m²</span><span>Plot 1,100 m²</span></p>
+          </article>
+          <article class="tile reveal" data-mode="buy" data-type="apartment" data-area="limassol" data-beds="2" data-price="495000">
+            <div class="tile__media">
+              <img src="./assets/img/apt-04.jpg" width="960" height="1200" alt="Pale stone apartment building with deep balconies against a blue sky">
+            </div>
+            <p class="tile__price">€495,000 <small>For sale</small></p>
+            <h3 class="tile__title"><a class="tile__link" href="./listing.html">Two-bedroom apartment, Neapolis, Limassol</a></h3>
+            <p class="tile__meta"><span>Apartment</span><span>2 beds</span><span>98 m²</span><span>3rd floor</span></p>
+          </article>
+          <article class="tile reveal" data-mode="buy" data-type="house" data-area="paphos" data-beds="3" data-price="1240000">
+            <div class="tile__media">
+              <img src="./assets/img/sea-04.jpg" width="1200" height="900" alt="White house above the sea with flowering gardens, Peyia">
+              <span class="tag tag--reduced">Reduced</span>
+            </div>
+            <p class="tile__price">€1,240,000 <small>For sale</small></p>
+            <h3 class="tile__title"><a class="tile__link" href="./listing.html">Sea-view house, Peyia, Paphos</a></h3>
+            <p class="tile__meta"><span>House</span><span>3 beds</span><span>240 m²</span><span>Plot 780 m²</span></p>
+          </article>
+          <article class="tile reveal" data-mode="buy" data-type="villa" data-area="protaras" data-beds="3" data-price="985000">
+            <div class="tile__media">
+              <img src="./assets/img/villa-03.jpg" width="878" height="1200" alt="White two-storey villa with a pool seen from the garden" loading="lazy">
+            </div>
+            <p class="tile__price">€985,000 <small>For sale</small></p>
+            <h3 class="tile__title"><a class="tile__link" href="./listing.html">Villa Alba, Pernera, Protaras</a></h3>
+            <p class="tile__meta"><span>Villa</span><span>3 beds</span><span>210 m²</span><span>Plot 620 m²</span></p>
+          </article>
+          <article class="tile reveal" data-mode="buy" data-type="villa" data-area="larnaca" data-beds="4" data-price="1120000">
+            <div class="tile__media">
+              <img src="./assets/img/villa-04.jpg" width="1200" height="1200" alt="Modern house with timber cladding and palms at dusk" loading="lazy">
+              <span class="tag">New</span>
+            </div>
+            <p class="tile__price">€1,120,000 <small>For sale</small></p>
+            <h3 class="tile__title"><a class="tile__link" href="./listing.html">Villa Lefki, Pervolia, Larnaca</a></h3>
+            <p class="tile__meta"><span>Villa</span><span>4 beds</span><span>290 m²</span><span>Plot 900 m²</span></p>
+          </article>
+          <article class="tile reveal" data-mode="buy" data-type="villa" data-area="glyfada" data-beds="5" data-price="2400000">
+            <div class="tile__media">
+              <img src="./assets/img/villa-10.jpg" width="1200" height="800" alt="White villa with bougainvillea and a curved pool under a clear sky" loading="lazy">
+            </div>
+            <p class="tile__price">€2,400,000 <small>For sale</small></p>
+            <h3 class="tile__title"><a class="tile__link" href="./listing.html">Villa Thalassa, Glyfada, Greece</a></h3>
+            <p class="tile__meta"><span>Villa</span><span>5 beds</span><span>410 m²</span><span>Plot 920 m²</span></p>
+          </article>
+          <article class="tile reveal" data-mode="rent" data-type="penthouse" data-area="limassol" data-beds="3" data-price="4200">
+            <div class="tile__media">
+              <img src="./assets/img/apt-05.jpg" width="1200" height="675" alt="Rooftop pool of a penthouse at sunset with palms" loading="lazy">
+              <span class="tag">New</span>
+            </div>
+            <p class="tile__price">€4,200 a month <small>To let</small></p>
+            <h3 class="tile__title"><a class="tile__link" href="./listing.html">Seafront penthouse, Seafront, Limassol</a></h3>
+            <p class="tile__meta"><span>Penthouse</span><span>3 beds</span><span>165 m²</span><span>Roof pool</span></p>
+          </article>
+          <article class="tile reveal" data-mode="rent" data-type="apartment" data-area="nicosia" data-beds="2" data-price="1650">
+            <div class="tile__media">
+              <img src="./assets/img/living-03.jpg" width="1200" height="666" alt="Light living room with a pale sofa and tall windows" loading="lazy">
+            </div>
+            <p class="tile__price">€1,650 a month <small>To let</small></p>
+            <h3 class="tile__title"><a class="tile__link" href="./listing.html">Bright two-bedroom apartment, Engomi, Nicosia</a></h3>
+            <p class="tile__meta"><span>Apartment</span><span>2 beds</span><span>92 m²</span><span>Furnished</span></p>
+          </article>
+          <article class="tile reveal" data-mode="buy" data-type="apartment" data-area="voula" data-beds="3" data-price="720000">
+            <div class="tile__media">
+              <img src="./assets/img/sea-02.jpg" width="1200" height="900" alt="Balcony railing over rooftops and the sea at Voula" loading="lazy">
+            </div>
+            <p class="tile__price">€720,000 <small>For sale</small></p>
+            <h3 class="tile__title"><a class="tile__link" href="./listing.html">Apartment above the bay, Voula, Greece</a></h3>
+            <p class="tile__meta"><span>Apartment</span><span>3 beds</span><span>128 m²</span><span>2nd floor</span></p>
+          </article>
+          <article class="tile reveal" data-mode="rent" data-type="townhouse" data-area="kifisia" data-beds="3" data-price="3100">
+            <div class="tile__media">
+              <img src="./assets/img/bedroom-06.jpg" width="1200" height="675" alt="Calm bedroom with a large bed and an armchair" loading="lazy">
+            </div>
+            <p class="tile__price">€3,100 a month <small>To let</small></p>
+            <h3 class="tile__title"><a class="tile__link" href="./listing.html">Townhouse with garden, Kifisia, Greece</a></h3>
+            <p class="tile__meta"><span>Townhouse</span><span>3 beds</span><span>180 m²</span><span>Garden</span></p>
+          </article>
+        </div>
+        <div class="empty" id="empty">
+          <h3>Nothing matches those filters yet.</h3>
+          <p class="muted">Widen the price or area, or tell us what you want and we will call you when it comes in.</p>
+          <p style="margin-top: 24px"><a class="btn btn--ghost" href="./contact.html">Register your search</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer on-dark">
+    <div class="wrap">
+      <div class="footer__grid">
+        <div class="stack">
+          <a class="brand" href="./index.html"><span class="brand__name">Harbour &amp; Co.</span><span class="brand__sub">Estate Agents</span></a>
+          <p class="muted" style="max-width: 36ch">Licensed estate agents in Cyprus and Greece. Sales, lettings and valuations since 1998.</p>
+        </div>
+        <div class="footer__col">
+          <h4>Homes</h4>
+          <ul>
+            <li><a href="./listings.html?mode=buy">For sale</a></li>
+            <li><a href="./listings.html?mode=rent">To let</a></li>
+            <li><a href="./contact.html#valuation">Free valuation</a></li>
+            <li><a href="./about.html">About us</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Offices</h4>
+          <ul>
+            <li>12 Harbour Street, Limassol 3041</li>
+            <li>4 Lazaraki Street, Glyfada 166 75</li>
+            <li><a href="tel:+35799000000">+357 99 000 000</a></li>
+            <li><a href="mailto:hello@harbourandco.cy">hello@harbourandco.cy</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Follow</h4>
+          <ul>
+            <li><a href="https://instagram.com/" rel="noopener">Instagram</a></li>
+            <li><a href="https://facebook.com/" rel="noopener">Facebook</a></li>
+            <li><a href="https://linkedin.com/" rel="noopener">LinkedIn</a></li>
+            <li><a href="https://youtube.com/" rel="noopener">YouTube</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2026 Harbour &amp; Co. Estate Agents Ltd. <a href="#">Privacy</a> &middot; <a href="#">Cookies</a></p>
+        <p>Website by <a href="https://phemegrowth.com" rel="noopener">Pheme Growth</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <a class="wa-float" href="https://wa.me/35799000000" aria-label="Chat on WhatsApp" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 1.8a8.2 8.2 0 1 1-4.2 15.3l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 0 1 12 3.8Zm-3 4.4c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3 2.4 1 2.9.8 3.4.7.5 0 1.7-.7 1.9-1.4.2-.6.2-1.2.2-1.3l-.5-.3-1.8-.9c-.2-.1-.4-.1-.6.1l-.8 1c-.2.2-.3.2-.6.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.3-.4.8-1.4.1-.2 0-.4 0-.5l-.9-2c-.2-.5-.4-.4-.6-.4H9Z"/></svg>
+  </a>
+  <div class="phone-bar" aria-label="Quick contact">
+    <a href="tel:+35799000000"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></svg>Call</a>
+    <a href="https://wa.me/35799000000" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 1.8a8.2 8.2 0 1 1-4.2 15.3l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 0 1 12 3.8Z"/></svg>WhatsApp</a>
+  </div>
+
+  <script src="./app.js" defer></script>
+</body>
+</html>

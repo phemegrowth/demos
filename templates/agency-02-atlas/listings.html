@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Listings: apartments, villas and commercial property in Cyprus and Greece | Atlas Property</title>
+<meta name="description" content="Filter by type, area, bedrooms, price and features. Residential and commercial property for sale across Cyprus and Greece.">
+<meta property="og:title" content="Listings: apartments, villas and commercial property in Cyprus and Greece | Atlas Property">
+<meta property="og:description" content="Filter by type, area, bedrooms, price and features. Residential and commercial property for sale across Cyprus and Greece.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="./assets/img/aerial-01.jpg">
+<meta name="theme-color" content="#0F172A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./styles.css">
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body data-page="listings">
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header" id="top">
+  <div class="wrap header-inner">
+    <a class="brand" href="./index.html" aria-label="Atlas Property, home"><svg class="mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 21.5 20h-19Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="m8.5 20 3.5-6.5 3.5 6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span>Atlas<b>Property</b></span></a>
+    <nav class="nav" id="nav" aria-label="Main">
+      <ul>
+        <li><a href="./listings.html" aria-current="page">Listings</a></li>
+        <li><a href="./index.html#investors">Investors</a></li>
+        <li><a href="./about.html">About</a></li>
+        <li><a href="./contact.html">Contact</a></li>
+      </ul>
+      <div class="nav-extra">
+        <span class="lang" aria-label="Language"><a href="#" aria-current="true">EN</a><a href="#" aria-disabled="true" tabindex="-1">EL</a></span>
+        <a class="btn btn-accent" href="./contact.html">Book a call</a>
+      </div>
+      <button class="nav-close" type="button" aria-label="Close menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+    </nav>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav" aria-label="Open menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+  </div>
+</header>
+<main id="main">
+
+<section class="page-head">
+  <div class="wrap page-head-inner">
+    <div><p class="label">Listings</p><h1>Property for sale.</h1></div>
+    <p class="page-intro">Residential and commercial, Cyprus and Greece. Prices shown with VAT noted where it applies.</p>
+  </div>
+</section>
+
+<section class="section listings-section">
+  <div class="wrap listings-layout">
+    <button class="btn btn-ghost filters-open" type="button" aria-expanded="false" aria-controls="filters"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M7 12h10m-7 6h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>Filters</button>
+    <aside class="filters" id="filters" aria-label="Filters">
+      <div class="filter-form" id="filter-form" role="group" aria-label="Filter listings">
+        <div class="filters-head">
+          <h2>Filters</h2>
+          <button class="btn-icon filters-close" type="button" aria-label="Close filters"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+        </div>
+        <div class="field">
+          <label for="fl-type">Type</label>
+          <select id="fl-type" name="type">
+            <option value="">Any type</option>
+            <option value="apartment">Apartment</option>
+            <option value="villa">Villa</option>
+            <option value="penthouse">Penthouse</option>
+            <option value="commercial">Commercial</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="fl-area">Area</label>
+          <select id="fl-area" name="area">
+            <option value="">Any area</option>
+            <option value="limassol">Limassol</option>
+            <option value="larnaca">Larnaca</option>
+            <option value="paphos">Paphos</option>
+            <option value="nicosia">Nicosia</option>
+            <option value="protaras">Protaras</option>
+            <option value="glyfada">Glyfada</option>
+            <option value="voula">Voula</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="fl-beds">Bedrooms</label>
+          <select id="fl-beds" name="beds">
+            <option value="">Any</option>
+            <option value="1">1 or more</option>
+            <option value="2">2 or more</option>
+            <option value="3">3 or more</option>
+            <option value="4">4 or more</option>
+          </select>
+        </div>
+        <fieldset class="field">
+          <legend>Price, €</legend>
+          <div class="field-row">
+            <div><label for="fl-min" class="sr-only">Minimum price</label><input id="fl-min" name="min" type="number" inputmode="numeric" min="0" step="10000" placeholder="Min"></div>
+            <div><label for="fl-max" class="sr-only">Maximum price</label><input id="fl-max" name="max" type="number" inputmode="numeric" min="0" step="10000" placeholder="Max"></div>
+          </div>
+        </fieldset>
+        <fieldset class="field checks">
+          <legend>Features</legend>
+          <label><input type="checkbox" name="feat" value="sea-view"> Sea view</label>
+          <label><input type="checkbox" name="feat" value="new-build"> New build</label>
+          <label><input type="checkbox" name="feat" value="pool"> Pool</label>
+          <label><input type="checkbox" name="feat" value="parking"> Parking</label>
+          <label><input type="checkbox" name="feat" value="furnished"> Furnished</label>
+          <label><input type="checkbox" name="feat" value="title-deeds"> Title deeds</label>
+        </fieldset>
+        <fieldset class="field checks">
+          <legend>Saved</legend>
+          <label><input type="checkbox" name="saved" value="1"> Saved only</label>
+        </fieldset>
+        <div class="filters-actions">
+          <button class="btn btn-ghost" type="button" id="filter-reset">Clear</button>
+          <button class="btn btn-accent filters-apply" type="button">Show results</button>
+        </div>
+      </div>
+    </aside>
+
+    <div class="results">
+      <div class="results-bar">
+        <p class="results-count" id="results-count" aria-live="polite">10 properties</p>
+        <div class="sort">
+          <label for="sort">Sort</label>
+          <select id="sort" name="sort">
+            <option value="newest">Newest</option>
+            <option value="price-asc">Price, low to high</option>
+            <option value="price-desc">Price, high to low</option>
+            <option value="size-desc">Size, largest first</option>
+          </select>
+        </div>
+      </div>
+      <div class="grid-cards" id="results">
+<article class="card reveal" data-ref="ATL-1042" data-type="apartment" data-area="limassol" data-beds="2" data-price="485000" data-m2="98" data-baths="2" data-year="2026" data-feats="new-build sea-view parking" data-title="Two-bedroom apartment, marina district, Limassol" data-img="./assets/img/apt-01.jpg" data-pricelabel="€485,000 + VAT">
+  <a class="card-media" href="./listing.html" aria-label="Two-bedroom apartment, marina district, Limassol">
+    <img src="./assets/img/apt-01.jpg" alt="White apartment building with glass balconies against a clear sky" width="800" height="600" loading="lazy">
+    <span class="tag">New build</span>
+  </a>
+  <button class="save" type="button" aria-pressed="false" aria-label="Save ATL-1042" data-save="ATL-1042"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></button>
+  <div class="card-body">
+    <p class="price">€485,000<small> + VAT</small></p>
+    <h3><a href="./listing.html">Two-bedroom apartment, marina district</a></h3>
+    <p class="meta">Limassol · Apartment · ATL-1042</p>
+    <p class="facts"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18v-7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v7M3 14h18M5 9V6h6v3m2 0V6h6v3M3 18v1m18-1v1" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>2 bed</span><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16v2a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5v-2Zm2 0V6a2 2 0 0 1 4 0M7 19l-1 2m11-2 1 2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>2 bath</span><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v16H4zM4 9h5V4M15 20v-5h5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>98 m²</span></p>
+    <label class="compare-toggle"><input type="checkbox" data-compare="ATL-1042"> <span>Compare</span></label>
+  </div>
+</article>
+<article class="card reveal" data-ref="ATL-1038" data-type="villa" data-area="paphos" data-beds="4" data-price="1150000" data-m2="245" data-baths="3" data-year="2021" data-feats="pool sea-view parking title-deeds" data-title="Four-bedroom villa with pool, Paphos" data-img="./assets/img/villa-06.jpg" data-pricelabel="€1,150,000">
+  <a class="card-media" href="./listing.html" aria-label="Four-bedroom villa with pool, Paphos">
+    <img src="./assets/img/villa-06.jpg" alt="Modern single-storey villa with a pool at dusk" width="800" height="600" loading="lazy">
+    <span class="tag">Resale</span>
+  </a>
+  <button class="save" type="button" aria-pressed="false" aria-label="Save ATL-1038" data-save="ATL-1038"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></button>
+  <div class="card-body">
+    <p class="price">€1,150,000<small></small></p>
+    <h3><a href="./listing.html">Four-bedroom villa with pool</a></h3>
+    <p class="meta">Paphos · Villa · ATL-1038</p>
+    <p class="facts"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18v-7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v7M3 14h18M5 9V6h6v3m2 0V6h6v3M3 18v1m18-1v1" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>4 bed</span><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16v2a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5v-2Zm2 0V6a2 2 0 0 1 4 0M7 19l-1 2m11-2 1 2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>3 bath</span><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v16H4zM4 9h5V4M15 20v-5h5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>245 m²</span></p>
+    <label class="compare-toggle"><input type="checkbox" data-compare="ATL-1038"> <span>Compare</span></label>
+  </div>
+</article>
+<article class="card reveal" data-ref="ATL-1051" data-type="apartment" data-area="larnaca" data-beds="1" data-price="218000" data-m2="58" data-baths="1" data-year="2027" data-feats="new-build parking" data-title="One-bedroom apartment, Mackenzie, Larnaca" data-img="./assets/img/apt-04.jpg" data-pricelabel="€218,000 + VAT">
+  <a class="card-media" href="./listing.html" aria-label="One-bedroom apartment, Mackenzie, Larnaca">
+    <img src="./assets/img/apt-04.jpg" alt="Low-rise white and brown apartment building" width="800" height="600" loading="lazy">
+    <span class="tag">New build</span>
+  </a>
+  <button class="save" type="button" aria-pressed="false" aria-label="Save ATL-1051" data-save="ATL-1051"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></button>
+  <div class="card-body">
+    <p class="price">€218,000<small> + VAT</small></p>
+    <h3><a href="./listing.html">One-bedroom apartment, Mackenzie</a></h3>
+    <p class="meta">Larnaca · Apartment · ATL-1051</p>
+    <p class="facts"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18v-7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v7M3 14h18M5 9V6h6v3m2 0V6h6v3M3 18v1m18-1v1" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>1 bed</span><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16v2a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5v-2Zm2 0V6a2 2 0 0 1 4 0M7 19l-1 2m11-2 1 2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>1 bath</span><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v16H4zM4 9h5V4M15 20v-5h5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>58 m²</span></p>
+    <label class="compare-toggle"><input type="checkbox" data-compare="ATL-1051"> <span>Compare</span></label>
+  </div>
+</article>
+<article class="card reveal" data-ref="ATL-1029" data-type="apartment" data-area="glyfada" data-beds="3" data-price="790000" data-m2="124" data-baths="2" data-year="2018" data-feats="sea-view furnished parking" data-title="Three-bedroom apartment with sea view, Glyfada" data-img="./assets/img/sea-05.jpg" data-pricelabel="€790,000">
+  <a class="card-media" href="./listing.html" aria-label="Three-bedroom apartment with sea view, Glyfada">
+    <img src="./assets/img/sea-05.jpg" alt="Open sea seen from a terrace with a glass railing" width="800" height="600" loading="lazy">
+    <span class="tag">Resale</span>
+  </a>
+  <button class="save" type="button" aria-pressed="false" aria-label="Save ATL-1029" data-save="ATL-1029"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></button>
+  <div class="card-body">
+    <p class="price">€790,000<small></small></p>
+    <h3><a href="./listing.html">Three-bedroom apartment with sea view</a></h3>
+    <p class="meta">Glyfada · Apartment · ATL-1029</p>
+    <p class="facts"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18v-7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v7M3 14h18M5 9V6h6v3m2 0V6h6v3M3 18v1m18-1v1" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>3 bed</span><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16v2a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5v-2Zm2 0V6a2 2 0 0 1 4 0M7 19l-1 2m11-2 1 2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>2 bath</span><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v16H4zM4 9h5V4M15 20v-5h5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>124 m²</span></p>
+    <label class="compare-toggle"><input type="checkbox" data-compare="ATL-1029"> <span>Compare</span></label>
+  </div>
+</article>
+<article class="card reveal" data-ref="ATL-1047" data-type="commercial" data-area="nicosia" data-beds="0" data-price="640000" data-m2="310" data-baths="2" data-year="2025" data-feats="parking new-build" data-title="Office floor, city centre, Nicosia" data-img="./assets/img/apt-12.jpg" data-pricelabel="€640,000 + VAT">
+  <a class="card-media" href="./listing.html" aria-label="Office floor, city centre, Nicosia">
+    <img src="./assets/img/apt-12.jpg" alt="Curved glass office building" width="800" height="600" loading="lazy">
+    <span class="tag">New build</span>
+  </a>
+  <button class="save" type="button" aria-pressed="false" aria-label="Save ATL-1047" data-save="ATL-1047"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></button>
+  <div class="card-body">
+    <p class="price">€640,000<small> + VAT</small></p>
+    <h3><a href="./listing.html">Office floor, city centre</a></h3>
+    <p class="meta">Nicosia · Commercial · ATL-1047</p>
+    <p class="facts"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16v2a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5v-2Zm2 0V6a2 2 0 0 1 4 0M7 19l-1 2m11-2 1 2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>2 bath</span><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v16H4zM4 9h5V4M15 20v-5h5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>310 m²</span></p>
+    <label class="compare-toggle"><input type="checkbox" data-compare="ATL-1047"> <span>Compare</span></label>
+  </div>
+</article>
+<article class="card reveal" data-ref="ATL-1033" data-type="villa" data-area="limassol" data-beds="3" data-price="720000" data-m2="180" data-baths="2" data-year="2019" data-feats="pool parking title-deeds" data-title="Three-bedroom villa, hills, Limassol" data-img="./assets/img/villa-08.jpg" data-pricelabel="€720,000">
+  <a class="card-media" href="./listing.html" aria-label="Three-bedroom villa, hills, Limassol">
+    <img src="./assets/img/villa-08.jpg" alt="White villa with a long covered balcony and dark windows" width="800" height="600" loading="lazy">
+    <span class="tag">Resale</span>
+  </a>
+  <button class="save" type="button" aria-pressed="false" aria-label="Save ATL-1033" data-save="ATL-1033"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></button>
+  <div class="card-body">
+    <p class="price">€720,000<small></small></p>
+    <h3><a href="./listing.html">Three-bedroom villa, hills</a></h3>
+    <p class="meta">Limassol · Villa · ATL-1033</p>
+    <p class="facts"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18v-7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v7M3 14h18M5 9V6h6v3m2 0V6h6v3M3 18v1m18-1v1" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>3 bed</span><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16v2a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5v-2Zm2 0V6a2 2 0 0 1 4 0M7 19l-1 2m11-2 1 2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>2 bath</span><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v16H4zM4 9h5V4M15 20v-5h5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>180 m²</span></p>
+    <label class="compare-toggle"><input type="checkbox" data-compare="ATL-1033"> <span>Compare</span></label>
+  </div>
+</article>
+<article class="card reveal" data-ref="ATL-1055" data-type="apartment" data-area="protaras" data-beds="2" data-price="265000" data-m2="76" data-baths="1" data-year="2016" data-feats="furnished sea-view title-deeds" data-title="Two-bedroom apartment near the beach, Protaras" data-img="./assets/img/apt-11.jpg" data-pricelabel="€265,000">
+  <a class="card-media" href="./listing.html" aria-label="Two-bedroom apartment near the beach, Protaras">
+    <img src="./assets/img/apt-11.jpg" alt="White apartment building with blue glass balconies" width="800" height="600" loading="lazy">
+    <span class="tag">Resale</span>
+  </a>
+  <button class="save" type="button" aria-pressed="false" aria-label="Save ATL-1055" data-save="ATL-1055"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></button>
+  <div class="card-body">
+    <p class="price">€265,000<small></small></p>
+    <h3><a href="./listing.html">Two-bedroom apartment near the beach</a></h3>
+    <p class="meta">Protaras · Apartment · ATL-1055</p>
+    <p class="facts"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18v-7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v7M3 14h18M5 9V6h6v3m2 0V6h6v3M3 18v1m18-1v1" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>2 bed</span><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16v2a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5v-2Zm2 0V6a2 2 0 0 1 4 0M7 19l-1 2m11-2 1 2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>1 bath</span><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v16H4zM4 9h5V4M15 20v-5h5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>76 m²</span></p>
+    <label class="compare-toggle"><input type="checkbox" data-compare="ATL-1055"> <span>Compare</span></label>
+  </div>
+</article>
+<article class="card reveal" data-ref="ATL-1019" data-type="penthouse" data-area="limassol" data-beds="3" data-price="1380000" data-m2="165" data-baths="3" data-year="2026" data-feats="new-build sea-view pool parking" data-title="Penthouse with roof terrace, Limassol" data-img="./assets/img/apt-02.jpg" data-pricelabel="€1,380,000 + VAT">
+  <a class="card-media" href="./listing.html" aria-label="Penthouse with roof terrace, Limassol">
+    <img src="./assets/img/apt-02.jpg" alt="High-rise residential tower seen from below" width="800" height="600" loading="lazy">
+    <span class="tag">New build</span>
+  </a>
+  <button class="save" type="button" aria-pressed="false" aria-label="Save ATL-1019" data-save="ATL-1019"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></button>
+  <div class="card-body">
+    <p class="price">€1,380,000<small> + VAT</small></p>
+    <h3><a href="./listing.html">Penthouse with roof terrace</a></h3>
+    <p class="meta">Limassol · Penthouse · ATL-1019</p>
+    <p class="facts"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18v-7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v7M3 14h18M5 9V6h6v3m2 0V6h6v3M3 18v1m18-1v1" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>3 bed</span><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16v2a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5v-2Zm2 0V6a2 2 0 0 1 4 0M7 19l-1 2m11-2 1 2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>3 bath</span><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v16H4zM4 9h5V4M15 20v-5h5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>165 m²</span></p>
+    <label class="compare-toggle"><input type="checkbox" data-compare="ATL-1019"> <span>Compare</span></label>
+  </div>
+</article>
+<article class="card reveal" data-ref="ATL-1061" data-type="commercial" data-area="paphos" data-beds="0" data-price="390000" data-m2="140" data-baths="1" data-year="2012" data-feats="title-deeds" data-title="Retail unit, harbour road, Paphos" data-img="./assets/img/apt-06.jpg" data-pricelabel="€390,000">
+  <a class="card-media" href="./listing.html" aria-label="Retail unit, harbour road, Paphos">
+    <img src="./assets/img/apt-06.jpg" alt="Stacked white balconies of a modern residential building" width="800" height="600" loading="lazy">
+    <span class="tag">Commercial</span>
+  </a>
+  <button class="save" type="button" aria-pressed="false" aria-label="Save ATL-1061" data-save="ATL-1061"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></button>
+  <div class="card-body">
+    <p class="price">€390,000<small></small></p>
+    <h3><a href="./listing.html">Retail unit, harbour road</a></h3>
+    <p class="meta">Paphos · Commercial · ATL-1061</p>
+    <p class="facts"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16v2a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5v-2Zm2 0V6a2 2 0 0 1 4 0M7 19l-1 2m11-2 1 2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>1 bath</span><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v16H4zM4 9h5V4M15 20v-5h5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>140 m²</span></p>
+    <label class="compare-toggle"><input type="checkbox" data-compare="ATL-1061"> <span>Compare</span></label>
+  </div>
+</article>
+<article class="card reveal" data-ref="ATL-1026" data-type="villa" data-area="voula" data-beds="5" data-price="2100000" data-m2="320" data-baths="4" data-year="2020" data-feats="pool sea-view parking furnished" data-title="Five-bedroom villa, Voula" data-img="./assets/img/villa-01.jpg" data-pricelabel="€2,100,000">
+  <a class="card-media" href="./listing.html" aria-label="Five-bedroom villa, Voula">
+    <img src="./assets/img/villa-01.jpg" alt="Two-storey modern house with wide balconies" width="800" height="600" loading="lazy">
+    <span class="tag">Resale</span>
+  </a>
+  <button class="save" type="button" aria-pressed="false" aria-label="Save ATL-1026" data-save="ATL-1026"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></button>
+  <div class="card-body">
+    <p class="price">€2,100,000<small></small></p>
+    <h3><a href="./listing.html">Five-bedroom villa</a></h3>
+    <p class="meta">Voula · Villa · ATL-1026</p>
+    <p class="facts"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18v-7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v7M3 14h18M5 9V6h6v3m2 0V6h6v3M3 18v1m18-1v1" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>5 bed</span><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16v2a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5v-2Zm2 0V6a2 2 0 0 1 4 0M7 19l-1 2m11-2 1 2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>4 bath</span><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v16H4zM4 9h5V4M15 20v-5h5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>320 m²</span></p>
+    <label class="compare-toggle"><input type="checkbox" data-compare="ATL-1026"> <span>Compare</span></label>
+  </div>
+</article>
+      </div>
+      <div class="empty" id="empty" hidden>
+        <p class="label">No match</p>
+        <h2>Nothing fits those filters yet.</h2>
+        <p>Widen the price range or drop a feature. Or send us the brief and we search off-market.</p>
+        <p class="empty-actions"><button class="btn btn-accent" type="button" id="empty-reset">Clear filters</button> <a class="btn btn-ghost" href="./contact.html">Send a brief</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <a class="brand" href="./index.html" aria-label="Atlas Property, home"><svg class="mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 21.5 20h-19Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="m8.5 20 3.5-6.5 3.5 6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span>Atlas<b>Property</b></span></a>
+      <p>Residential and commercial property for buyers and investors in Cyprus and Greece. Licensed agency, registration number 000/E.</p>
+    </div>
+    <nav aria-label="Footer">
+      <p class="label">Site</p>
+      <ul>
+        <li><a href="./listings.html">Listings</a></li>
+        <li><a href="./index.html#investors">Investors</a></li>
+        <li><a href="./about.html">About</a></li>
+        <li><a href="./contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div>
+      <p class="label">Offices</p>
+      <ul>
+        <li>12 Example Street, Limassol 3030, Cyprus</li>
+        <li>8 Example Avenue, Glyfada 166 75, Greece</li>
+        <li><a href="tel:+35799000000">+357 99 000 000</a></li>
+        <li><a href="mailto:hello@atlasproperty.example">hello@atlasproperty.example</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="label">Follow</p>
+      <ul>
+        <li><a href="https://instagram.com" rel="noopener">Instagram</a></li>
+        <li><a href="https://linkedin.com" rel="noopener">LinkedIn</a></li>
+        <li><a href="https://facebook.com" rel="noopener">Facebook</a></li>
+        <li><a href="https://youtube.com" rel="noopener">YouTube</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap footer-bottom">
+    <p>© 2026 Atlas Property Ltd. <a href="#">Privacy</a> <a href="#">Cookies</a></p>
+    <p><a href="https://phemegrowth.com" rel="noopener">Website by Pheme Growth</a></p>
+  </div>
+</footer>
+<a class="wa-float" href="https://wa.me/35799000000" rel="noopener" aria-label="Chat on WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.6-2-.9-.9 1a4.6 4.6 0 0 1-2.6-2.6l1-.9-.9-2L9 8.5Z" fill="currentColor"/></svg></a>
+<div class="bottom-bar" aria-label="Quick contact">
+  <a href="tel:+35799000000"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 3h3l1.5 4.5-2 1.2a11 11 0 0 0 6.3 6.3l1.2-2L21 14.5v3A2.5 2.5 0 0 1 18.5 20 15.5 15.5 0 0 1 4 5.5 2.5 2.5 0 0 1 6.5 3Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>Call</a>
+  <a class="is-wa" href="https://wa.me/35799000000" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.6-2-.9-.9 1a4.6 4.6 0 0 1-2.6-2.6l1-.9-.9-2L9 8.5Z" fill="currentColor"/></svg>WhatsApp</a>
+</div>
+<script src="./app.js" defer></script>
+</body>
+</html>
