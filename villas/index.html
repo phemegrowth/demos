@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pheme Villas · From the plot to the keys</title>
+<meta name="description" content="We design and build stone-and-glass villas on the hills above the sea, from the first drawing to the day you move in.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#120f0c;--bg2:#1a1511;--ink:#f4ece0;--muted:#a79b8b;--line:rgba(244,236,224,.14);--gold:#d9a85c;--stone:#e8d9c2;--serif:'Cormorant Garamond',serif;--sans:'Figtree',sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--bg)}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:clip}
+em{font-family:var(--serif);font-style:italic;font-weight:300;color:var(--gold)}
+a{color:inherit;text-decoration:none}
+.nav{position:fixed;inset:0 0 auto;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:22px 40px;font-size:13px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:600;letter-spacing:.3em;font-size:12px}
+.logo i{width:18px;height:18px;border:1.5px solid var(--gold);transform:rotate(45deg);display:inline-block}
+.nav ul{display:flex;gap:30px;list-style:none;color:var(--muted)}
+.nav ul a:hover{color:var(--ink)}
+.btn{background:var(--gold);color:#1a1208;padding:11px 20px;border-radius:999px;font-weight:600;font-size:13px;display:inline-block}
+.btn.ghost{background:none;color:var(--ink);border:1px solid var(--line)}
+
+/* hero film */
+.build{height:100vh;position:relative;overflow:hidden}
+.build canvas{position:absolute;inset:0;width:100%;height:100%}
+.build .shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(18,15,12,.72) 0%,rgba(18,15,12,.1) 42%,rgba(18,15,12,0) 65%),linear-gradient(0deg,rgba(18,15,12,.7) 0%,rgba(18,15,12,0) 28%)}
+.build .shade.r{background:linear-gradient(270deg,rgba(18,15,12,.72) 0%,rgba(18,15,12,.1) 42%,rgba(18,15,12,0) 65%),linear-gradient(0deg,rgba(18,15,12,.7) 0%,rgba(18,15,12,0) 28%);opacity:0}
+.cap{position:absolute;left:40px;top:50%;transform:translateY(-50%);max-width:520px;opacity:0}
+.cap.r{left:auto;right:40px;text-align:right}
+.cap .k{font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+.cap h1,.cap h2{font-family:var(--serif);font-weight:300;font-size:clamp(42px,5.6vw,88px);line-height:.98;letter-spacing:-.015em}
+.cap p{margin-top:22px;color:#d8cdbd;font-size:15px;line-height:1.6;max-width:360px}
+.cap.r p{margin-left:auto}
+.hud{position:absolute;left:40px;right:40px;bottom:26px;display:flex;align-items:center;gap:26px;font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.hud b{color:var(--ink);font-weight:500}
+.hud .bar{flex:1;height:1px;background:var(--line);position:relative}
+.hud .bar i{position:absolute;inset:0 auto 0 0;width:0;background:var(--gold)}
+.hud .steps{display:flex;gap:6px}.hud .steps i{width:6px;height:6px;border-radius:50%;border:1px solid var(--muted)}
+.hud .steps i.on{background:var(--gold);border-color:var(--gold)}
+.scrollhint{position:absolute;left:50%;bottom:70px;transform:translateX(-50%);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:12px}
+.scrollhint i{width:1px;height:40px;background:linear-gradient(var(--gold),transparent);animation:drip 1.8s infinite}
+@keyframes drip{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+
+/* two rows of cards sliding against each other */
+.marq{padding:9vh 0 10vh;background:var(--bg);overflow:hidden;display:flex;flex-direction:column;gap:18px}
+.row{display:flex;gap:18px;width:max-content;will-change:transform}
+.card{flex:none;width:min(26vw,380px);aspect-ratio:4/3;border-radius:14px;overflow:hidden;background:#000}
+.card img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* process: one sticky image on the left, steps scroll on the right, a rail draws itself */
+.proc{position:relative;background:var(--bg2);padding:14vh 40px 10vh}
+.proc .head{max-width:700px;margin-bottom:8vh}
+.proc .k{font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--gold)}
+.proc h2{font-family:var(--serif);font-weight:300;font-size:clamp(38px,4.4vw,72px);letter-spacing:-.015em;margin-top:12px;line-height:1}
+.pwrap{display:grid;grid-template-columns:1.1fr 1fr;gap:6vw;max-width:1280px;margin:0 auto;align-items:start}
+.stick{position:sticky;top:12vh;height:76vh;border-radius:18px;overflow:hidden;background:#000}
+.stick img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.06);transition:opacity .9s ease,transform 1.6s cubic-bezier(.2,.7,.2,1)}
+.stick img.on{opacity:1;transform:none}
+.stick .tag{position:absolute;left:22px;bottom:20px;z-index:2;font-size:12px;letter-spacing:.18em;text-transform:uppercase;background:rgba(18,15,12,.55);backdrop-filter:blur(8px);padding:9px 14px;border-radius:999px;color:var(--ink)}
+.stick .tag b{color:var(--gold);font-weight:500}
+.steps2{position:relative;padding-left:72px}
+.steps2 .rail{position:absolute;left:21px;top:22px;bottom:22px;width:1px;background:var(--line)}
+.steps2 .rail i{position:absolute;inset:0;background:var(--gold);transform-origin:top;transform:scaleY(0)}
+.step{position:relative;min-height:62vh;display:flex;flex-direction:column;justify-content:center;opacity:.28;transition:opacity .5s}
+.step:last-child{min-height:50vh}
+.step.on{opacity:1}
+.step .n{position:absolute;left:-72px;top:50%;margin-top:-22px;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--bg2);display:grid;place-items:center;font-family:var(--serif);font-size:20px;color:var(--gold);transition:border-color .5s,box-shadow .5s;z-index:1}
+.step.on .n{border-color:var(--gold);box-shadow:0 0 0 8px rgba(217,168,92,.12)}
+.step h3{font-family:var(--serif);font-weight:300;font-size:clamp(30px,3.2vw,52px);line-height:1.02}
+.step p{color:var(--muted);margin-top:14px;max-width:400px;line-height:1.6;font-size:15px}
+.step .wk{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;display:block}
+
+/* projects: pinned horizontal */
+.types{height:100vh;position:relative;overflow:hidden;background:var(--bg)}
+.types .head{position:absolute;left:40px;top:96px;z-index:3;display:flex;align-items:flex-end;gap:28px}
+.types .head p{color:var(--muted);font-size:13px;padding-bottom:6px}
+.types .k{font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--gold)}
+.types h2{font-family:var(--serif);font-weight:300;font-size:clamp(34px,3.6vw,58px);letter-spacing:-.015em;margin-top:12px;line-height:1}
+.track{position:absolute;left:0;top:0;height:100%;display:flex;align-items:center;padding-top:14vh !important;gap:3vw;padding:0 40px 0 40px;will-change:transform}
+.res{flex:0 0 auto;width:min(42vw,640px);position:relative}
+.res .ph{height:min(54vh,500px);border-radius:18px;overflow:hidden;position:relative}
+.res .ph img{position:absolute;inset:-4% -10%;width:120%;height:108%;object-fit:cover}
+.res .meta{display:flex;justify-content:space-between;align-items:flex-end;margin-top:22px;gap:20px}
+.res h3{font-family:var(--serif);font-weight:300;font-size:clamp(28px,2.6vw,42px);line-height:1}
+.res .meta p{color:var(--muted);font-size:13px;margin-top:8px}
+.res .sz{font-family:var(--serif);font-weight:300;font-size:clamp(40px,4.2vw,68px);color:var(--stone);line-height:.9;white-space:nowrap}
+.res .sz small{font-family:var(--sans);font-size:14px;color:var(--muted)}
+.res .no{position:absolute;top:16px;left:18px;z-index:2;font-size:11px;letter-spacing:.18em;background:rgba(18,15,12,.5);backdrop-filter:blur(8px);padding:6px 10px;border-radius:999px}
+.types .prog{position:absolute;left:40px;right:40px;bottom:36px;height:1px;background:var(--line)}
+.types .prog i{position:absolute;inset:0;background:var(--gold);transform-origin:left;transform:scaleX(0)}
+
+/* before / after */
+.cmp{padding:14vh 40px 8vh;background:var(--bg)}
+.cmp .head{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;max-width:1280px;margin:0 auto 36px;flex-wrap:wrap}
+.cmp .k{font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--gold)}
+.cmp h2{font-family:var(--serif);font-weight:300;font-size:clamp(38px,4.6vw,78px);letter-spacing:-.02em;line-height:.98;margin-top:12px}
+.cmp .head p{color:var(--muted);font-size:13px;letter-spacing:.1em;text-transform:uppercase}
+.ba{position:relative;max-width:1280px;margin:0 auto;aspect-ratio:16/9;border-radius:20px;overflow:hidden;user-select:none;touch-action:pan-y;cursor:ew-resize;background:#000}
+.ba, .ba *{-webkit-user-select:none;user-select:none;-webkit-user-drag:none;-webkit-touch-callout:none}
+.ba img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+body.dragging, body.dragging *{-webkit-user-select:none !important;user-select:none !important;cursor:ew-resize}
+.ba .before{position:absolute;inset:0;width:50%;overflow:hidden}
+.ba .before img{width:auto;height:100%;max-width:none}
+.ba .lb{position:absolute;bottom:18px;left:18px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;background:rgba(18,15,12,.55);backdrop-filter:blur(8px);padding:8px 12px;border-radius:999px;z-index:2}
+.ba .la{left:auto;right:18px}
+.handle{position:absolute;top:0;bottom:0;left:50%;width:0;display:flex;flex-direction:column;align-items:center;z-index:3;pointer-events:none}
+.handle i{flex:1;width:1px;background:var(--gold);box-shadow:0 0 12px rgba(217,168,92,.6)}
+.handle b{width:52px;height:52px;border-radius:50%;background:var(--gold);color:#1a1208;display:grid;place-items:center;font-weight:600;font-size:20px;box-shadow:0 8px 30px rgba(0,0,0,.5);flex:none}
+.cmp .ctas{display:flex;gap:12px;margin:36px auto 0;max-width:1280px;flex-wrap:wrap}
+/* numbers */
+.nums{padding:8vh 40px 10vh;background:var(--bg2)}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;max-width:1280px;margin:0 auto}
+.grid div{border-top:1px solid var(--line);padding-top:18px}
+.grid b{display:block;font-family:var(--serif);font-weight:300;font-size:clamp(50px,5vw,88px);color:var(--stone);line-height:1;font-variant-numeric:tabular-nums}
+.grid b sup{font-size:.4em;color:var(--gold);vertical-align:top}
+.grid small{color:var(--muted);font-size:13px;display:block;margin-top:6px;max-width:220px;line-height:1.45}
+.foot{display:flex;justify-content:space-between;gap:20px;padding:28px 40px;border-top:1px solid var(--line);color:var(--muted);font-size:12px;background:var(--bg)}
+
+@media (max-width:860px){
+  .nav{padding:18px 16px}.nav ul,.nav .btn{display:none}
+  .cap{left:16px;right:16px;max-width:none;top:auto;bottom:90px;transform:none}.cap.r{right:16px;text-align:left}.cap.r p{margin-left:0}
+  .hud{left:16px;right:16px}.hud .steps{display:none}
+  .say{padding:0 16px}
+  .proc{padding:12vh 16px}.steps2 .rail{left:21px}
+  .step,.step:nth-child(even){grid-template-columns:44px 1fr;gap:0 16px;padding:5vh 0}
+  .step .n{order:0}.step .t,.step:nth-child(even) .t{order:1;text-align:left;padding:0}.step .ph,.step:nth-child(even) .ph{order:2;grid-column:2;padding:16px 0 0}
+  .types .head{left:16px;top:84px}.track{padding:0 16px 0 16px;gap:16px}.res{width:78vw}.res .ph{height:46vh}.types .prog{left:16px;right:16px}
+  .marq{padding:6vh 0;gap:12px}.row{gap:12px}.card{width:58vw;border-radius:10px}
+  .proc{padding:12vh 16px 6vh}.pwrap{grid-template-columns:1fr;gap:24px}.stick{position:sticky;top:62px;height:34vh;z-index:3;border-radius:12px}.step{min-height:70vh}.steps2{padding-left:56px}.step .n{left:-56px;width:40px;height:40px;margin-top:-20px}.steps2 .rail{left:19px}
+  .cmp{padding:10vh 16px 6vh}.ba{border-radius:14px}.handle b{width:42px;height:42px}
+  .nums{padding:6vh 16px 8vh}.grid{grid-template-columns:1fr 1fr;gap:18px}
+  .foot{padding:22px 16px;flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="logo" href="#"><i></i>PHEME VILLAS</a>
+  <ul><li><a href="#proc">How we build</a></li><li><a href="#types">Villas</a></li><li><a href="#nums">Start yours</a></li></ul>
+  <a class="btn" href="#nums">Talk to us</a>
+</nav>
+
+<section class="build" id="build">
+  <canvas id="seq"></canvas>
+  <div class="shade"></div><div class="shade r"></div>
+
+  <div class="cap" data-stage="0"><div class="k">01 · The plot</div><h1>It starts<br><em>with a hill.</em></h1><p>An olive grove above the sea. You bring the land, we bring everything after.</p></div>
+  <div class="cap r" data-stage="1"><div class="k">02 · The design</div><h2>Drawn<br><em>for this view.</em></h2><p>Every villa is designed for its plot, its sun and its sea.</p></div>
+  <div class="cap" data-stage="2"><div class="k">03 · Foundations</div><h2>Poured<br><em>through the night.</em></h2><p>Our own crews, our own machines. The slab is down in one pour.</p></div>
+  <div class="cap r" data-stage="3"><div class="k">04 · Structure</div><h2>Stone<br><em>on concrete.</em></h2><p>A reinforced frame, dressed in local stone laid by hand.</p></div>
+  <div class="cap" data-stage="4"><div class="k">05 · Finished</div><h2>Glass, light<br><em>and water.</em></h2><p>Fourteen months after the first drawing, the pool is full.</p></div>
+  <div class="cap r" data-stage="5"><div class="k">06 · The keys</div><h2>Welcome<br><em>home.</em></h2><p>We hand over the keys and stay on call for the first year.</p></div>
+  <div class="cap" data-stage="6"><div class="k">07 · Living</div><h2>Evenings<br><em>like this.</em></h2><p>The sun goes down over the sea, from the sofa.</p></div>
+
+  <div class="scrollhint">Scroll<i></i></div>
+  <div class="hud"><span><b id="pct">0</b>%</span><span id="stagelabel">The plot</span><div class="bar"><i id="barfill"></i></div><span class="steps" id="steps"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>Design and build</span></div>
+</section>
+
+
+<section class="marq" id="marq">
+  <div class="row r1"><div class="card"><img src="img/cards/c01.jpg" alt=""></div><div class="card"><img src="img/cards/c03.jpg" alt=""></div><div class="card"><img src="img/cards/c05.jpg" alt=""></div><div class="card"><img src="img/cards/c07.jpg" alt=""></div><div class="card"><img src="img/cards/c09.jpg" alt=""></div><div class="card"><img src="img/cards/c11.jpg" alt=""></div><div class="card"><img src="img/cards/c13.jpg" alt=""></div><div class="card"><img src="img/cards/c01.jpg" alt=""></div><div class="card"><img src="img/cards/c03.jpg" alt=""></div><div class="card"><img src="img/cards/c05.jpg" alt=""></div><div class="card"><img src="img/cards/c07.jpg" alt=""></div><div class="card"><img src="img/cards/c09.jpg" alt=""></div><div class="card"><img src="img/cards/c11.jpg" alt=""></div><div class="card"><img src="img/cards/c13.jpg" alt=""></div></div>
+  <div class="row r2"><div class="card"><img src="img/cards/c02.jpg" alt=""></div><div class="card"><img src="img/cards/c04.jpg" alt=""></div><div class="card"><img src="img/cards/c06.jpg" alt=""></div><div class="card"><img src="img/cards/c08.jpg" alt=""></div><div class="card"><img src="img/cards/c10.jpg" alt=""></div><div class="card"><img src="img/cards/c12.jpg" alt=""></div><div class="card"><img src="img/cards/c14.jpg" alt=""></div><div class="card"><img src="img/cards/c02.jpg" alt=""></div><div class="card"><img src="img/cards/c04.jpg" alt=""></div><div class="card"><img src="img/cards/c06.jpg" alt=""></div><div class="card"><img src="img/cards/c08.jpg" alt=""></div><div class="card"><img src="img/cards/c10.jpg" alt=""></div><div class="card"><img src="img/cards/c12.jpg" alt=""></div><div class="card"><img src="img/cards/c14.jpg" alt=""></div></div>
+</section>
+
+<section class="proc" id="proc">
+  <div class="head"><div class="k">How we build</div><h2>Fourteen months, <em>one team.</em></h2></div>
+  <div class="pwrap">
+    <div class="stick" id="stick">
+      <img src="img/blueprint.jpg" class="on" alt=""><img src="img/night.jpg" alt=""><img src="img/half.jpg" alt=""><img src="img/finished.jpg" alt="">
+      <div class="tag">Month <b id="month">1</b> of 14</div>
+    </div>
+    <div class="steps2"><div class="rail"><i id="rail"></i></div>
+      <div class="step on" data-m="1"><div class="n">1</div><span class="wk">Months 1–2</span><h3>Design</h3><p>We walk the plot with you, then draw the house around the view, the sun and the wind.</p></div>
+      <div class="step" data-m="3"><div class="n">2</div><span class="wk">Months 3–4</span><h3>Permits and ground</h3><p>Planning, surveys and the excavation. The foundations are poured in one night.</p></div>
+      <div class="step" data-m="5"><div class="n">3</div><span class="wk">Months 5–10</span><h3>Structure and stone</h3><p>The concrete frame rises floor by floor and our masons dress it in local stone.</p></div>
+      <div class="step" data-m="11"><div class="n">4</div><span class="wk">Months 11–14</span><h3>Glass, interiors, pool</h3><p>Windows, oak, stone floors, the kitchen and the pool. Then we hand you the keys.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="cmp" id="nums">
+  <div class="head"><div><div class="k">Start yours</div><h2>Your hill, <em>fourteen months later.</em></h2></div><p>Drag the line</p></div>
+  <div class="ba" id="ba">
+    <img src="img/finished.jpg" alt="" class="after" draggable="false">
+    <div class="before" id="before"><img src="img/plot.jpg" alt="" draggable="false"><span class="lb">Day 1</span></div>
+    <span class="lb la">Month 14</span>
+    <div class="handle" id="handle"><i></i><b>⟷</b><i></i></div>
+  </div>
+  <div class="ctas"><a class="btn" href="#">Talk to us about your plot</a><a class="btn ghost" href="#proc">How we build</a></div>
+</section>
+
+<section class="types" id="types">
+  <div class="head"><div><div class="k">Recent work</div><h2>Three <em>villas.</em></h2></div><p>Scroll to move along the hill →</p></div>
+  <div class="track" id="track">
+    <div class="res"><div class="ph"><span class="no">01</span><img src="img/finished.jpg" alt=""></div><div class="meta"><div><h3>Villa Elia</h3><p>Four bedrooms, infinity pool, olive grove</p></div><div class="sz">420<small> m²</small></div></div></div>
+    <div class="res"><div class="ph"><span class="no">02</span><img src="img/terrace.jpg" alt=""></div><div class="meta"><div><h3>Villa Thea</h3><p>Double-height living room facing west</p></div><div class="sz">365<small> m²</small></div></div></div>
+    <div class="res"><div class="ph"><span class="no">03</span><img src="img/living.jpg" alt=""></div><div class="meta"><div><h3>Villa Nera</h3><p>Stone, oak and glass, built for a family</p></div><div class="sz">510<small> m²</small></div></div></div>
+  </div>
+  <div class="prog"><i id="tprog"></i></div>
+</section>
+
+<section class="nums">
+  <div class="grid">
+    <div><b data-n="14">0</b><small>months from drawing to keys</small></div>
+    <div><b data-n="1">0</b><small>fixed price, agreed before we dig</small></div>
+    <div><b data-n="38">0</b><small>villas built on these hills</small></div>
+    <div><b data-n="10">0</b><small>year structural guarantee</small></div>
+  </div>
+</section>
+<div class="foot"><span>Pheme Villas · Design and build</span><span>Concept website by Pheme Growth</span></div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+const lenis = new Lenis({lerp:.09});
+lenis.on('scroll', ScrollTrigger.update);
+gsap.ticker.add(t => lenis.raf(t*1000)); gsap.ticker.lagSmoothing(0);
+
+// ---------- hero: 8 stills joined by 7 AI clips, played by scroll ----------
+const FRAMES = 420, src = i => `frames/f${String(i+1).padStart(4,'0')}.jpg`;
+const cv = document.getElementById('seq'), cx = cv.getContext('2d'), imgs = [];
+const state = {f:0};
+for (let i=0;i<FRAMES;i++){ const im=new Image(); im.src=src(i); imgs.push(im); }
+function draw(){
+  const im = imgs[Math.round(state.f)]; if(!im || !im.complete || !im.naturalWidth) return;
+  const dpr = Math.min(devicePixelRatio,2), w=innerWidth, h=innerHeight;
+  if (cv.width!==w*dpr){ cv.width=w*dpr; cv.height=h*dpr; }
+  const s = Math.max(w/im.width, h/im.height)*(1+state.f/FRAMES*.05);
+  const dw=im.width*s, dh=im.height*s;
+  cx.drawImage(im,(w-dw)/2*dpr,(h-dh)/2*dpr,dw*dpr,dh*dpr);
+}
+imgs[0].onload = draw; addEventListener('resize', ()=>{cv.width=0; draw();});
+
+const stages = ['The plot','The design','Foundations','Structure','Finished','The keys','Living'];
+const caps = gsap.utils.toArray('.cap'), steps = [...document.querySelectorAll('#steps i')];
+// 7 clips of equal length; caption i belongs to the still at the start of clip i (the last one to the end)
+const at = [0, 1/7, 2/7, 3/7, 4/7, 5/7, 6/7];
+const tl = gsap.timeline({scrollTrigger:{trigger:'#build',start:'top top',end:'+=800%',pin:true,scrub:true,
+  onUpdate:self=>{
+    const p=self.progress;
+    document.getElementById('pct').textContent = Math.round(p*100);
+    document.getElementById('barfill').style.width = p*100+'%';
+    const st = at.filter(a=>p>=a-.03).length-1;
+    document.getElementById('stagelabel').textContent = stages[Math.max(0,st)];
+    steps.forEach((s,i)=>s.classList.toggle('on', i<=st));
+  }}});
+tl.to(state,{f:FRAMES-1,ease:'none',duration:10,onUpdate:draw},0);
+tl.to('.scrollhint',{opacity:0,duration:.3},0);
+caps.forEach((c,i)=>{
+  const t0 = at[i]*10, x = c.classList.contains('r') ? 40 : -40;
+  if(i===0) gsap.set(c,{opacity:1});
+  else tl.fromTo(c,{opacity:0,x,filter:'blur(10px)'},{opacity:1,x:0,filter:'blur(0px)',duration:.45},t0-.3);
+  if(i<caps.length-1) tl.to(c,{opacity:0,x:-x/2,filter:'blur(10px)',duration:.35},at[i+1]*10-.6);
+});
+// left/right shade follows the caption side
+caps.forEach((c,i)=>{ if(i===0) return; const r=c.classList.contains('r'), t0=at[i]*10-.3;
+  tl.to('.build .shade.r',{opacity:r?1:0,duration:.4},t0).to('.build .shade:not(.r)',{opacity:r?0:1,duration:.4},t0); });
+
+document.fonts.ready.then(()=>{ initRest(); ScrollTrigger.refresh(); });
+function initRest(){
+
+// card rows: top row drifts right, bottom row left, driven by scroll
+gsap.fromTo('.row.r1',{xPercent:-32},{xPercent:-6,ease:'none',scrollTrigger:{trigger:'#marq',start:'top bottom',end:'bottom top',scrub:.6}});
+gsap.fromTo('.row.r2',{xPercent:-6},{xPercent:-32,ease:'none',scrollTrigger:{trigger:'#marq',start:'top bottom',end:'bottom top',scrub:.6}});
+
+// process rail
+gsap.to('#rail',{scaleY:1,ease:'none',scrollTrigger:{trigger:'.steps2',start:'top 55%',end:'bottom 55%',scrub:true}});
+const stImgs=[...document.querySelectorAll('#stick img')], stepEls=[...document.querySelectorAll('.step')];
+function showStep(i){ stepEls.forEach((s,j)=>s.classList.toggle('on',j===i)); stImgs.forEach((im,j)=>im.classList.toggle('on',j===i)); document.getElementById('month').textContent=stepEls[i].dataset.m; }
+stepEls.forEach((s,i)=>ScrollTrigger.create({trigger:s,start:'top 55%',end:'bottom 55%',onEnter:()=>showStep(i),onEnterBack:()=>showStep(i)}));
+
+// projects: horizontal
+const track = document.getElementById('track');
+const dist = () => track.scrollWidth - innerWidth;
+const ht = gsap.to(track,{x:()=>-dist(),ease:'none',scrollTrigger:{trigger:'#types',start:'top top',end:()=>'+='+dist()*1.1,pin:true,scrub:1,invalidateOnRefresh:true,
+  onUpdate:s=>document.getElementById('tprog').style.transform=`scaleX(${s.progress})`}});
+gsap.utils.toArray('.res').forEach(r=>{
+  gsap.fromTo(r.querySelector('img'),{xPercent:6},{xPercent:-6,ease:'none',scrollTrigger:{trigger:r,containerAnimation:ht,start:'left right',end:'right left',scrub:true}});
+  gsap.fromTo(r,{scale:.92,opacity:.55},{scale:1,opacity:1,ease:'none',scrollTrigger:{trigger:r,containerAnimation:ht,start:'left 95%',end:'left 55%',scrub:true}});
+});
+
+// numbers
+// before / after slider: sweeps once on enter, then follows the pointer
+const ba=document.getElementById('ba'), before=document.getElementById('before'), handle=document.getElementById('handle');
+const setBA=p=>{p=Math.max(.02,Math.min(.98,p)); before.style.width=p*100+'%'; handle.style.left=p*100+'%';};
+const bimg=before.querySelector('img'); const sizeBA=()=>{bimg.style.width=ba.clientWidth+'px'}; sizeBA(); addEventListener('resize',sizeBA);
+setBA(.5);
+ScrollTrigger.create({trigger:'#ba',start:'top 70%',once:true,onEnter:()=>{const o={p:.5};gsap.timeline().to(o,{p:.96,duration:1.4,ease:'power2.inOut',onUpdate:()=>setBA(o.p)}).to(o,{p:.35,duration:1.4,ease:'power2.inOut',onUpdate:()=>setBA(o.p)});}});
+let drag=false; const px=e=>setBA((e.clientX-ba.getBoundingClientRect().left)/ba.clientWidth);
+ba.addEventListener('pointerdown',e=>{e.preventDefault();drag=true;document.body.classList.add('dragging');ba.setPointerCapture(e.pointerId);px(e)});
+ba.addEventListener('dragstart',e=>e.preventDefault()); ba.addEventListener('selectstart',e=>e.preventDefault());
+ba.addEventListener('pointermove',e=>{if(drag)px(e)}); const stop=()=>{drag=false;document.body.classList.remove('dragging')}; ba.addEventListener('pointerup',stop); ba.addEventListener('pointercancel',stop); addEventListener('pointerup',stop);
+gsap.from('.cmp .head > div > *, .cmp .head p, .ba',{y:40,opacity:0,stagger:.1,duration:.7,scrollTrigger:{trigger:'.cmp',start:'top 75%'}});
+gsap.from('.grid div',{y:40,opacity:0,stagger:.1,duration:.6,scrollTrigger:{trigger:'.nums',start:'top 80%'}});
+ScrollTrigger.create({trigger:'.nums',start:'top 75%',once:true,onEnter:()=>document.querySelectorAll('[data-n]').forEach(b=>{const n=+b.dataset.n,o={v:0};gsap.to(o,{v:n,duration:1.6,ease:'power2.out',onUpdate:()=>b.textContent=Math.round(o.v)})})});
+}
+</script>
+</body>
+</html>

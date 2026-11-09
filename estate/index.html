@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pheme Estate</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600&family=Archivo:wght@800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0d0c0b; --ink:#f2ede6; --muted:#9b948a; --line:rgba(242,237,230,.14);
+  --accent:#e8b98a; --serif:'Instrument Serif',serif; --sans:'Inter Tight',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--bg)}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--accent)}
+a{color:inherit;text-decoration:none}
+
+/* nav */
+.nav{position:fixed;inset:0 0 auto;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:22px 40px;font-size:13px;letter-spacing:.02em}
+.logo{display:flex;align-items:center;gap:10px;font-weight:600;letter-spacing:.28em}
+.logo svg{width:18px;height:18px}
+.nav ul{display:flex;gap:30px;list-style:none;color:var(--muted)}
+.nav ul a:hover{color:var(--ink)}
+.btn{background:var(--accent);color:#1a1410;padding:10px 18px;border-radius:999px;font-weight:500;font-size:13px}
+.btn.ghost{background:none;color:var(--ink);border:1px solid var(--line)}
+
+/* hero: pinned scroll-scrubbed build */
+.build{height:100vh;position:relative;overflow:hidden}
+.build canvas{position:absolute;inset:0;width:100%;height:100%}
+.build .shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,9,8,.72) 0%,rgba(10,9,8,.15) 45%,rgba(10,9,8,0) 70%),linear-gradient(0deg,rgba(10,9,8,.7) 0%,rgba(10,9,8,0) 30%)}
+.cap{position:absolute;left:40px;top:50%;transform:translateY(-50%);max-width:520px;opacity:0}
+.cap.r{left:auto;right:40px;text-align:right}
+.cap .k{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:18px}
+.cap h1,.cap h2{font-weight:500;font-size:clamp(40px,5.4vw,84px);line-height:.98;letter-spacing:-.03em}
+.cap p{margin-top:22px;color:var(--muted);font-size:15px;line-height:1.55;max-width:360px}
+.cap.r p{margin-left:auto}
+.hud{position:absolute;left:40px;right:40px;bottom:26px;display:flex;align-items:center;gap:26px;font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.hud b{color:var(--ink);font-weight:500}
+.hud .bar{flex:1;height:1px;background:var(--line);position:relative}
+.hud .bar i{position:absolute;inset:0 auto 0 0;width:0;background:var(--accent)}
+.plan{position:absolute;right:40px;bottom:64px;width:110px;opacity:.85}
+.plan path{fill:none;stroke:var(--ink);stroke-width:1.2}
+.scrollhint{position:absolute;left:50%;bottom:64px;transform:translateX(-50%);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+
+/* keys: fly through the word HOME into the finished villa */
+.keys{height:100vh;position:relative;overflow:hidden;background:var(--bg)}
+.keys .kimg{position:absolute;inset:0}
+.keys .kimg img{width:100%;height:100%;object-fit:cover;transform-origin:50% 55%}
+.keys .kshade{position:absolute;inset:0;background:linear-gradient(0deg,rgba(10,9,8,.85) 0%,rgba(10,9,8,.35) 40%,rgba(10,9,8,0) 70%);opacity:0}
+.keys svg{position:absolute;inset:0;width:100%;height:100%}
+.keys .kick{position:absolute;left:0;right:0;top:18vh;text-align:center;font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--accent)}
+.keys .kfoot{position:absolute;left:0;right:0;bottom:12vh;text-align:center;font-family:var(--serif);font-style:italic;font-size:22px;color:var(--muted)}
+.keys .kcopy{position:absolute;left:40px;right:40px;bottom:56px;display:flex;justify-content:space-between;align-items:flex-end;gap:40px}
+.keys h2{font-size:clamp(48px,6.4vw,110px);font-weight:500;letter-spacing:-.035em;line-height:.92}
+.keys h2 .ln{display:block;overflow:hidden}.keys h2 .ln>span{display:inline-block}
+.chips{display:grid;grid-template-columns:repeat(3,minmax(0,210px));gap:12px}
+.chip{padding:18px 20px;border-radius:14px;background:rgba(20,18,16,.38);border:1px solid rgba(242,237,230,.16);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.chip b{display:block;font-family:var(--serif);font-style:italic;font-weight:400;font-size:30px;color:var(--accent);line-height:1}
+.chip span{display:block;margin-top:10px;font-size:13px;line-height:1.45;color:var(--ink)}
+
+/* services: luxury 3D ring */
+.services{height:100vh;position:relative;overflow:hidden;perspective:1800px}
+.services .bgs{position:absolute;inset:-6%}
+.services .bgs div{position:absolute;inset:0;background-size:cover;background-position:center;filter:blur(40px) brightness(.38) saturate(1.2);opacity:0}
+.services .vig{position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 48%,rgba(13,12,11,0) 0%,rgba(13,12,11,.85) 100%)}
+.services .head{position:absolute;left:40px;top:108px;z-index:5}
+.services .k{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent)}
+.services h2{font-size:clamp(36px,4vw,64px);font-weight:500;letter-spacing:-.03em;margin-top:12px;line-height:1}
+.stage{position:absolute;left:50%;top:50%;width:var(--cw);height:calc(var(--cw)*1.32);margin:calc(var(--cw)*-.66 - 10px) 0 0 calc(var(--cw)/-2);transform-style:preserve-3d;transform:rotateX(-6deg)}
+.services{--cw:clamp(260px,26vw,440px)}
+.svc{position:absolute;inset:0;border-radius:22px;overflow:hidden;background:#1a1816;backface-visibility:hidden;box-shadow:0 40px 80px -30px rgba(0,0,0,.8);-webkit-box-reflect:below 14px linear-gradient(transparent 72%,rgba(255,255,255,.14))}
+.svc img{position:absolute;inset:0 -12%;width:124%;height:100%;object-fit:cover}
+.svc::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(10,9,8,.82) 0%,rgba(10,9,8,0) 50%);pointer-events:none}
+.svc .ring-line{position:absolute;inset:0;border-radius:22px;border:1px solid rgba(232,185,138,.0);z-index:2;pointer-events:none}
+.svc span{position:absolute;top:18px;left:20px;z-index:2;font-size:11px;letter-spacing:.16em;color:var(--ink);background:rgba(10,9,8,.45);backdrop-filter:blur(8px);padding:6px 10px;border-radius:999px}
+.svc .t{position:absolute;left:22px;right:22px;bottom:22px;z-index:2}
+.svc h3{font-family:var(--serif);font-weight:400;font-size:clamp(26px,2.2vw,38px);line-height:1}
+.svc p{color:rgba(242,237,230,.72);font-size:13px;margin-top:8px;line-height:1.5}
+.svcinfo{position:absolute;right:40px;top:108px;z-index:5;text-align:right;font-variant-numeric:tabular-nums}
+.svcinfo .n{font-family:var(--serif);font-style:italic;font-size:56px;color:var(--accent);line-height:1}
+.svcinfo .n small{font-size:20px;color:var(--muted);font-style:normal;font-family:var(--sans)}
+.svcbar{position:absolute;left:40px;right:40px;bottom:36px;z-index:5;display:flex;gap:8px}
+.svcbar i{flex:1;height:2px;background:var(--line);position:relative;overflow:hidden}
+.svcbar i b{position:absolute;inset:0;background:var(--accent);transform-origin:left;transform:scaleX(0)}
+
+/* stats */
+.stats{height:100vh;position:relative;overflow:hidden;display:flex;align-items:center;padding:0 40px}
+.stats .bgimg{position:absolute;inset:-10%;background:url(img/g2.jpg) center/cover;filter:grayscale(.6) brightness(.32)}
+.stats .in{position:relative;display:grid;grid-template-columns:1.2fr 1fr;gap:60px;width:100%;align-items:center}
+.stats h2{font-size:clamp(40px,4.6vw,72px);font-weight:500;letter-spacing:-.03em;line-height:.98}
+.stats p{color:var(--muted);margin-top:20px;max-width:380px;line-height:1.6}
+.nums{display:grid;grid-template-columns:1fr 1fr;gap:40px 50px}
+.nums b{display:block;font-size:clamp(48px,5.5vw,92px);font-weight:500;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.nums small{color:var(--muted);font-size:13px}
+
+/* footer */
+.foot{min-height:100vh;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;padding:120px 40px 0}
+.foot .bgimg{position:absolute;inset:0;background:url(img/final.jpg) center/cover;filter:brightness(.28)}
+.foot .top{position:relative;display:flex;justify-content:space-between;align-items:flex-end;gap:40px;flex-wrap:wrap}
+.foot h2{font-size:clamp(56px,7vw,120px);font-weight:500;letter-spacing:-.04em;line-height:.9}
+.foot .contact{display:grid;gap:10px;font-size:14px;color:var(--muted);text-align:right}
+.foot .contact b{color:var(--ink);font-weight:500}
+.foot .ctas{display:flex;gap:12px;margin-top:30px}
+.wordmark{position:relative;font-family:'Archivo',sans-serif;font-weight:800;font-size:24vw;line-height:.78;letter-spacing:-.04em;text-align:center;color:var(--ink);margin-top:60px;white-space:nowrap}
+.wordmark span{display:inline-block}
+
+@media (max-width:760px){
+  .nav{padding:18px 16px}.nav ul,.nav .btn{display:none}
+  .cap{left:16px;right:16px;max-width:none}.cap.r{right:16px;text-align:left}.cap.r p{margin-left:0}
+  .hud{left:16px;right:16px}.plan{display:none}
+  .keys .kcopy{left:16px;right:16px;flex-direction:column;align-items:flex-start}.chips{grid-template-columns:1fr}.chip{padding:12px 14px}.chip b{font-size:22px}
+  .services .head,.svcinfo{top:84px}.services .head{left:16px}.svcinfo{right:16px}.svcbar{left:16px;right:16px}
+  .stats{padding:0 16px}.stats .in{grid-template-columns:1fr;gap:40px}
+  .foot{padding:100px 16px 0}.foot .contact{text-align:left}
+  .services{--cw:62vw}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="logo" href="#"><svg viewBox="0 0 20 20"><path d="M2 18h16M4 18V9l6-5 6 5v9" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>PHEME ESTATE</a>
+  <ul><li><a href="#">Homes</a></li><li><a href="#">Process</a></li><li><a href="#">Projects</a></li><li><a href="#">About</a></li></ul>
+  <a class="btn" href="#contact">Book a site visit</a>
+</nav>
+
+<section class="build" id="build">
+  <canvas id="seq"></canvas>
+  <div class="shade"></div>
+
+  <div class="cap" data-stage="0"><div class="k">01 · The plan</div><h1>It starts<br><em>on paper.</em></h1><p>Every Pheme Estate home is drawn around the land, the light and the view, before a single stone moves.</p></div>
+  <div class="cap" data-stage="1"><div class="k">02 · Foundations</div><h2>Rooted in<br><em>the hill.</em></h2><p>Deep foundations, poured by our own crews. No subcontracted shortcuts.</p></div>
+  <div class="cap r" data-stage="2"><div class="k">03 · Structure</div><h2>Then it<br><em>rises.</em></h2><p>Reinforced concrete, built to the Cyprus seismic code and checked at every floor.</p></div>
+  <div class="cap r" data-stage="3"><div class="k">04 · Finish</div><h2>Finished<br><em>by hand.</em></h2><p>Local limestone, oak and glass, chosen for the sun and the sea air.</p></div>
+  <div class="cap" data-stage="4"><div class="k">05 · Inside</div><h2>Made for<br><em>long summers.</em></h2><p>Rooms that open onto the pool, the olive trees and the sea.</p></div>
+
+  <svg class="plan" viewBox="0 0 110 80"><path id="planpath" d="M2 2h106v76H2zM2 40h40V78M42 2v24M42 26h30M72 2v38h36M72 40v38M42 60h30"/></svg>
+  <div class="scrollhint">Scroll to build</div>
+  <div class="hud"><span><b id="pct">0</b>%</span><span id="stagelabel">The plan</span><div class="bar"><i id="barfill"></i></div><span>Limassol · Cyprus</span></div>
+</section>
+
+<section class="keys" id="keys">
+  <div class="kimg"><img src="img/final.jpg" alt=""></div>
+  <div class="kshade"></div>
+  <svg id="ksvg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+    <defs><mask id="kmask" maskUnits="userSpaceOnUse" x="0" y="0" width="1600" height="900">
+      <rect x="-5000" y="-5000" width="12000" height="12000" fill="#fff"/>
+      <text id="kword" x="800" y="590" text-anchor="middle" font-family="Archivo" font-weight="800" font-size="430" letter-spacing="-14" fill="#000">HOME</text>
+    </mask></defs>
+    <rect x="-5000" y="-5000" width="12000" height="12000" fill="#0d0c0b" mask="url(#kmask)"/>
+  </svg>
+  <div class="kick">Built, finished, handed over</div>
+  <div class="kfoot">and then it's yours.</div>
+  <div class="kcopy">
+    <h2><span class="ln"><span>Your keys,</span></span><span class="ln"><span><em>ready.</em></span></span></h2>
+    <div class="chips">
+      <div class="chip"><b>Fixed</b><span>price, signed on day one. No surprises at handover.</span></div>
+      <div class="chip"><b>Dated</b><span>handover, written into the contract.</span></div>
+      <div class="chip"><b>One</b><span>project manager, from the plot to the keys.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="services">
+  <div class="bgs"><div style="background-image:url(img/final.jpg)"></div><div style="background-image:url(img/s_res.jpg)"></div><div style="background-image:url(img/s_reno.jpg)"></div><div style="background-image:url(img/s_com.jpg)"></div><div style="background-image:url(img/s_pool.jpg)"></div><div style="background-image:url(img/g1.jpg)"></div></div>
+  <div class="vig"></div>
+  <div class="head"><div class="k">What we do</div><h2>What <em>we build.</em></h2></div>
+  <div class="svcinfo"><div class="n"><span id="svcn">01</span><small> / 06</small></div></div>
+  <div class="stage" id="ring">
+    <div class="svc"><img src="img/final.jpg" alt=""><span>01</span><div class="t"><h3>Private villas</h3><p>Design and build on your own plot.</p></div><i class="ring-line"></i></div>
+    <div class="svc"><img src="img/s_res.jpg" alt=""><span>02</span><div class="t"><h3>Residences</h3><p>Low-rise apartment buildings.</p></div><i class="ring-line"></i></div>
+    <div class="svc"><img src="img/s_reno.jpg" alt=""><span>03</span><div class="t"><h3>Renovations</h3><p>Old stone houses, brought back.</p></div><i class="ring-line"></i></div>
+    <div class="svc"><img src="img/s_com.jpg" alt=""><span>04</span><div class="t"><h3>Commercial</h3><p>Offices and showrooms.</p></div><i class="ring-line"></i></div>
+    <div class="svc"><img src="img/s_pool.jpg" alt=""><span>05</span><div class="t"><h3>Pools &amp; landscape</h3><p>The outside, finished too.</p></div><i class="ring-line"></i></div>
+    <div class="svc"><img src="img/g1.jpg" alt=""><span>06</span><div class="t"><h3>Turnkey interiors</h3><p>Furnished and ready to live in.</p></div><i class="ring-line"></i></div>
+  </div>
+  <div class="svcbar"><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i></div>
+</section>
+
+<section class="stats">
+  <div class="bgimg"></div>
+  <div class="in">
+    <div><h2>Building Cyprus<br><em>since 1996.</em></h2><p>Three generations of builders, one rule: we only sign what we can hand over on time.</p></div>
+    <div class="nums">
+      <div><b data-n="410">0</b><small>Homes handed over</small></div>
+      <div><b data-n="30">0</b><small>Years building</small></div>
+      <div><b data-n="96" data-s="%">0</b><small>Delivered on schedule</small></div>
+      <div><b data-n="12">0</b><small>Year structural warranty</small></div>
+    </div>
+  </div>
+</section>
+
+<footer class="foot" id="contact">
+  <div class="bgimg"></div>
+  <div class="top">
+    <div><h2>Start<br><em>yours.</em></h2><div class="ctas"><a class="btn" href="#">Book a site visit</a><a class="btn ghost" href="#">Download brochure</a></div></div>
+    <div class="contact"><b>Limassol, Cyprus</b><span>Mon to Sat, 9:00 to 18:00</span><span>hello@phemeestate.example</span></div>
+  </div>
+  <div class="wordmark" id="wm"><span>P</span><span>H</span><span>E</span><span>M</span><span>E</span></div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+const lenis = new Lenis({lerp:.09});
+lenis.on('scroll', ScrollTrigger.update);
+gsap.ticker.add(t => lenis.raf(t*1000)); gsap.ticker.lagSmoothing(0);
+
+// ---- hero frame sequence ----
+const FRAMES = 240, src = i => `frames/f${String(i+1).padStart(4,'0')}.jpg`;
+const cv = document.getElementById('seq'), cx = cv.getContext('2d'), imgs = [];
+const state = {f:0};
+for (let i=0;i<FRAMES;i++){ const im=new Image(); im.src=src(i); imgs.push(im); }
+function draw(){
+  const im = imgs[Math.round(state.f)]; if(!im || !im.complete) return;
+  const dpr = Math.min(devicePixelRatio,2), w=innerWidth, h=innerHeight;
+  if (cv.width!==w*dpr){ cv.width=w*dpr; cv.height=h*dpr; }
+  const s = Math.max(w/im.width, h/im.height)*dpr*(1+state.f/FRAMES*.08); // slow push-in
+  const dw=im.width*s, dh=im.height*s;
+  cx.drawImage(im,(cv.width-dw)/2,(cv.height-dh)/2,dw,dh);
+}
+imgs[0].onload = draw; addEventListener('resize', ()=>{cv.width=0; draw();});
+
+const stages = ['The plan','Foundations','Structure','Finish','Inside'];
+const caps = gsap.utils.toArray('.cap');
+const plan = document.getElementById('planpath'), planLen = plan.getTotalLength();
+plan.style.strokeDasharray = planLen; plan.style.strokeDashoffset = planLen;
+
+const tl = gsap.timeline({scrollTrigger:{trigger:'#build',start:'top top',end:'+=600%',pin:true,scrub:true,
+  onUpdate:self=>{
+    const p=self.progress;
+    document.getElementById('pct').textContent = Math.round(p*100);
+    document.getElementById('barfill').style.width = p*100+'%';
+    document.getElementById('stagelabel').textContent = stages[Math.min(4,Math.floor(p*5))];
+    plan.style.strokeDashoffset = planLen*(1-p);
+  }}});
+tl.to(state,{f:FRAMES-1,ease:'none',duration:10,onUpdate:draw},0);
+tl.to('.scrollhint',{opacity:0,duration:.4},0);
+caps.forEach((c,i)=>{
+  const at=i*2, x = c.classList.contains('r') ? 40 : -40;
+  if(i===0) gsap.set(c,{opacity:1});
+  else tl.fromTo(c,{opacity:0,x,filter:'blur(8px)'},{opacity:1,x:0,filter:'blur(0px)',duration:.6},at+.1);
+  if(i<caps.length-1) tl.to(c,{opacity:0,x:-x/2,filter:'blur(8px)',duration:.5},at+1.6);
+});
+
+// ---- keys: zoom through the "O" of HOME into the villa ----
+document.fonts.ready.then(()=>{ initKeys(); initRest(); ScrollTrigger.refresh(); });
+function initKeys(){
+  const word = document.getElementById('kword');
+  const o = word.getExtentOfChar(1);                       // the "O"
+  const ox = o.x + o.width*0.17, oy = 590 - 430*0.36;       // inside the left stroke of the O
+  const kt = gsap.timeline({scrollTrigger:{trigger:'#keys',start:'top top',end:'+=320%',pin:true,scrub:1}});
+  kt.to('.keys .kick, .keys .kfoot',{opacity:0,y:-20,duration:.6},0)
+    .to(word,{scale:24,svgOrigin:`${ox} ${oy}`,ease:'power3.in',duration:4},0)
+    .to('#ksvg',{opacity:0,duration:.6,ease:'none'},3.4)
+    .fromTo('.keys .kimg img',{scale:1.6},{scale:1,ease:'power2.out',duration:4.6},0)
+    .to('.keys .kshade',{opacity:1,duration:1},4.2)
+    .from('.keys h2 .ln>span',{yPercent:110,duration:1,stagger:.15,ease:'power3.out'},4.4)
+    .from('.chip',{y:50,opacity:0,duration:.9,stagger:.15,ease:'power3.out'},4.8)
+    .to({}, {duration:1.2});
+}
+
+function initRest(){
+
+// ---- services: big 3D ring, snaps to each card, blurred backdrop follows ----
+const cards = gsap.utils.toArray('.svc'), N = cards.length, bgs = gsap.utils.toArray('.services .bgs div'), bars = gsap.utils.toArray('.svcbar b');
+const ring = {a:0};
+const cw = () => document.getElementById('ring').offsetWidth;
+function placeRing(){
+  const R = cw()*1.28, step = 360/N;
+  let front = 0;
+  cards.forEach((c,i)=>{
+    const ang = i*step + ring.a, rad = ang*Math.PI/180, z = Math.cos(rad);
+    const near = gsap.utils.clamp(0,1,(z-.5)/.5);           // 1 = facing us
+    gsap.set(c,{x:Math.sin(rad)*R*1.5, z:z*R-R, rotationY:ang, zIndex:Math.round(z*100),
+      opacity:gsap.utils.mapRange(-1,1,0,1,z), filter:`brightness(${.35+.65*near})`});
+    gsap.set(c.querySelector('img'),{xPercent:-Math.sin(rad)*8});
+    c.querySelector('.ring-line').style.borderColor = `rgba(232,185,138,${.7*near*near})`;
+    bgs[i].style.opacity = near*near;
+    if (z > Math.cos((front*step + ring.a)*Math.PI/180)) front = i;
+  });
+  const pos = -ring.a/step;
+  bars.forEach((b,i)=> b.style.transform = `scaleX(${gsap.utils.clamp(0,1,pos-i+1)})`);
+  document.getElementById('svcn').textContent = String(front+1).padStart(2,'0');
+}
+placeRing(); addEventListener('resize', placeRing);
+gsap.to(ring,{a:-360*(N-1)/N,ease:'none',onUpdate:placeRing,
+  scrollTrigger:{trigger:'.services',start:'top top',end:'+=300%',pin:true,scrub:1,
+    snap:{snapTo:1/(N-1),duration:{min:.3,max:.8},delay:.08,ease:'power2.inOut'}}});
+
+// ---- stats: parallax + counters ----
+gsap.to('.stats .bgimg',{yPercent:12,ease:'none',scrollTrigger:{trigger:'.stats',scrub:true}});
+document.querySelectorAll('.nums b').forEach(b=>{
+  const o={v:0};
+  gsap.to(o,{v:+b.dataset.n,duration:1.8,ease:'power2.out',
+    scrollTrigger:{trigger:'.stats',start:'top 55%'},
+    onUpdate:()=>b.textContent=Math.round(o.v)+(b.dataset.s||'')});
+});
+
+// ---- footer: giant wordmark rises letter by letter ----
+gsap.from('#wm span',{yPercent:100,opacity:0,stagger:.06,ease:'power3.out',
+  scrollTrigger:{trigger:'.foot',start:'top 70%',end:'bottom bottom',scrub:1}});
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pheme Build</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0c0c0d; --ink:#f1eee8; --muted:#8f8b85; --line:rgba(241,238,232,.14);
+  --accent:#f2b134; --cable:#d9a441;
+  --serif:'Instrument Serif',serif; --sans:'Inter Tight',sans-serif; --disp:'Archivo',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--bg)}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--accent)}
+a{color:inherit;text-decoration:none}
+h1,h2{font-family:var(--disp);font-weight:800;font-stretch:78%;letter-spacing:-.02em;line-height:.9;text-transform:uppercase}
+h1 em,h2 em{text-transform:none;font-size:1.06em;letter-spacing:-.01em}
+.k{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--accent)}
+
+/* nav */
+.nav{position:fixed;inset:0 0 auto;z-index:60;display:flex;align-items:center;justify-content:space-between;padding:22px 40px;font-size:13px}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--disp);font-weight:800;font-stretch:90%;letter-spacing:.18em}
+.logo svg{width:20px;height:20px}
+.nav ul{display:flex;gap:30px;list-style:none;color:var(--muted)}
+.btn{background:var(--accent);color:#17130a;padding:11px 20px;border-radius:999px;font-weight:600;font-size:13px;display:inline-block}
+.btn.ghost{background:none;color:var(--ink);border:1px solid var(--line)}
+
+/* the crane cable: one gold line through every section after the hero */
+.cable{position:absolute;left:50%;top:0;width:2px;margin-left:-1px;background:linear-gradient(var(--cable),#b98a35);z-index:3}
+.hook{position:absolute;left:50%;width:34px;height:48px;margin-left:-17px;z-index:4}
+
+/* 1 hero */
+.build{height:100vh;position:relative;overflow:hidden}
+.build canvas,.pour canvas,.explode canvas{position:absolute;inset:0;width:100%;height:100%}
+.build .shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,8,9,.7) 0%,rgba(8,8,9,.1) 45%,rgba(8,8,9,0) 70%),linear-gradient(0deg,rgba(8,8,9,.75) 0%,rgba(8,8,9,0) 32%)}
+.cap{position:absolute;left:40px;top:50%;transform:translateY(-50%);max-width:620px;opacity:0}
+.cap.r{left:auto;right:40px;text-align:right}
+.cap .k{margin-bottom:18px}
+.cap h1,.cap h2{font-size:clamp(46px,6.6vw,112px)}
+.cap p{margin-top:22px;color:rgba(241,238,232,.75);font-size:15px;line-height:1.55;max-width:360px}
+.cap.r p{margin-left:auto}
+.hud{position:absolute;left:40px;right:40px;bottom:26px;display:flex;align-items:center;gap:26px;font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;letter-spacing:.06em}
+.hud b{color:var(--ink);font-weight:500}
+.hud .bar{flex:1;height:1px;background:var(--line);position:relative}
+.hud .bar i{position:absolute;inset:0 auto 0 0;width:0;background:var(--accent)}
+.floor{position:absolute;right:40px;top:50%;transform:translateY(-50%);text-align:right;font-variant-numeric:tabular-nums}
+.floor b{display:block;font-family:var(--disp);font-weight:800;font-stretch:70%;font-size:clamp(70px,9vw,150px);line-height:.8;color:transparent;-webkit-text-stroke:1.5px rgba(241,238,232,.55)}
+.floor span{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+.scrollhint{position:absolute;left:50%;bottom:64px;transform:translateX(-50%);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+
+/* 2 beam */
+.beam{height:100vh;position:relative;overflow:hidden;background:radial-gradient(ellipse 60% 50% at 50% 40%,#1b1712 0%,var(--bg) 70%)}
+.beam .head{position:absolute;left:40px;top:110px;z-index:5;max-width:420px}
+.beam h2{font-size:clamp(40px,5vw,84px);margin-top:14px}
+.beam{--W:min(900px,62vw)}
+.rig{position:absolute;left:50%;top:0;width:var(--W);margin-left:calc(var(--W)/-2);transform-origin:50% 0;z-index:4}
+.rig .rcable{position:absolute;left:50%;top:-100vh;height:calc(100vh + 12vh + 2px);width:2px;margin-left:-1px;background:var(--cable)}
+.rig img{position:absolute;left:0;top:12vh;width:100%;filter:drop-shadow(0 30px 40px rgba(0,0,0,.6))}
+.rig .fill{position:absolute;left:3%;top:calc(12vh + var(--W)*.3);height:3px;width:0;background:var(--accent);box-shadow:0 0 18px var(--accent);border-radius:2px}
+.phases{position:absolute;left:0;top:calc(12vh + var(--W)*.375 + 34px);display:flex;gap:18px;padding-left:50vw;will-change:transform}
+.ph{flex:0 0 300px;padding:24px;border:1px solid var(--line);border-radius:16px;background:rgba(20,18,15,.6);backdrop-filter:blur(10px);position:relative}
+.ph::before{content:"";position:absolute;left:50%;top:-30px;height:30px;width:1px;background:var(--line)}
+.ph .n{font-family:var(--disp);font-weight:800;font-stretch:70%;font-size:48px;color:var(--accent);line-height:1}
+.ph h3{font-weight:500;font-size:20px;margin-top:14px}
+.ph p{color:var(--muted);font-size:13px;line-height:1.55;margin-top:8px}
+.ph small{display:block;margin-top:16px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink)}
+
+/* 3 pour */
+.pour{height:100vh;position:relative;overflow:hidden}
+.crete{position:absolute;inset:0;z-index:2;background:url(img/concrete.jpg) center/cover;filter:brightness(.62);transform:translateY(100%);
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 60' preserveAspectRatio='none'%3E%3Cpath d='M0 30 C150 0 300 60 450 30 S750 0 900 30 1100 55 1200 25 V60 H0Z'/%3E%3C/svg%3E") top/100% 60px no-repeat, linear-gradient(#000,#000) 0 58px/100% 100% no-repeat;
+  mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 60' preserveAspectRatio='none'%3E%3Cpath d='M0 30 C150 0 300 60 450 30 S750 0 900 30 1100 55 1200 25 V60 H0Z'/%3E%3C/svg%3E") top/100% 60px no-repeat, linear-gradient(#000,#000) 0 58px/100% 100% no-repeat}
+.pour .shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,8,9,.75) 0%,rgba(8,8,9,0) 55%)}
+.pour .head{position:absolute;left:40px;top:110px;z-index:5;max-width:520px}
+.pour .shade{z-index:1}
+.pour h2{font-size:clamp(44px,6vw,100px);margin-top:14px}
+.pour .head p{color:rgba(241,238,232,.75);max-width:340px;margin-top:18px;line-height:1.6}
+.stats{position:absolute;left:40px;right:40px;bottom:60px;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;z-index:5}
+.stat{border-top:1px solid rgba(241,238,232,.3);padding-top:16px;opacity:0;transform:translateY(40px)}
+.stat b{display:block;font-family:var(--disp);font-weight:800;font-stretch:72%;font-size:clamp(52px,6.4vw,110px);line-height:.9;font-variant-numeric:tabular-nums;text-shadow:0 4px 30px rgba(0,0,0,.6)}
+.stat b sup{font-size:.4em;color:var(--accent);vertical-align:top;margin-left:4px}
+.stat span{font-size:13px;color:rgba(241,238,232,.82)}
+
+/* 4 exploded tower */
+.explode{height:100vh;position:relative;overflow:hidden;background:#0d0c0b}
+.tower{position:absolute;left:50%;top:19vh;height:62vh;width:calc(62vh*16/9);margin-left:calc(62vh*16/-18);z-index:2}
+.slice{position:absolute;left:0;width:100%;overflow:hidden}
+.slice img{position:absolute;left:0;width:100%}
+.slice::before{content:"";position:absolute;left:39.4%;width:18.6%;top:0;height:2px;background:var(--accent);box-shadow:0 0 16px 2px var(--accent);opacity:var(--edge,0);z-index:2}
+.explode .glow{position:absolute;left:50%;top:50%;width:70vh;height:70vh;margin:-35vh 0 0 -35vh;border-radius:50%;background:radial-gradient(circle,rgba(242,177,52,.12),rgba(242,177,52,0) 65%);z-index:1}
+.explode .head{position:absolute;left:40px;top:110px;z-index:5;max-width:420px}
+.explode h2{font-size:clamp(40px,5vw,84px);margin-top:14px}
+.tag{position:absolute;z-index:5;transform:translateY(-50%);display:flex;align-items:center;gap:14px;opacity:0;font-size:14px;white-space:nowrap}
+.tag i{display:block;height:1px;width:clamp(60px,9vw,160px);background:var(--accent);transform-origin:right;}
+.tag.l{flex-direction:row-reverse}
+.tag.l i{transform-origin:left}
+.tag div{line-height:1.35}
+.tag b{display:block;font-family:var(--disp);font-weight:800;font-stretch:80%;font-size:22px;letter-spacing:.02em;text-transform:uppercase}
+.tag span{color:var(--muted);font-size:13px}
+.tag .dot{width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 14px var(--accent);flex:0 0 auto}
+
+/* 5 projects hanging from cables */
+.projects{height:100vh;position:relative;overflow:hidden;padding:100px 40px 0}
+.projects .head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;position:relative;z-index:5;margin-bottom:40px}
+.projects h2{font-size:clamp(40px,5vw,84px);margin-top:14px}
+.projects .head p{color:var(--muted);max-width:340px;line-height:1.6}
+.hang{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;position:relative;max-width:150vh;margin:0 auto}
+.drop{position:relative;padding-top:8vh;transform-origin:50% 0;visibility:hidden}
+.drop::before{content:"";position:absolute;left:50%;top:-120vh;bottom:calc(100% - 8vh);width:1px;background:linear-gradient(transparent 72%,var(--cable) 90%)}
+.drop .hk{position:absolute;left:50%;top:calc(8vh - 16px);width:14px;height:16px;margin-left:-7px;border:2px solid var(--cable);border-top:none;border-radius:0 0 8px 8px}
+.pcard{border-radius:18px;overflow:hidden;position:relative;aspect-ratio:4/5;box-shadow:0 40px 70px -30px rgba(0,0,0,.9)}
+.pcard img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.pcard:hover img{transform:scale(1.06)}
+.pcard::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(8,8,9,.85),rgba(8,8,9,0) 55%)}
+.pcard .t{position:absolute;left:20px;right:20px;bottom:20px;z-index:2}
+.pcard .t small{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+.pcard .t h3{font-family:var(--serif);font-weight:400;font-size:30px;line-height:1;margin-top:8px}
+.pcard .t p{font-size:13px;color:rgba(241,238,232,.7);margin-top:6px}
+.drop:nth-child(2){margin-top:6vh}.drop:nth-child(3){margin-top:2vh}.drop:nth-child(4){margin-top:8vh}
+
+/* 6 footer: the tower is drawn as a blueprint, then lit floor by floor */
+.foot{height:100vh;position:relative;overflow:hidden;display:grid;grid-template-columns:1fr auto;align-items:center;gap:6vw;padding:90px 8vw 40px;
+  background:radial-gradient(ellipse 50% 60% at 72% 55%,#1a160f 0%,var(--bg) 70%)}
+.foot .grid{position:absolute;inset:0;opacity:0;background-image:linear-gradient(rgba(242,177,52,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(242,177,52,.07) 1px,transparent 1px);background-size:40px 40px;
+  -webkit-mask:radial-gradient(ellipse 70% 70% at 70% 50%,#000 30%,transparent 80%);mask:radial-gradient(ellipse 70% 70% at 70% 50%,#000 30%,transparent 80%)}
+.foot .copy{position:relative;z-index:3}
+.foot h2{font-size:clamp(56px,7vw,124px)}
+.foot .ctas{display:flex;gap:12px;margin-top:34px}
+.foot .contact{display:grid;gap:8px;font-size:14px;color:var(--muted);margin-top:46px}
+.foot .contact b{color:var(--ink);font-weight:500}
+.plan{position:relative;z-index:2;height:78vh}
+.plan svg{height:100%;width:auto;overflow:visible}
+.plan .ln{fill:none;stroke:var(--accent);stroke-width:1.4}
+.plan .fl{stroke:rgba(242,177,52,.35);stroke-width:.8}
+.plan .dim{fill:none;stroke:rgba(241,238,232,.35);stroke-width:.8}
+.plan .wn{fill:var(--accent);opacity:0}
+.plan text{font-family:var(--sans);font-size:9px;letter-spacing:.14em;fill:var(--muted)}
+.plan .tagfl{position:absolute;left:-14px;top:0;transform:translate(-100%,-50%);display:flex;flex-direction:row-reverse;align-items:center;gap:10px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);white-space:nowrap}
+.plan .tagfl b{font-family:var(--disp);font-weight:800;font-size:30px;letter-spacing:0;color:var(--ink)}
+.plan .tagfl::before{content:"";width:28px;height:1px;background:var(--accent)}
+
+@media (max-width:760px){
+  .nav{padding:18px 16px}.nav ul,.nav .btn{display:none}
+  .cap{left:16px;right:16px;max-width:none}.cap.r{right:16px;text-align:left}.cap.r p{margin-left:0}
+  .hud{left:16px;right:16px}.floor{display:none}
+  .beam .head,.pour .head,.explode .head{left:16px;right:16px;top:84px}
+  .ph{flex-basis:240px}
+  .stats{left:16px;right:16px;grid-template-columns:1fr 1fr}
+  .tag b{font-size:16px}.tag span{display:none}
+  .projects{padding:110px 16px 80px}.projects .head{flex-direction:column;align-items:flex-start}
+  .projects{height:auto;min-height:100vh;padding-bottom:60px}.hang{grid-template-columns:1fr 1fr}
+  .foot{grid-template-columns:1fr;padding:90px 16px 30px}.plan{position:absolute;right:-30px;bottom:30px;height:60vh;opacity:.5}.plan .tagfl{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="logo" href="#"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 19V3h13M4 6h13M14 6v6m0 0h-2.5m2.5 0h2.5M7 3l-3 3"/></svg>PHEME BUILD</a>
+  <ul><li><a href="#">Projects</a></li><li><a href="#">Services</a></li><li><a href="#">Process</a></li><li><a href="#">Careers</a></li></ul>
+  <a class="btn" href="#contact">Request a tender</a>
+</nav>
+
+<!-- 1 · hero: model on a desk → real site → tower rises → ride the crane -->
+<section class="build" id="build">
+  <canvas id="seq"></canvas>
+  <div class="shade"></div>
+  <div class="cap"><div class="k">01 · The model</div><h1>Every tower<br>starts <em>at scale.</em></h1><p>We build it in card and timber first, so every floor is solved before the first truck arrives.</p></div>
+  <div class="cap"><div class="k">02 · Ground</div><h2>Then we make<br>it <em>real.</em></h2><p>Excavation, piling and a raft slab poured in one continuous day.</p></div>
+  <div class="cap"><div class="k">03 · The core</div><h2>One floor<br><em>every week.</em></h2><p>Self-climbing formwork and our own crane crews keep the core moving in any weather.</p></div>
+  <div class="cap"><div class="k">04 · Topped out</div><h2>28 floors.<br><em>On schedule.</em></h2><p>Glass, bronze and lights on, the week the contract said.</p></div>
+  <div class="cap"><div class="k">05 · The view</div><h2>Built for<br><em>the skyline.</em></h2><p>From the top of our crane, the city we have been building for 31 years.</p></div>
+  <div class="floor"><b id="floorn">00</b><span>Floor / 28</span></div>
+  <div class="scrollhint">Scroll to build</div>
+  <div class="hud"><span><b id="pct">0</b>%</span><span id="stagelabel">The model</span><div class="bar"><i id="barfill"></i></div><span>34.68° N · 33.04° E</span></div>
+</section>
+
+<!-- 2 · the crane delivers a steel beam: the project timeline -->
+<section class="beam" id="beam">
+  <div class="head"><div class="k">How we build</div><h2>Six phases.<br><em>One crane.</em></h2></div>
+  <div class="rig" id="rig"><div class="rcable"></div><img src="img/beam.png" alt=""><div class="fill" id="beamfill"></div></div>
+  <div class="phases" id="phases">
+    <div class="ph"><div class="n">01</div><h3>Design &amp; model</h3><p>Architects, engineers and our estimators around one physical model.</p><small>Weeks 1–8</small></div>
+    <div class="ph"><div class="n">02</div><h3>Permits &amp; price</h3><p>One fixed tender, every line itemised. No provisional sums.</p><small>Weeks 6–14</small></div>
+    <div class="ph"><div class="n">03</div><h3>Ground &amp; piling</h3><p>Excavation, piles and the raft slab, poured in a single day.</p><small>Months 4–6</small></div>
+    <div class="ph"><div class="n">04</div><h3>Core &amp; frame</h3><p>A floor a week with self-climbing formwork.</p><small>Months 6–14</small></div>
+    <div class="ph"><div class="n">05</div><h3>Envelope &amp; fit-out</h3><p>Glass, bronze fins, services and interiors floor by floor.</p><small>Months 12–20</small></div>
+    <div class="ph"><div class="n">06</div><h3>Handover</h3><p>Snagging done before the keys, with a 10 year structural warranty.</p><small>Month 22</small></div>
+  </div>
+</section>
+
+<!-- 3 · concrete pours in and fills the screen; the numbers rise with it -->
+<section class="pour" id="pour">
+  <i class="cable" style="height:12vh"></i>
+  <canvas id="pourseq"></canvas>
+  <div class="shade"></div>
+  <div class="crete" id="crete"></div>
+  <div class="head"><div class="k">Since 1995</div><h2>Poured<br><em>to last.</em></h2><p>Thirty-one years of concrete, steel and handovers that happened on the date in the contract.</p></div>
+  <div class="stats">
+    <div class="stat"><b data-n="2.4" data-d="1">0<sup>M m²</sup></b><span>Built and handed over</span></div>
+    <div class="stat"><b data-n="86">0</b><span>Buildings delivered</span></div>
+    <div class="stat"><b data-n="31">0</b><span>Years on site</span></div>
+    <div class="stat"><b data-n="1200" data-c="1">0</b><span>People on our sites today</span></div>
+  </div>
+</section>
+
+<!-- 4 · the tower separates into its floors: services -->
+<section class="explode" id="explode">
+  <div class="glow"></div>
+  <div class="tower" id="tower"><div class="slice" data-k="crown" style="top:2.0%;height:13.0%"><img src="img/e1.jpg" alt="" style="height:769.23%;top:-15.38%"></div><div class="slice" data-k="res" style="top:15.0%;height:37.0%"><img src="img/e1.jpg" alt="" style="height:270.27%;top:-40.54%"></div><div class="slice" data-k="off" style="top:52.0%;height:21.0%"><img src="img/e1.jpg" alt="" style="height:476.19%;top:-247.62%"></div><div class="slice" data-k="ret" style="top:73.0%;height:13.0%"><img src="img/e1.jpg" alt="" style="height:769.23%;top:-561.54%"></div><div class="slice" data-k="base" style="top:86.0%;height:14.0%"><img src="img/e1.jpg" alt="" style="height:714.29%;top:-614.29%"></div></div>
+  <div class="head"><div class="k">What we build</div><h2>One tower.<br><em>Every trade.</em></h2></div>
+  <div class="tag r" style="top:12%;left:57vw"><span class="dot"></span><i></i><div><b>Crown &amp; rooftop</b><span>Pools, gardens, plant rooms</span></div></div>
+  <div class="tag r" style="top:35%;left:57vw"><span class="dot"></span><i></i><div><b>Residences</b><span>Apartments, penthouses, serviced living</span></div></div>
+  <div class="tag r" style="top:58%;left:57vw"><span class="dot"></span><i></i><div><b>Offices</b><span>Grade A floors and headquarters</span></div></div>
+  <div class="tag r" style="top:73%;left:57vw"><span class="dot"></span><i></i><div><b>Retail podium</b><span>Shops, lobbies, hospitality</span></div></div>
+  <div class="tag r" style="top:87%;left:57vw"><span class="dot"></span><i></i><div><b>Foundations</b><span>Piling, basements, parking</span></div></div>
+</section>
+
+<!-- 5 · projects arrive hanging from crane cables -->
+<section class="projects" id="projects">
+  <div class="head"><div><div class="k">Selected work</div><h2>Lifted<br><em>into place.</em></h2></div><p>Towers, headquarters, hillside homes and seafront hotels, built by our own crews from the ground up.</p></div>
+  <div class="hang">
+    <div class="drop"><span class="hk"></span><div class="pcard"><img src="img/p_tower.jpg" alt=""><div class="t"><small>Residential · 28 floors</small><h3>The Bronze Tower</h3><p>Handed over 2026</p></div></div></div>
+    <div class="drop"><span class="hk"></span><div class="pcard"><img src="img/p_office.jpg" alt=""><div class="t"><small>Headquarters · 14,000 m²</small><h3>Meridian HQ</h3><p>Handed over 2025</p></div></div></div>
+    <div class="drop"><span class="hk"></span><div class="pcard"><img src="img/p_hill.jpg" alt=""><div class="t"><small>Residential · 42 homes</small><h3>Terraces on the Hill</h3><p>Handed over 2024</p></div></div></div>
+    <div class="drop"><span class="hk"></span><div class="pcard"><img src="img/p_sea.jpg" alt=""><div class="t"><small>Hospitality · 160 keys</small><h3>Seafront Residences</h3><p>Under construction</p></div></div></div>
+  </div>
+</section>
+
+<!-- 6 · the tower is drawn as a blueprint and lit floor by floor -->
+<footer class="foot" id="contact">
+  <div class="grid"></div>
+  <div class="copy">
+    <div class="k">Next project</div><h2>Let's build<br><em>your tower.</em></h2>
+    <div class="ctas"><a class="btn" href="#">Request a tender</a><a class="btn ghost" href="#">Company profile</a></div>
+    <div class="contact"><b>Pheme Build</b><span>Head office · Mon to Fri, 8:00 to 18:00</span><span>tenders@phemebuild.example</span></div>
+  </div>
+  <div class="plan" id="plan"><svg id="plansvg" viewBox="0 0 320 720"></svg><div class="tagfl" id="tagfl"><b id="litn">00</b>floors lit</div></div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+const lenis = new Lenis({lerp:.09});
+lenis.on('scroll', ScrollTrigger.update);
+gsap.ticker.add(t => lenis.raf(t*1000)); gsap.ticker.lagSmoothing(0);
+
+// A frame sequence drawn on a canvas; fit = 'cover' fills the screen, 'contain' keeps the whole frame.
+function Seq(id, dir, count, fit, zoom){
+  const cv = document.getElementById(id), cx = cv.getContext('2d'), imgs = [];
+  for (let i=0;i<count;i++){ const im=new Image(); im.src=`${dir}/f${String(i+1).padStart(4,'0')}.jpg`; imgs.push(im); }
+  const s = {f:0, count};
+  s.draw = () => {
+    const im = imgs[Math.round(s.f)]; if(!im || !im.complete || !im.naturalWidth) return;
+    const dpr = Math.min(devicePixelRatio,2), w = cv.clientWidth, h = cv.clientHeight;
+    if (cv.width!==Math.round(w*dpr) || cv.height!==Math.round(h*dpr)){ cv.width=Math.round(w*dpr); cv.height=Math.round(h*dpr); }
+    const base = fit==='contain' ? Math.min(w/im.width, h/im.height) : Math.max(w/im.width, h/im.height);
+    const k = base*dpr*(1+(zoom||0)*s.f/count), dw=im.width*k, dh=im.height*k;
+    cx.fillStyle = '#0d0c0b'; cx.fillRect(0,0,cv.width,cv.height);
+    cx.drawImage(im,(cv.width-dw)/2,(cv.height-dh)/2,dw,dh);
+  };
+  imgs[0].onload = s.draw; addEventListener('resize', s.draw);
+  return s;
+}
+
+// ---- 1 · hero ----
+const hero = Seq('seq','frames',240,'cover',.06);
+const stages = ['The model','Ground','The core','Topped out','The view'];
+const caps = gsap.utils.toArray('.cap');
+const tl = gsap.timeline({scrollTrigger:{trigger:'#build',start:'top top',end:'+=650%',pin:true,scrub:true,
+  onUpdate:self=>{
+    const p=self.progress;
+    document.getElementById('pct').textContent = Math.round(p*100);
+    document.getElementById('barfill').style.width = p*100+'%';
+    document.getElementById('stagelabel').textContent = stages[Math.min(4,Math.floor(p*5))];
+    // floors only rise while the tower is being built (clips 2 and 3)
+    const fl = Math.round(gsap.utils.clamp(0,1,(p-.25)/.5)*28);
+    document.getElementById('floorn').textContent = String(fl).padStart(2,'0');
+  }}});
+tl.to(hero,{f:239,ease:'none',duration:10,onUpdate:hero.draw},0);
+tl.to('.scrollhint',{opacity:0,duration:.4},0);
+caps.forEach((c,i)=>{
+  const at=i*2, x = c.classList.contains('r') ? 40 : -40;
+  if(i===0) gsap.set(c,{opacity:1});
+  else tl.fromTo(c,{opacity:0,x,filter:'blur(8px)'},{opacity:1,x:0,filter:'blur(0px)',duration:.6},at+.1);
+  if(i<caps.length-1) tl.to(c,{opacity:0,x:-x/2,filter:'blur(8px)',duration:.5},at+1.6);
+});
+
+const pour = Seq('pourseq','frames-pour',120,'cover');
+
+document.fonts.ready.then(() => {
+  // ---- 2 · the beam is lowered on its cable, swings, then the phases slide under it ----
+  const phases = document.getElementById('phases');
+  const travel = () => phases.scrollWidth - innerWidth*.5 + 40;
+  const bt = gsap.timeline({scrollTrigger:{trigger:'#beam',start:'top top',end:'+=380%',pin:true,scrub:1}});
+  bt.from('#rig',{y:'-85vh',ease:'power2.out',duration:2},0)
+    .fromTo('#rig',{rotation:-7},{keyframes:[{rotation:5,duration:.7},{rotation:-3,duration:.6},{rotation:1.5,duration:.5},{rotation:0,duration:.5}],ease:'sine.inOut'},.6)
+    .from('#phases',{opacity:0,y:40,duration:.6},2.2)
+    .to('#phases',{x:()=>-travel(),ease:'none',duration:6},2.6)
+    .to('#beamfill',{width:'94%',ease:'none',duration:6},2.6);
+
+  // ---- 3 · concrete pour, the numbers rise with the level ----
+  const pt = gsap.timeline({scrollTrigger:{trigger:'#pour',start:'top top',end:'+=300%',pin:true,scrub:true}});
+  pt.to(pour,{f:119,ease:'none',duration:10,onUpdate:pour.draw},0)
+    .to('#crete',{y:'0%',ease:'power1.inOut',duration:4.5},3);
+  gsap.utils.toArray('.stat').forEach((st,i)=>{
+    const b = st.querySelector('b'), sup = b.querySelector('sup'), o = {v:0};
+    const fmt = v => (b.dataset.d ? v.toFixed(1) : b.dataset.c ? Math.round(v).toLocaleString('en') : Math.round(v));
+    pt.to(st,{opacity:1,y:0,duration:1.2,ease:'power2.out'},3+i*1.1)
+      .to(o,{v:+b.dataset.n,duration:3,ease:'power1.out',onUpdate:()=>{ b.firstChild.nodeValue = fmt(o.v); }},3+i*1.1);
+    if(sup) b.appendChild(sup);
+  });
+
+  // ---- 4 · the tower separates; each floor gets its label ----
+  const et = gsap.timeline({scrollTrigger:{trigger:'#explode',start:'top top',end:'+=320%',pin:true,scrub:true}});
+  const off = {crown:-12,res:-5,off:0,ret:5,base:10};   // final gap per floor, in vh
+  et.from('#tower',{scale:.86,opacity:0,duration:2,ease:'power2.out'},0);
+  gsap.utils.toArray('.slice').forEach(sl=>{
+    et.to(sl,{y:()=>off[sl.dataset.k]*innerHeight/100,'--edge':1,duration:4,ease:'power3.inOut'},2);
+  });
+  et.fromTo('.explode .glow',{scale:.6,opacity:0},{scale:1.2,opacity:1,duration:4},2);
+  gsap.utils.toArray('.tag').forEach((t,i)=>{
+    et.fromTo(t,{opacity:0,x:t.classList.contains('l')?30:-30},{opacity:1,x:0,duration:1},5+i*.7)
+      .from(t.querySelector('i'),{scaleX:0,duration:1},5+i*.7);
+  });
+
+  // ---- 5 · the section pins empty; each project is lowered in from out of sight and swings to rest ----
+  const drops = gsap.utils.toArray('.drop');
+  const mobile = matchMedia('(max-width:760px)').matches;
+  const jt = gsap.timeline({scrollTrigger: mobile
+    ? {trigger:'.hang',start:'top 80%',end:'bottom 60%',scrub:1}
+    : {trigger:'#projects',start:'top top',end:'+=220%',pin:true,scrub:1}});
+  jt.from('#projects .head > *',{opacity:0,y:40,stagger:.15,duration:.6},0);
+  drops.forEach((d,i)=>{
+    const at = .5 + i*1.1;
+    jt.fromTo(d,{y:'-125vh',autoAlpha:1},{y:0,ease:'power3.out',duration:1.2,immediateRender:true},at)
+      .fromTo(d,{rotation:i%2?6:-6},{keyframes:[{rotation:i%2?-4:4},{rotation:i%2?2:-2},{rotation:0}],ease:'sine.inOut',duration:1,immediateRender:true},at+.7);
+  });
+  jt.to({},{duration:.6});
+
+  // ---- 6 · blueprint: outline draws, floors draw bottom-up, then windows light floor by floor ----
+  const NS='http://www.w3.org/2000/svg', svg=document.getElementById('plansvg');
+  const el=(t,a,parent=svg)=>{ const e=document.createElementNS(NS,t); for(const k in a) e.setAttribute(k,a[k]); parent.appendChild(e); return e; };
+  const G=690, TOP=150, FLOORS=28, fh=(620-TOP)/FLOORS;   // tower shaft from y=620 up to y=150, podium 620–690
+  const outline=[
+    el('path',{class:'ln',d:`M10 ${G}H310`}),
+    el('path',{class:'ln',d:`M40 ${G}V620H280V${G}`}),
+    el('path',{class:'ln',d:`M85 620V${TOP}H235V620`}),
+    el('path',{class:'ln',d:`M105 ${TOP}V110H215V${TOP}`}),
+    el('path',{class:'ln',d:`M160 110V40M150 60H170`}),
+    el('path',{class:'dim',d:`M18 ${G}V40M12 ${G}H24M12 40H24`}),
+  ];
+  const t1=el('text',{x:-380,y:12,transform:'rotate(-90)'}); t1.textContent='ELEVATION · 112 M';
+  const floorLines=[], windows=[];
+  for(let f=0; f<FLOORS; f++){
+    const y=620-(f+1)*fh;
+    floorLines.push(el('path',{class:'ln fl',d:`M85 ${y}H235`}));
+    const row=[]; for(let w=0; w<6; w++) row.push(el('rect',{class:'wn',x:93+w*23.3,y:y+fh*.25,width:16,height:fh*.5,rx:1}));
+    windows.push(row);
+  }
+  const shop=[]; for(let w=0; w<7; w++) shop.push(el('rect',{class:'wn',x:52+w*31.5,y:636,width:22,height:40,rx:1}));
+  [...outline,...floorLines].forEach(p=>{ const L=p.getTotalLength(); p.style.strokeDasharray=L; p.style.strokeDashoffset=L; });
+  const tag=document.getElementById('tagfl'), litn=document.getElementById('litn');
+  const lit={f:0};
+  const placeTag=()=>{ const r=document.getElementById('plan').getBoundingClientRect(), k=r.height/720;
+    tag.style.top=(620-Math.max(lit.f,0)*fh)*k+'px'; litn.textContent=String(Math.round(lit.f)).padStart(2,'0'); };
+  const ft = gsap.timeline({scrollTrigger: mobile
+    ? {trigger:'#contact',start:'top 70%',end:'bottom bottom',scrub:1}
+    : {trigger:'#contact',start:'top top',end:'+=220%',pin:true,scrub:1}});
+  ft.to('.foot .grid',{opacity:1,duration:1},0)
+    .from('.foot .copy > *',{opacity:0,y:36,stagger:.15,duration:.8},0)
+    .to(outline,{strokeDashoffset:0,duration:1.6,stagger:.2,ease:'power1.inOut'},.2)
+    .to(floorLines,{strokeDashoffset:0,duration:.3,stagger:.05,ease:'none'},1)
+    .from(tag,{opacity:0,duration:.4},2.4)
+    .to(shop,{opacity:.9,duration:.2,stagger:.04},2.4)
+    .to(lit,{f:FLOORS,duration:4,ease:'none',onUpdate:placeTag},2.6);
+  windows.forEach((row,f)=> ft.to(row,{opacity:()=>.55+Math.random()*.4,duration:.15,stagger:{each:.03,from:'random'}},2.6+f*4/FLOORS));
+  ft.to('#plansvg',{filter:'drop-shadow(0 0 14px rgba(242,177,52,.55))',duration:.8},6.6)
+    .to({},{duration:.4});
+  placeTag(); addEventListener('resize',placeTag);
+
+  ScrollTrigger.refresh();
+});
+</script>
+</body>
+</html>
