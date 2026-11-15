@@ -459,6 +459,8 @@ let capTimer;
 function ui(i) {
   const v = VIEWS[i];
   list.querySelectorAll('button').forEach((b, j) => b.classList.toggle('on', j === i));
+  const ab = list.querySelectorAll('button')[i];
+  if (ab && list.scrollWidth > list.clientWidth) list.scrollTo({ left: ab.offsetLeft - list.offsetLeft - (list.clientWidth - ab.offsetWidth) / 2, behavior: 'smooth' });
   heroImg.src = thumbs[i] || ''; heroName.textContent = v.name; fView.selectedIndex = i;
   capEl.classList.add('out'); clearTimeout(capTimer);
   capTimer = setTimeout(() => {
