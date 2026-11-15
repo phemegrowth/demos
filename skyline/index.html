@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Pheme Skyline · Choose your view</title>
+<meta name="description" content="Three towers on the waterline. Choose your view: aerial, front, side, back, rooftop or above the clouds.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#101418;--glass:rgba(18,22,28,.30);--glass-b:rgba(255,255,255,.28);--txt:#fff;--mute:rgba(255,255,255,.72);--gold:#e7c48a}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden;background:#d9b98f;color:var(--txt);font-family:'Inter Tight',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+#gl{position:fixed;inset:0;width:100vw;height:100vh;display:block}
+.shade{position:fixed;inset:0;pointer-events:none;background:radial-gradient(120% 70% at 0% 100%,rgba(10,14,20,.55),rgba(10,14,20,0) 55%),linear-gradient(180deg,rgba(10,14,20,.28),rgba(10,14,20,0) 18%)}
+.serif{font-family:'Instrument Serif',serif;font-weight:400}
+
+/* nav */
+.nav{position:fixed;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:24px 32px;z-index:5;pointer-events:none}
+.nav>*{pointer-events:auto}
+.logo{display:flex;align-items:center;gap:12px;font-size:13px;letter-spacing:.32em;font-weight:500}
+.logo svg{width:26px;height:26px}
+.logo b{font-weight:600}
+.btn{display:inline-flex;align-items:center;gap:10px;background:#fff;color:var(--ink);border-radius:999px;padding:12px 20px;font-size:14px;font-weight:500;transition:transform .3s,background .3s,color .3s}
+.btn:hover{transform:translateY(-2px);background:var(--gold)}
+.btn.sm{padding:9px 15px;font-size:13px}
+
+/* caption */
+.cap{position:fixed;left:34px;bottom:34px;max-width:min(560px,52vw);z-index:4;pointer-events:none}
+.cap .num{font-size:12px;letter-spacing:.24em;color:var(--gold);font-weight:600;display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.cap .num:before{content:"";width:28px;height:1px;background:var(--gold)}
+.cap h1{font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(44px,6vw,92px);line-height:.92;letter-spacing:-.02em;text-shadow:0 2px 30px rgba(0,0,0,.25)}
+.cap p{margin-top:16px;font-size:17px;line-height:1.5;color:rgba(255,255,255,.9);max-width:440px;text-shadow:0 1px 14px rgba(0,0,0,.35)}
+.cap .swap{transition:opacity .5s,filter .5s,transform .5s}
+.cap.out .swap{opacity:0;filter:blur(8px);transform:translateY(8px)}
+.facts{display:flex;gap:26px;margin-top:26px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.facts b{display:block;font-family:'Instrument Serif',serif;font-size:30px;letter-spacing:0;text-transform:none;color:#fff;font-weight:400;margin-bottom:2px}
+
+/* panel */
+.panel{position:fixed;right:28px;top:50%;transform:translateY(-50%);width:300px;z-index:5;padding:20px;border-radius:24px;background:var(--glass);border:1px solid var(--glass-b);backdrop-filter:blur(22px) saturate(1.4);-webkit-backdrop-filter:blur(22px) saturate(1.4);box-shadow:0 20px 60px rgba(0,0,0,.18)}
+.p-eye{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+.panel h2{font-family:'Instrument Serif',serif;font-weight:400;font-size:40px;line-height:.95;margin:10px 0 16px}
+.hero{position:relative;display:block;width:100%;aspect-ratio:16/10;border-radius:16px;overflow:hidden;background:rgba(255,255,255,.12)}
+.hero img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s}
+.hero:hover img{transform:scale(1.05)}
+.hero .pill{position:absolute;left:10px;bottom:10px;display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.9);color:var(--ink);border-radius:999px;padding:5px 11px 5px 8px;font-size:12px;font-weight:500}
+.hero .pill i{width:8px;height:8px;border-radius:50%;background:#2f8ad8;box-shadow:0 0 0 3px rgba(47,138,216,.25)}
+.hero .next{position:absolute;right:10px;top:50%;transform:translateY(-50%);width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.85);color:var(--ink);display:grid;place-items:center;font-size:18px}
+.views{list-style:none;margin-top:12px;display:flex;flex-direction:column;gap:6px}
+.views button{width:100%;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:6px 6px 6px 12px;border-radius:12px;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.12);font-size:13.5px;text-align:left;transition:background .3s,color .3s}
+.views button:hover{background:rgba(255,255,255,.22)}
+.views button.on{background:#fff;color:var(--ink)}
+.views button.on span:before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:#2f8ad8;margin-right:8px;vertical-align:1px}
+.views img{width:74px;height:34px;object-fit:cover;border-radius:8px;display:block}
+.p-foot{display:flex;align-items:center;justify-content:space-between;margin-top:14px}
+.tour{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);display:flex;align-items:center;gap:8px}
+.tour:hover{color:#fff}
+.tour i{width:0;height:0;border-left:8px solid currentColor;border-top:5px solid transparent;border-bottom:5px solid transparent}
+.tour.on i{width:8px;height:10px;border:0;border-left:3px solid currentColor;border-right:3px solid currentColor}
+
+/* modal */
+.modal{position:fixed;inset:0;z-index:20;display:grid;place-items:center;padding:16px;background:rgba(8,10,14,.35);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);opacity:0;pointer-events:none;transition:opacity .4s}
+.modal.open{opacity:1;pointer-events:auto}
+.sheet{position:relative;width:min(460px,100%);border-radius:24px;padding:30px;background:rgba(18,22,28,.72);border:1px solid var(--glass-b);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);transform:translateY(16px);transition:transform .5s}
+.modal.open .sheet{transform:none}
+.sheet h3{font-family:'Instrument Serif',serif;font-weight:400;font-size:40px;line-height:1}
+.sheet p.sub{color:var(--mute);margin:10px 0 20px;font-size:15px;line-height:1.5}
+.sheet label{display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);margin:12px 0 6px}
+.sheet input,.sheet select{width:100%;padding:13px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff;font:inherit;font-size:15px;outline:none}
+.sheet select option{color:#111}
+.sheet input:focus,.sheet select:focus{border-color:var(--gold)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.consent{display:flex!important;gap:10px;align-items:flex-start;font-size:12.5px!important;color:var(--mute);margin-top:16px!important;line-height:1.45;text-transform:none!important;letter-spacing:0!important}
+.consent input{width:auto;margin-top:2px}
+.sheet .btn{width:100%;justify-content:center;margin-top:20px;padding:15px}
+.x{position:absolute;right:16px;top:14px;font-size:26px;color:var(--mute)}
+.thanks{display:none}
+.sheet.done form{display:none}.sheet.done .thanks{display:block}
+
+/* loader */
+#loader{position:fixed;inset:0;z-index:30;background:#efe3d0;color:var(--ink);display:grid;place-items:center;transition:opacity .9s}
+#loader div{text-align:center}
+#loader .serif{font-size:44px}
+#loader small{display:block;margin-top:8px;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:#7b6f60}
+#loader i{display:block;width:160px;height:1px;background:rgba(0,0,0,.12);margin:22px auto 0;position:relative;overflow:hidden}
+#loader i:after{content:"";position:absolute;inset:0;background:var(--ink);animation:ld 1.4s ease-in-out infinite}
+@keyframes ld{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+#loader.gone{opacity:0;pointer-events:none}
+
+/* mobile */
+@media (max-width:820px){
+  .nav{padding:16px}
+  .nav .btn{padding:9px 14px;font-size:13px}
+  .logo{font-size:11px;letter-spacing:.24em}
+  .panel{left:12px;right:12px;bottom:12px;top:auto;transform:none;width:auto;padding:12px;border-radius:20px}
+  .panel h2,.panel .hero,.p-eye{display:none}
+  .views{flex-direction:row;overflow-x:auto;margin-top:0;scrollbar-width:none;gap:8px}
+  .views::-webkit-scrollbar{display:none}
+  .views li{flex:0 0 auto}
+  .views button{flex-direction:column-reverse;align-items:flex-start;padding:5px;width:118px;font-size:12px;gap:6px}
+  .views button span{padding:0 4px 2px}
+  .views img{width:100%;height:58px}
+  .p-foot{margin-top:10px}
+  .cap{left:18px;right:18px;bottom:auto;top:96px;max-width:none}
+  .cap h1{font-size:46px}
+  .cap p{font-size:15px;max-width:330px}
+  .facts{display:none}
+  .shade{background:linear-gradient(180deg,rgba(10,14,20,.55),rgba(10,14,20,0) 42%),linear-gradient(0deg,rgba(10,14,20,.35),rgba(10,14,20,0) 30%)}
+}
+</style>
+</head>
+<body>
+<canvas id="gl"></canvas>
+<div class="shade"></div>
+
+<header class="nav">
+  <div class="logo">
+    <svg viewBox="0 0 26 26" fill="none" stroke="#fff" stroke-width="1.4"><rect x="3" y="9" width="5" height="16"/><rect x="10.5" y="4" width="5" height="21"/><rect x="18" y="1" width="5" height="24"/></svg>
+    <span><b>PHEME</b> SKYLINE</span>
+  </div>
+  <button class="btn" data-open>Book a private viewing</button>
+</header>
+
+<div class="cap" id="cap">
+  <div class="num swap" id="vNum">01 / 06</div>
+  <h1 class="swap" id="vName">Aerial view</h1>
+  <p class="swap" id="vLine"></p>
+  <div class="facts">
+    <span><b>3</b>towers</span><span><b>214</b>residences</span><span><b>302 m</b>tallest</span><span><b>€690k</b>from</span>
+  </div>
+</div>
+
+<aside class="panel">
+  <div class="p-eye">Pheme Skyline · Residences</div>
+  <h2>Choose<br>your view</h2>
+  <button class="hero" id="hero" aria-label="Next view"><img id="heroImg" alt=""><span class="pill"><i></i><span id="heroName"></span></span><span class="next">›</span></button>
+  <ul class="views" id="views"></ul>
+  <div class="p-foot">
+    <button class="tour" id="tour"><i></i><span>Play tour</span></button>
+    <button class="btn sm" data-open>Enquire</button>
+  </div>
+</aside>
+
+<div class="modal" id="modal">
+  <div class="sheet" id="sheet">
+    <button class="x" data-close aria-label="Close">×</button>
+    <form id="form" novalidate>
+      <h3>Book a private viewing</h3>
+      <p class="sub">Tell us what you are looking for. A sales advisor calls you back within one working day.</p>
+      <label for="f-name">Full name</label>
+      <input id="f-name" name="name" autocomplete="name" required>
+      <div class="row2">
+        <div><label for="f-phone">Phone</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" required></div>
+        <div><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
+      </div>
+      <div class="row2">
+        <div><label for="f-type">Residence</label>
+          <select id="f-type" name="type"><option>1 bedroom</option><option selected>2 bedrooms</option><option>3 bedrooms</option><option>Penthouse</option></select></div>
+        <div><label for="f-view">View you liked</label><select id="f-view" name="view"></select></div>
+      </div>
+      <label class="consent"><input type="checkbox" required id="f-ok"> I agree to be contacted by Pheme Skyline about this enquiry.</label>
+      <button class="btn" type="submit">Request my viewing</button>
+    </form>
+    <div class="thanks">
+      <h3>Thank you</h3>
+      <p class="sub">Your request is in. We will call you within one working day to set a time.</p>
+      <button class="btn" data-close>Back to the views</button>
+    </div>
+  </div>
+</div>
+
+<div id="loader"><div><div class="serif">Pheme Skyline</div><small>Preparing the views</small><i></i></div></div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js"}}</script>
+<script type="module">
+import * as THREE from 'three';
+const V3 = THREE.Vector3, UP = new V3(0,1,0);
+
+/* ---------- views (edit here) ---------- */
+const VIEWS = [
+  {id:'aerial',  name:'Aerial view',      line:'Three towers on the waterline. 214 residences, one address.', clouds:.28, sway:'orbit'},
+  {id:'front',   name:'Front view',       line:'Every home faces the sea. Floor-to-ceiling glass, nothing in the way.', clouds:0, sway:'orbit'},
+  {id:'side',    name:'Side view',        line:'Staggered floors give every residence its own terrace.', clouds:0, sway:'orbit'},
+  {id:'back',    name:'Back view',        line:'Gardens, two pools and a private beach below. The city ten minutes away.', clouds:0, sway:'orbit'},
+  {id:'rooftop', name:'Rooftop',          line:'A sky pool on the 66th floor, for residents only.', clouds:0, sway:'pan'},
+  {id:'clouds',  name:'Above the clouds', line:'Some mornings you wake up above the weather.', clouds:1, sway:'orbit'},
+];
+
+/* ---------- renderer / scene ---------- */
+const canvas = document.getElementById('gl');
+const renderer = new THREE.WebGLRenderer({canvas, antialias:true, powerPreference:'high-performance'});
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.setSize(innerWidth, innerHeight);
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.05;
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+const scene = new THREE.Scene();
+scene.fog = new THREE.Fog('#f1cfa4', 900, 3600);
+const cam = new THREE.PerspectiveCamera(40, innerWidth/innerHeight, 1, 9000);
+
+let seed = 11;
+const rnd = () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+
+/* sky */
+const sunDir = new V3(-0.82, 0.2, -0.36).normalize();
+const skyMat = new THREE.ShaderMaterial({
+  side: THREE.BackSide, depthWrite: false,
+  uniforms: { sunDir:{value:sunDir}, top:{value:new THREE.Color('#5f8fbf')}, mid:{value:new THREE.Color('#f2b47c')}, hor:{value:new THREE.Color('#ffdcae')} },
+  vertexShader: `varying vec3 vW; void main(){ vW = normalize(position); gl_Position = projectionMatrix*modelViewMatrix*vec4(position,1.); }`,
+  fragmentShader: `uniform vec3 sunDir,top,mid,hor; varying vec3 vW;
+    void main(){ float h = vW.y; vec3 c = mix(hor, mid, smoothstep(0.0, 0.10, h)); c = mix(c, top, smoothstep(0.08, 0.55, h)); if(h < 0.0) c = hor;
+      float s = max(dot(vW, sunDir), 0.0); c += vec3(1.0,.72,.42)*pow(s,6.0)*.45 + vec3(1.0,.93,.78)*pow(s,500.0)*2.2;
+      gl_FragColor = vec4(c,1.0);
+      #include <tonemapping_fragment>
+      #include <colorspace_fragment>
+    }`
+});
+const sky = new THREE.Mesh(new THREE.SphereGeometry(4500, 48, 24), skyMat);
+scene.add(sky);
+{ // environment for reflections
+  const envScene = new THREE.Scene(); envScene.add(new THREE.Mesh(sky.geometry, skyMat));
+  const pm = new THREE.PMREMGenerator(renderer);
+  scene.environment = pm.fromScene(envScene, 0.02).texture;
+}
+
+/* lights */
+scene.add(new THREE.HemisphereLight('#ffe6c4', '#8a9aa3', 1.6));
+const sun = new THREE.DirectionalLight('#ffcf96', 3.2);
+sun.position.copy(sunDir).multiplyScalar(700);
+sun.castShadow = true;
+sun.shadow.mapSize.set(2048, 2048);
+Object.assign(sun.shadow.camera, {left:-420, right:420, top:420, bottom:-420, near:50, far:1800});
+sun.shadow.bias = -0.0004; sun.shadow.normalBias = 0.6;
+scene.add(sun, sun.target);
+
+/* materials */
+const M = (c, o={}) => new THREE.MeshStandardMaterial(Object.assign({color:c, roughness:.85}, o));
+const matSlab = M('#efe9df', {roughness:.6});
+const matLobby = M('#3c4a55', {roughness:.25, metalness:.5});
+const matWater = M('#2f8fb0', {roughness:.06, metalness:.35});
+const matPool = M('#46c3dc', {roughness:.05, metalness:.1, emissive:'#0c4e60', emissiveIntensity:.35});
+const matWood = M('#d2c3ad', {roughness:.7});
+const matCushion = M('#f2ece2');
+const matGreen = M('#6f8f4f');
+const matGlassRail = new THREE.MeshStandardMaterial({color:'#cfe6f2', transparent:true, opacity:.22, roughness:.05, metalness:.2, depthWrite:false});
+
+const FACADE = (() => {
+  const c = document.createElement('canvas'); c.width = c.height = 256; const g = c.getContext('2d');
+  for (let f = 0; f < 4; f++) {
+    const y = f * 64, gr = g.createLinearGradient(0, y, 0, y + 50);
+    gr.addColorStop(0, '#c4d8e2'); gr.addColorStop(1, '#7b98ab');
+    g.fillStyle = gr; g.fillRect(0, y, 256, 64);
+    g.fillStyle = '#efe8dc'; g.fillRect(0, y + 50, 256, 14);
+    g.fillStyle = 'rgba(25,35,45,.55)'; for (let b = 0; b <= 6; b++) g.fillRect(Math.round(b * 256 / 6) - 1, y, 2, 50);
+    g.fillStyle = 'rgba(255,255,255,.10)'; g.fillRect(0, y + 2, 256, 6);
+  }
+  return c;
+})();
+const facadeCache = {};
+function facadeMat(faceW, h) {
+  const key = faceW.toFixed(1) + '_' + h.toFixed(1);
+  if (facadeCache[key]) return facadeCache[key];
+  const t = new THREE.CanvasTexture(FACADE); t.colorSpace = THREE.SRGBColorSpace; t.wrapS = t.wrapT = THREE.RepeatWrapping;
+  t.anisotropy = renderer.capabilities.getMaxAnisotropy(); t.repeat.set(faceW / 18, h / 14.4);
+  return facadeCache[key] = new THREE.MeshStandardMaterial({map:t, roughness:.14, metalness:.22, envMapIntensity:1.0});
+}
+const shadow = m => { m.castShadow = m.receiveShadow = true; return m; };
+const box = (w, h, d, mat) => shadow(new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mat));
+
+/* towers */
+const FL = 3.6, MOD = 6 * FL;
+function tower(cx, cz, floors, rotY) {
+  const g = new THREE.Group(); g.position.set(cx, 0, cz); g.rotation.y = rotY; scene.add(g);
+  const lobby = box(34, 10, 28, matLobby); lobby.position.y = 5; g.add(lobby);
+  let y = 10, last; const mods = Math.round(floors / 6);
+  for (let i = 0; i < mods; i++) {
+    const taper = 1 - (i / mods) * 0.14;
+    const w = (28 + rnd() * 5) * taper, d = (24 + rnd() * 4) * taper;
+    const ox = (i % 2 ? 1 : -1) * (1 + rnd() * 3), oz = (rnd() - .5) * 4, r = (rnd() - .5) * .09;
+    const fw = facadeMat(w, MOD), fd = facadeMat(d, MOD);
+    const m = shadow(new THREE.Mesh(new THREE.BoxGeometry(w, MOD, d), [fd, fd, matSlab, matSlab, fw, fw]));
+    m.position.set(ox, y + MOD / 2, oz); m.rotation.y = r; g.add(m);
+    const s = box(w + 2.6, 1.1, d + 2.6, matSlab); s.position.set(ox, y + MOD + .55, oz); s.rotation.y = r; g.add(s);
+    last = {ox, oz, w: w + 2.6, d: d + 2.6, y: y + MOD + 1.1, r};
+    y += MOD + 1.1;
+  }
+  return {g, last, top: y};
+}
+const A = tower(-78, 34, 60, .12);
+const B = tower(0, -6, 66, 0);
+const C = tower(80, 22, 78, -.1);
+for (const T of [A, C]) { // crowns
+  const l = T.last, cr = box(l.w * .62, 12, l.d * .62, matLobby); cr.position.set(l.ox, l.y + 6, l.oz); cr.rotation.y = l.r; T.g.add(cr);
+  const rim = box(l.w * .66, .8, l.d * .66, M('#d8b67a', {metalness:.8, roughness:.3})); rim.position.set(l.ox, l.y + 12.4, l.oz); T.g.add(rim);
+}
+
+/* rooftop terrace on tower B */
+const deck = new THREE.Group();
+{
+  const l = B.last; deck.position.set(l.ox, l.y, l.oz).add(B.g.position); deck.rotation.y = l.r; scene.add(deck);
+  const W = l.w, D = l.d;
+  const floor = box(W, .3, D, matWood); floor.position.y = .15; deck.add(floor);
+  const pool = box(W * .72, .5, D * .24, matPool); pool.position.set(0, .3, D * .3); deck.add(pool);
+  const edge = box(W * .76, .35, D * .28, matSlab); edge.position.set(0, .2, D * .3); deck.add(edge);
+  for (let i = 0; i < 4; i++) {
+    const lg = new THREE.Group(); lg.position.set(-W * .3 + i * 3.4, 0, D * .06); deck.add(lg);
+    const base = box(.8, .3, 2, matCushion); base.position.y = .42; lg.add(base);
+    const back = box(.8, .3, .9, matCushion); back.position.set(0, .75, -.85); back.rotation.x = -.9; lg.add(back);
+  }
+  const pole = box(.08, 2.6, .08, matWood); pole.position.set(W * .12, 1.3, -D * .02); deck.add(pole);
+  const shade = shadow(new THREE.Mesh(new THREE.ConeGeometry(1.9, .7, 12), M('#e6d6b8'))); shade.position.set(W * .12, 2.75, -D * .02); deck.add(shade);
+  for (let i = 0; i < 5; i++) {
+    const p = box(1.2, .9, 1.2, M('#cfc6b8')); p.position.set(-W * .45, .45, -D * .4 + i * D * .2); deck.add(p);
+    const b = shadow(new THREE.Mesh(new THREE.SphereGeometry(1.1, 12, 8), matGreen)); b.position.set(-W * .45, 1.5, -D * .4 + i * D * .2); deck.add(b);
+  }
+  for (const [x, z, w, d] of [[0, D / 2, W, .1], [0, -D / 2, W, .1], [W / 2, 0, .1, D], [-W / 2, 0, .1, D]]) {
+    const r = new THREE.Mesh(new THREE.BoxGeometry(w, 1.15, d), matGlassRail); r.position.set(x, .87, z); deck.add(r);
+  }
+}
+
+/* ground, sea, island, city */
+const sea = new THREE.Mesh(new THREE.PlaneGeometry(12000, 12000), matWater); sea.rotation.x = -Math.PI / 2; sea.position.y = -.6; sea.receiveShadow = true; scene.add(sea);
+const land = new THREE.Mesh(new THREE.PlaneGeometry(12000, 5000), M('#cdb994')); land.rotation.x = -Math.PI / 2; land.position.set(0, .1, -2700); land.receiveShadow = true; scene.add(land);
+const isle = new THREE.Mesh(new THREE.CircleGeometry(270, 64), M('#ead6b0')); isle.rotation.x = -Math.PI / 2; isle.position.set(0, .2, 10); isle.receiveShadow = true; scene.add(isle);
+const lawn = new THREE.Mesh(new THREE.CircleGeometry(200, 64), M('#7f9a5e')); lawn.rotation.x = -Math.PI / 2; lawn.position.set(0, .3, -10); lawn.receiveShadow = true; scene.add(lawn);
+const pod = box(250, 8, 74, M('#ebe4d8')); pod.position.set(0, 4, 2); scene.add(pod);
+const podG = box(240, .4, 66, matGreen); podG.position.set(0, 8.2, 2); scene.add(podG);
+for (const [x, z] of [[-40, 30], [42, -18]]) { const p = box(34, .5, 12, matPool); p.position.set(x, 8.5, z); scene.add(p); }
+{ // palms
+  const n = 70, trunk = new THREE.InstancedMesh(new THREE.CylinderGeometry(.35, .55, 10, 6), M('#8a7458'), n),
+    crown = new THREE.InstancedMesh(new THREE.SphereGeometry(3.4, 10, 6), M('#5a7a40'), n), o = new THREE.Object3D();
+  for (let i = 0; i < n; i++) {
+    const a = rnd() * Math.PI * 2, r = 150 + rnd() * 100; let x = Math.cos(a) * r, z = Math.sin(a) * r + 10;
+    if (z < -120) z = -120 + rnd() * 40;
+    o.position.set(x, 5, z); o.scale.set(1, 1, 1); o.updateMatrix(); trunk.setMatrixAt(i, o.matrix);
+    o.position.set(x, 10.5, z); o.scale.set(1, .55, 1); o.updateMatrix(); crown.setMatrixAt(i, o.matrix);
+  }
+  trunk.castShadow = crown.castShadow = true; scene.add(trunk, crown);
+}
+{ // city behind
+  const n = 650, city = new THREE.InstancedMesh(new THREE.BoxGeometry(1, 1, 1), M('#e9dfcf', {roughness:.9}), n), o = new THREE.Object3D();
+  for (let i = 0; i < n; i++) {
+    const x = (rnd() - .5) * 5200, z = -360 - rnd() * 2600, far = Math.min(1, (-z - 360) / 2600);
+    const h = 10 + rnd() * 45 + (rnd() < .07 ? 60 + rnd() * 70 : 0) * (1 - far * .5);
+    o.position.set(x, h / 2, z); o.scale.set(18 + rnd() * 40, h, 18 + rnd() * 40); o.rotation.y = (rnd() - .5) * .3; o.updateMatrix(); city.setMatrixAt(i, o.matrix);
+  }
+  scene.add(city);
+}
+
+/* clouds */
+const cloudMats = [0, 1, 2, 3].map(() => {
+  const c = document.createElement('canvas'); c.width = c.height = 256; const g = c.getContext('2d');
+  for (let i = 0; i < 16; i++) {
+    const x = 128 + (rnd() - .5) * 130, y = 140 + (rnd() - .5) * 50, r = 36 + rnd() * 62, gr = g.createRadialGradient(x, y, 0, x, y, r);
+    gr.addColorStop(0, 'rgba(255,255,255,.55)'); gr.addColorStop(1, 'rgba(255,255,255,0)'); g.fillStyle = gr; g.fillRect(0, 0, 256, 256);
+  }
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace;
+  return new THREE.SpriteMaterial({map:t, color:'#fff1df', transparent:true, depthWrite:false, opacity:0});
+});
+const clouds = new THREE.Group(); scene.add(clouds);
+for (let i = 0; i < 320; i++) {
+  const s = new THREE.Sprite(cloudMats[i % 4]);
+  const a = rnd() * Math.PI * 2, r = Math.pow(rnd(), .7) * 2000;
+  s.position.set(Math.cos(a) * r, 110 + rnd() * 80, Math.sin(a) * r);
+  const k = 170 + rnd() * 260; s.scale.set(k, k * .5, 1); clouds.add(s);
+}
+function setClouds(v) {
+  for (const m of cloudMats) m.opacity = v;
+  clouds.visible = v > .005;
+  scene.fog.near = 900 - v * 500; scene.fog.far = 3600 - v * 900;
+}
+
+/* camera positions per view (world space) */
+const P = {
+  aerial: [[430, 300, 520], [0, 120, 0]],
+  front:  [[-40, 46, 560], [0, 150, 0]],
+  side:   [[610, 70, -40], [0, 150, 0]],
+  back:   [[-180, 130, -570], [0, 115, 0]],
+  clouds: [[-320, 420, 400], [0, 235, 0]],
+};
+{
+  const l = B.last;
+  deck.updateMatrixWorld(true);
+  const eye = deck.localToWorld(new V3(-l.w * .28, 3.2, -l.d * .46));
+  P.rooftop = [[eye.x, eye.y, eye.z], [eye.x + 160, eye.y - 60, eye.z + 300]];
+}
+for (const v of VIEWS) { v.p = new V3(...P[v.id][0]); v.t = new V3(...P[v.id][1]); }
+
+/* camera state + motion */
+const st = {pos:new V3(), tgt:new V3(), clouds:0, idleW:0, idleT:0, fov:40};
+let cur = 5, tween = null;
+function applyCam(dt = 0) {
+  st.idleT += dt;
+  const v = VIEWS[cur], w = st.idleW;
+  if (v.sway === 'pan' && !tween) {
+    const dir = st.tgt.clone().sub(st.pos).applyAxisAngle(UP, Math.sin(st.idleT * .23) * .045 * w);
+    cam.position.copy(st.pos); cam.position.y += Math.sin(st.idleT * .5) * .05 * w;
+    cam.lookAt(st.pos.clone().add(dir));
+  } else {
+    const off = st.pos.clone().sub(st.tgt).applyAxisAngle(UP, Math.sin(st.idleT * .2) * .045 * w);
+    off.y += Math.sin(st.idleT * .31) * 6 * w;
+    cam.position.copy(st.tgt).add(off); cam.lookAt(st.tgt);
+  }
+  if (cam.fov !== st.fov) { cam.fov = st.fov; cam.updateProjectionMatrix(); }
+  setClouds(st.clouds);
+  clouds.position.x += dt * 3;
+  if (clouds.position.x > 400) clouds.position.x -= 800;
+}
+function place(i) { const v = VIEWS[i]; st.pos.copy(v.p); st.tgt.copy(v.t); st.clouds = v.clouds; cur = i; }
+
+function go(i, opts = {}) {
+  if (i === cur && !opts.force) return;
+  const from = VIEWS[cur], to = VIEWS[i];
+  // start from where the camera really is (including sway)
+  const p0 = cam.position.clone();
+  const t0 = cam.position.clone().add(cam.getWorldDirection(new V3()).multiplyScalar(st.tgt.distanceTo(st.pos)));
+  const p1 = to.p.clone(), t1 = to.t.clone(), c0 = st.clouds;
+  const dist = p0.distanceTo(p1);
+  const ctrl = p0.clone().add(p1).multiplyScalar(.5);
+  const R = 400, r = Math.hypot(ctrl.x, ctrl.z);
+  if (r < R) {
+    let dx = ctrl.x, dz = ctrl.z;
+    if (r < 1) { dx = -(p1.z - p0.z); dz = p1.x - p0.x; }
+    const L = Math.hypot(dx, dz) || 1; ctrl.x = dx / L * R; ctrl.z = dz / L * R;
+  }
+  ctrl.y = Math.max(p0.y, p1.y) + 40 + dist * .08;
+  const curve = new THREE.QuadraticBezierCurve3(p0, ctrl, p1);
+  cur = i; st.idleW = 0; st.idleT = 0;
+  ui(i);
+  if (tween) tween.kill();
+  const o = {k:0};
+  tween = gsap.to(o, {k:1, duration:Math.min(4.2, 2.4 + dist / 650), ease:'power2.inOut',
+    onUpdate() {
+      st.pos.copy(curve.getPoint(o.k)); st.tgt.lerpVectors(t0, t1, o.k);
+      st.clouds = c0 + (to.clouds - c0) * o.k; st.fov = 40 + Math.sin(o.k * Math.PI) * 7;
+    },
+    onComplete() { st.fov = 40; tween = null; gsap.to(st, {idleW:1, duration:2.5, ease:'sine.inOut'}); if (touring) tourTimer = setTimeout(nextTour, 4200); }
+  });
+}
+
+/* ---------- UI ---------- */
+const list = document.getElementById('views'), heroImg = document.getElementById('heroImg'), heroName = document.getElementById('heroName');
+const capEl = document.getElementById('cap'), fView = document.getElementById('f-view');
+const thumbs = [];
+VIEWS.forEach((v, i) => {
+  const li = document.createElement('li');
+  li.innerHTML = `<button data-i="${i}"><span>${v.name}</span><img alt=""></button>`;
+  li.querySelector('button').onclick = () => { stopTour(); go(i); };
+  list.appendChild(li);
+  fView.insertAdjacentHTML('beforeend', `<option>${v.name}</option>`);
+});
+document.getElementById('hero').onclick = () => { stopTour(); go((cur + 1) % VIEWS.length); };
+let capTimer;
+function ui(i) {
+  const v = VIEWS[i];
+  list.querySelectorAll('button').forEach((b, j) => b.classList.toggle('on', j === i));
+  heroImg.src = thumbs[i] || ''; heroName.textContent = v.name; fView.selectedIndex = i;
+  capEl.classList.add('out'); clearTimeout(capTimer);
+  capTimer = setTimeout(() => {
+    document.getElementById('vNum').textContent = String(i + 1).padStart(2, '0') + ' / ' + String(VIEWS.length).padStart(2, '0');
+    document.getElementById('vName').textContent = v.name;
+    document.getElementById('vLine').textContent = v.line;
+    capEl.classList.remove('out');
+  }, 550);
+}
+addEventListener('keydown', e => {
+  if (document.getElementById('modal').classList.contains('open')) { if (e.key === 'Escape') closeModal(); return; }
+  if (e.key === 'ArrowDown' || e.key === 'ArrowRight') { stopTour(); go((cur + 1) % VIEWS.length); }
+  if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') { stopTour(); go((cur + VIEWS.length - 1) % VIEWS.length); }
+});
+
+/* tour */
+let touring = false, tourTimer;
+const tourBtn = document.getElementById('tour');
+function nextTour() { if (touring) go((cur + 1) % VIEWS.length); }
+function startTour() { touring = true; tourBtn.classList.add('on'); tourBtn.querySelector('span').textContent = 'Pause tour'; if (!tween) nextTour(); }
+function stopTour() { touring = false; clearTimeout(tourTimer); tourBtn.classList.remove('on'); tourBtn.querySelector('span').textContent = 'Play tour'; }
+tourBtn.onclick = () => touring ? stopTour() : startTour();
+
+/* modal */
+const modal = document.getElementById('modal'), sheet = document.getElementById('sheet'), form = document.getElementById('form');
+document.querySelectorAll('[data-open]').forEach(b => b.onclick = () => { stopTour(); sheet.classList.remove('done'); modal.classList.add('open'); });
+function closeModal() { modal.classList.remove('open'); }
+document.querySelectorAll('[data-close]').forEach(b => b.onclick = closeModal);
+modal.onclick = e => { if (e.target === modal) closeModal(); };
+form.onsubmit = e => {
+  e.preventDefault();
+  if (!form.checkValidity()) { form.reportValidity(); return; }
+  sheet.classList.add('done'); form.reset(); fView.selectedIndex = cur;
+};
+
+/* ---------- thumbnails, then start ---------- */
+function snapThumbs() {
+  if (!canvas.width || !canvas.height || !innerWidth) return false;
+  const keep = cur, keepS = {pos:st.pos.clone(), tgt:st.tgt.clone(), clouds:st.clouds, idleW:st.idleW};
+  const tc = document.createElement('canvas'); tc.width = 480; tc.height = 300; const g = tc.getContext('2d');
+  VIEWS.forEach((v, i) => {
+    place(i); st.idleW = 0; applyCam(0); sky.position.copy(cam.position);
+    renderer.render(scene, cam);
+    const W = canvas.width, H = canvas.height, s = Math.max(480 / W, 300 / H), w = 480 / s, h = 300 / s;
+    g.drawImage(canvas, (W - w) / 2, (H - h) / 2, w, h, 0, 0, 480, 300);
+    thumbs[i] = tc.toDataURL('image/jpeg', .82);
+    list.querySelectorAll('img')[i].src = thumbs[i];
+  });
+  cur = keep; st.pos.copy(keepS.pos); st.tgt.copy(keepS.tgt); st.clouds = keepS.clouds; st.idleW = keepS.idleW;
+  heroImg.src = thumbs[cur];
+  return true;
+}
+let haveThumbs = false;
+
+addEventListener('resize', () => {
+  if (!innerWidth || !innerHeight) return;
+  cam.aspect = innerWidth / innerHeight; cam.updateProjectionMatrix(); renderer.setSize(innerWidth, innerHeight);
+  if (!haveThumbs && started) haveThumbs = snapThumbs();
+});
+let started = false;
+
+const clock = new THREE.Clock();
+function loop() {
+  const dt = Math.min(clock.getDelta(), .05);
+  applyCam(dt); sky.position.copy(cam.position);
+  renderer.render(scene, cam);
+  requestAnimationFrame(loop);
+}
+
+const qs = new URLSearchParams(location.search);
+document.fonts.ready.then(() => {
+  const startAt = Math.max(0, VIEWS.findIndex(v => v.id === (qs.get('view') || 'clouds')));
+  place(startAt);
+  haveThumbs = snapThumbs(); started = true;
+  place(startAt); ui(startAt); gsap.to(st, {idleW:1, duration:2});
+  loop();
+  setTimeout(() => document.getElementById('loader').classList.add('gone'), 250);
+  if (qs.has('tour')) setTimeout(startTour, 1600);
+  else if (!qs.has('view')) setTimeout(() => go(0), 1900);
+});
+window.__sky = {go, VIEWS, get cur() { return cur; }};
+</script>
+</body>
+</html>
