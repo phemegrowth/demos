@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pheme Interiors · From shell to home</title>
+<meta name="description" content="We turn bare concrete apartments into finished homes: design, services, surfaces, kitchen and furniture, one team, one price.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--dark:#14110e;--ink:#f6efe5;--paper:#f3ece2;--paper2:#e9dfd1;--text:#2a221b;--muted:#8a7c6c;--mutedd:#b5a796;--line:rgba(42,34,27,.14);--lined:rgba(246,239,229,.16);--gold:#c79a55;--serif:'Fraunces',serif;--sans:'Manrope',sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--paper)}
+body{background:var(--paper);color:var(--text);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:clip}
+em{font-family:var(--serif);font-style:italic;font-weight:300;color:var(--gold)}
+a{color:inherit;text-decoration:none}
+.nav{position:fixed;inset:0 0 auto;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:22px 40px;font-size:13px;color:var(--ink);pointer-events:none;transition:color .4s,background .4s,padding .4s}
+.nav.light{color:var(--text);background:rgba(243,236,226,.82);backdrop-filter:blur(12px);padding-top:14px;padding-bottom:14px}
+.nav>*{pointer-events:auto}
+.logo{display:flex;align-items:center;gap:10px;font-weight:600;letter-spacing:.3em;font-size:12px}
+.logo i{width:16px;height:16px;border:1.5px solid currentColor;border-radius:3px;display:inline-block}
+.nav ul{display:flex;gap:30px;list-style:none}
+.btn{background:var(--gold);color:#1a1208;padding:12px 22px;border-radius:999px;font-weight:600;font-size:13px;display:inline-block}
+.btn.ghost{background:none;color:var(--text);border:1px solid var(--line)}
+.k{font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--gold)}
+h2.big{font-family:var(--serif);font-weight:300;font-size:clamp(38px,4.6vw,76px);letter-spacing:-.02em;line-height:1;margin-top:12px}
+
+/* hero film */
+.build{height:100vh;position:relative;overflow:hidden;background:var(--dark);color:var(--ink)}
+.build canvas{position:absolute;inset:0;width:100%;height:100%}
+.build .shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(20,17,14,.72) 0%,rgba(20,17,14,.12) 40%,rgba(20,17,14,0) 62%),linear-gradient(0deg,rgba(20,17,14,.7) 0%,rgba(20,17,14,0) 26%)}
+.build .shade.r{background:linear-gradient(270deg,rgba(20,17,14,.72) 0%,rgba(20,17,14,.12) 40%,rgba(20,17,14,0) 62%),linear-gradient(0deg,rgba(20,17,14,.7) 0%,rgba(20,17,14,0) 26%);opacity:0}
+.cap{position:absolute;left:40px;top:50%;transform:translateY(-50%);max-width:500px;opacity:0}
+.cap.r{left:auto;right:40px;text-align:right}
+.cap .k{margin-bottom:18px}
+.cap h1,.cap h2{font-family:var(--serif);font-weight:300;font-size:clamp(42px,5.4vw,86px);line-height:.98;letter-spacing:-.02em}
+.cap p{margin-top:22px;color:#ddd2c3;font-size:15px;line-height:1.6;max-width:350px}
+.cap.r p{margin-left:auto}
+.hud{position:absolute;left:40px;right:40px;bottom:26px;display:flex;align-items:center;gap:26px;font-size:12px;color:var(--mutedd);font-variant-numeric:tabular-nums}
+.hud b{color:var(--ink);font-weight:500}
+.hud .bar{flex:1;height:1px;background:var(--lined);position:relative}
+.hud .bar i{position:absolute;inset:0 auto 0 0;width:0;background:var(--gold)}
+.hud .steps{display:flex;gap:6px}.hud .steps i{width:6px;height:6px;border-radius:50%;border:1px solid var(--mutedd)}
+.hud .steps i.on{background:var(--gold);border-color:var(--gold)}
+.scrollhint{position:absolute;left:50%;bottom:70px;transform:translateX(-50%);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--mutedd);display:flex;flex-direction:column;align-items:center;gap:12px}
+.scrollhint i{width:1px;height:40px;background:linear-gradient(var(--gold),transparent);animation:drip 1.8s infinite}
+@keyframes drip{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* statement */
+.say{padding:16vh 40px 12vh;max-width:1180px;margin:0 auto}
+.say p{font-family:var(--serif);font-weight:300;font-size:clamp(30px,3.6vw,58px);line-height:1.12;letter-spacing:-.015em}
+.say p span{opacity:.15;transition:opacity .2s}
+
+/* materials: tap points on the finished room */
+.mat{padding:4vh 40px 14vh}
+.mat .head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;max-width:1280px;margin:0 auto 34px;flex-wrap:wrap}
+.mat .head p{color:var(--muted);font-size:13px;letter-spacing:.1em;text-transform:uppercase}
+.room{position:relative;max-width:1280px;margin:0 auto;aspect-ratio:16/9;border-radius:20px;overflow:hidden;background:#000}
+.room img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.04);transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.room.focus img{transform:scale(1.1)}
+.dot{position:absolute;width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:50%;background:rgba(246,239,229,.25);backdrop-filter:blur(6px);border:1.5px solid var(--ink);cursor:pointer;display:grid;place-items:center;z-index:2}
+.dot::after{content:'';width:8px;height:8px;border-radius:50%;background:var(--ink)}
+.dot::before{content:'';position:absolute;inset:-8px;border-radius:50%;border:1px solid rgba(246,239,229,.7);animation:ping 2.2s infinite}
+.dot.on{background:var(--gold);border-color:var(--gold)}
+@keyframes ping{0%{transform:scale(.7);opacity:1}100%{transform:scale(1.5);opacity:0}}
+.card{position:absolute;z-index:3;width:290px;background:rgba(246,239,229,.94);backdrop-filter:blur(14px);color:var(--text);border-radius:16px;padding:20px 22px 18px;box-shadow:0 20px 50px rgba(0,0,0,.35);opacity:0;pointer-events:none;transform:translateY(10px);transition:opacity .35s,transform .35s}
+.card.on{opacity:1;transform:none;pointer-events:auto}
+.card .k{font-size:10px}
+.card h3{font-family:var(--serif);font-weight:400;font-size:26px;line-height:1.05;margin:8px 0 8px}
+.card p{font-size:13px;line-height:1.55;color:#5d5044}
+.card .sw{display:flex;gap:8px;margin-top:14px}
+.card .sw i{width:26px;height:26px;border-radius:50%;border:1px solid var(--line)}
+.card .x{position:absolute;top:10px;right:14px;font-size:18px;color:var(--muted);cursor:pointer}
+
+/* process: sticky image + steps */
+.proc{position:relative;background:var(--paper2);padding:14vh 40px 10vh}
+.proc .head{max-width:760px;margin-bottom:8vh}
+.pwrap{display:grid;grid-template-columns:1.15fr 1fr;gap:6vw;max-width:1280px;margin:0 auto;align-items:start}
+.stick{position:sticky;top:12vh;height:72vh;border-radius:18px;overflow:hidden;background:#000}
+.stick img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.06);transition:opacity .9s ease,transform 1.6s cubic-bezier(.2,.7,.2,1)}
+.stick img.on{opacity:1;transform:none}
+.stick .tag{position:absolute;left:22px;bottom:20px;z-index:2;font-size:12px;letter-spacing:.18em;text-transform:uppercase;background:rgba(20,17,14,.55);backdrop-filter:blur(8px);padding:9px 14px;border-radius:999px;color:var(--ink)}
+.stick .tag b{color:var(--gold);font-weight:500}
+.steps2{position:relative;padding-left:72px}
+.steps2 .rail{position:absolute;left:21px;top:22px;bottom:22px;width:1px;background:var(--line)}
+.steps2 .rail i{position:absolute;inset:0;background:var(--gold);transform-origin:top;transform:scaleY(0)}
+.step{position:relative;min-height:60vh;display:flex;flex-direction:column;justify-content:center;opacity:.28;transition:opacity .5s}
+.step:last-child{min-height:50vh}
+.step.on{opacity:1}
+.step .n{position:absolute;left:-72px;top:50%;margin-top:-22px;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--paper2);display:grid;place-items:center;font-family:var(--serif);font-size:20px;color:var(--gold);transition:border-color .5s,box-shadow .5s;z-index:1}
+.step.on .n{border-color:var(--gold);box-shadow:0 0 0 8px rgba(199,154,85,.14)}
+.step h3{font-family:var(--serif);font-weight:300;font-size:clamp(30px,3vw,50px);line-height:1.02}
+.step p{color:var(--muted);margin-top:14px;max-width:400px;line-height:1.6;font-size:15px}
+.step .wk{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;display:block}
+
+/* before / after */
+.cmp{padding:14vh 40px 8vh}
+.cmp .head{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;max-width:1280px;margin:0 auto 36px;flex-wrap:wrap}
+.cmp .head p{color:var(--muted);font-size:13px;letter-spacing:.1em;text-transform:uppercase}
+.ba{position:relative;max-width:1280px;margin:0 auto;aspect-ratio:16/9;border-radius:20px;overflow:hidden;touch-action:pan-y;cursor:ew-resize;background:#000}
+.ba,.ba *{-webkit-user-select:none;user-select:none;-webkit-user-drag:none;-webkit-touch-callout:none}
+.ba img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+body.dragging,body.dragging *{user-select:none !important;cursor:ew-resize}
+.ba .before{position:absolute;inset:0;width:50%;overflow:hidden}
+.ba .before img{width:auto;height:100%;max-width:none}
+.ba .lb{position:absolute;bottom:18px;left:18px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;background:rgba(20,17,14,.55);color:var(--ink);backdrop-filter:blur(8px);padding:8px 12px;border-radius:999px;z-index:2}
+.ba .la{left:auto;right:18px}
+.handle{position:absolute;top:0;bottom:0;left:50%;width:0;display:flex;flex-direction:column;align-items:center;z-index:3;pointer-events:none}
+.handle i{flex:1;width:1px;background:var(--gold);box-shadow:0 0 12px rgba(199,154,85,.6)}
+.handle b{width:52px;height:52px;border-radius:50%;background:var(--gold);color:#1a1208;display:grid;place-items:center;font-weight:600;font-size:20px;box-shadow:0 8px 30px rgba(0,0,0,.4);flex:none}
+.ctas{display:flex;gap:12px;margin:36px auto 0;max-width:1280px;flex-wrap:wrap}
+
+/* numbers + end */
+.nums{padding:8vh 40px 10vh;background:var(--paper2)}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;max-width:1280px;margin:0 auto}
+.grid div{border-top:1px solid var(--line);padding-top:18px}
+.grid b{display:block;font-family:var(--serif);font-weight:300;font-size:clamp(50px,5vw,88px);line-height:1;font-variant-numeric:tabular-nums}
+.grid b sup{font-size:.4em;color:var(--gold);vertical-align:top}
+.grid small{color:var(--muted);font-size:13px;display:block;margin-top:6px;max-width:220px;line-height:1.45}
+.night{position:relative;height:90vh;overflow:hidden;color:var(--ink);display:flex;align-items:center;justify-content:center;text-align:center}
+.night img{position:absolute;inset:0;width:100%;height:115%;object-fit:cover;top:-15%}
+.night::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(20,17,14,.55),rgba(20,17,14,.2) 70%)}
+.night div{position:relative;z-index:2;padding:0 16px}
+.night h2{font-family:var(--serif);font-weight:300;font-size:clamp(44px,6vw,104px);line-height:.98;letter-spacing:-.02em}
+.night p{color:#ddd2c3;margin:20px auto 30px;max-width:420px;line-height:1.6}
+.foot{display:flex;justify-content:space-between;gap:20px;padding:28px 40px;color:var(--mutedd);font-size:12px;background:var(--dark)}
+
+@media (max-width:860px){
+  .nav{padding:18px 16px}.nav ul,.nav .btn{display:none}
+  .cap{left:16px;right:16px;max-width:none;top:auto;bottom:90px;transform:none}.cap.r{right:16px;text-align:left}.cap.r p{margin-left:0}
+  .hud{left:16px;right:16px}.hud .steps{display:none}
+  .say{padding:12vh 16px 8vh}
+  .mat{padding:2vh 16px 10vh}.room{border-radius:14px}.dot{width:30px;height:30px;margin:-15px 0 0 -15px}
+  .card{left:10px !important;right:10px;top:auto !important;bottom:10px;width:auto;padding:12px 14px}.card p,.card .sw{display:none}.card h3{font-size:20px;margin:4px 0 0}
+  .proc{padding:12vh 16px 6vh}.pwrap{grid-template-columns:1fr;gap:24px}.stick{top:62px;height:34vh;z-index:3;border-radius:12px}.step{min-height:70vh}.steps2{padding-left:56px}.step .n{left:-56px;width:40px;height:40px;margin-top:-20px}.steps2 .rail{left:19px}
+  .cmp{padding:10vh 16px 6vh}.ba{border-radius:14px}.handle b{width:42px;height:42px}
+  .nums{padding:6vh 16px 8vh}.grid{grid-template-columns:1fr 1fr;gap:18px}
+  .foot{padding:22px 16px;flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="logo" href="#"><i></i>PHEME INTERIORS</a>
+  <ul><li><a href="#mat">Materials</a></li><li><a href="#proc">How we work</a></li><li><a href="#cmp">Before and after</a></li></ul>
+  <a class="btn" href="#end">Book a visit</a>
+</nav>
+
+<section class="build" id="build">
+  <canvas id="seq"></canvas>
+  <div class="shade"></div><div class="shade r"></div>
+  <div class="cap" data-stage="0"><div class="k">01 · The shell</div><h1>You get<br><em>the keys to this.</em></h1><p>Bare concrete, a view, and a lot of decisions. We take all of them off your hands.</p></div>
+  <div class="cap r" data-stage="1"><div class="k">02 · The design</div><h2>Drawn<br><em>in the room.</em></h2><p>Every piece is placed before a single wall goes up.</p></div>
+  <div class="cap" data-stage="2"><div class="k">03 · Services</div><h2>The part<br><em>you never see.</em></h2><p>Walls, wiring, water and the glass. Done once, done right.</p></div>
+  <div class="cap r" data-stage="3"><div class="k">04 · Surfaces</div><h2>Plaster<br><em>and oak.</em></h2><p>Smooth walls, a herringbone floor laid by hand, plank by plank.</p></div>
+  <div class="cap" data-stage="4"><div class="k">05 · The kitchen</div><h2>Built<br><em>to measure.</em></h2><p>Oak, travertine and brass, made for this room and nowhere else.</p></div>
+  <div class="cap r" data-stage="5"><div class="k">06 · Furnished</div><h2>Ready<br><em>to live in.</em></h2><p>Furniture, art, light, linen. You arrive with a suitcase.</p></div>
+  <div class="cap" data-stage="6"><div class="k">07 · Home</div><h2>Evenings<br><em>like this.</em></h2><p>Twelve weeks after the shell, the lights come on for you.</p></div>
+  <div class="scrollhint">Scroll<i></i></div>
+  <div class="hud"><span><b id="pct">0</b>%</span><span id="stagelabel">The shell</span><div class="bar"><i id="barfill"></i></div><span class="steps" id="steps"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>Design and fit-out</span></div>
+</section>
+
+<section class="say"><p id="say">Most new apartments are handed over as a concrete box. We turn that box into a home in twelve weeks, with one team, one price and one person to call.</p></section>
+
+<section class="mat" id="mat">
+  <div class="head"><div><div class="k">Materials</div><h2 class="big">Tap the room, <em>see what it's made of.</em></h2></div><p>Six finishes, all ours</p></div>
+  <div class="room" id="room">
+    <img src="img/finished.jpg" alt="Finished living room">
+    <button class="dot" style="left:19%;top:66%" data-i="0" aria-label="Kitchen island"></button>
+    <button class="dot" style="left:18%;top:31%" data-i="1" aria-label="Pendant lights"></button>
+    <button class="dot" style="left:44%;top:64%" data-i="2" aria-label="Sofa"></button>
+    <button class="dot" style="left:30%;top:86%" data-i="3" aria-label="Floor"></button>
+    <button class="dot" style="left:56%;top:44%" data-i="4" aria-label="Glass wall"></button>
+    <button class="dot" style="left:91%;top:42%" data-i="5" aria-label="Walls"></button>
+    <div class="card" id="card"><span class="x" id="cx">×</span><div class="k" id="ck"></div><h3 id="ch"></h3><p id="cp"></p><div class="sw" id="cs"></div></div>
+  </div>
+</section>
+
+<section class="proc" id="proc">
+  <div class="head"><div class="k">How we work</div><h2 class="big">Twelve weeks, <em>one team.</em></h2></div>
+  <div class="pwrap">
+    <div class="stick" id="stick">
+      <img src="img/blueprint.jpg" class="on" alt=""><img src="img/roughin.jpg" alt=""><img src="img/floor.jpg" alt=""><img src="img/kitchen.jpg" alt=""><img src="img/finished.jpg" alt="">
+      <div class="tag">Week <b id="week">1</b> of 12</div>
+    </div>
+    <div class="steps2"><div class="rail"><i id="rail"></i></div>
+      <div class="step on" data-w="1"><div class="n">1</div><span class="wk">Weeks 1–2</span><h3>Design</h3><p>We measure the shell, ask how you live, and show you the finished room in 3D before we start.</p></div>
+      <div class="step" data-w="3"><div class="n">2</div><span class="wk">Weeks 3–5</span><h3>Walls and services</h3><p>Partitions, electrics, plumbing, air conditioning and the glass, all by our own crews.</p></div>
+      <div class="step" data-w="6"><div class="n">3</div><span class="wk">Weeks 6–8</span><h3>Surfaces</h3><p>Plaster, paint, stone and the oak floor, laid by hand.</p></div>
+      <div class="step" data-w="9"><div class="n">4</div><span class="wk">Weeks 9–10</span><h3>Kitchen and bathrooms</h3><p>Made to measure in our workshop, fitted in days.</p></div>
+      <div class="step" data-w="12"><div class="n">5</div><span class="wk">Weeks 11–12</span><h3>Furnished, styled, handed over</h3><p>Furniture, lighting, art and linen. We hand you the keys to a finished home.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="cmp" id="cmp">
+  <div class="head"><div><div class="k">Before and after</div><h2 class="big">Same room, <em>twelve weeks apart.</em></h2></div><p>Drag the line</p></div>
+  <div class="ba" id="ba">
+    <img src="img/finished.jpg" alt="" draggable="false">
+    <div class="before" id="before"><img src="img/shell.jpg" alt="" draggable="false"><span class="lb">Day 1</span></div>
+    <span class="lb la">Week 12</span>
+    <div class="handle" id="handle"><i></i><b>⟷</b><i></i></div>
+  </div>
+  <div class="ctas"><a class="btn" href="#end">Book a visit to your apartment</a><a class="btn ghost" href="#proc">How we work</a></div>
+</section>
+
+<section class="nums">
+  <div class="grid">
+    <div><b data-n="12">0</b><small>weeks from shell to keys</small></div>
+    <div><b data-n="1">0</b><small>fixed price, agreed before we start</small></div>
+    <div><b data-n="140">0</b><small>apartments finished</small></div>
+    <div><b data-n="5">0</b><small>year guarantee on our work</small></div>
+  </div>
+</section>
+
+<section class="night" id="end">
+  <img src="img/night.jpg" alt="">
+  <div><div class="k">Your apartment</div><h2>Bought off-plan?<br><em>We'll finish it.</em></h2><p>Send us the floor plan. We come to the shell, measure, and show you the finished room.</p><a class="btn" href="#">Book a visit</a></div>
+</section>
+<div class="foot"><span>Pheme Interiors · Design and fit-out</span><span>Concept website by Pheme Growth</span></div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+const lenis = new Lenis({lerp:.09});
+lenis.on('scroll', ScrollTrigger.update);
+gsap.ticker.add(t => lenis.raf(t*1000)); gsap.ticker.lagSmoothing(0);
+
+// ---------- hero: 8 stills joined by 7 AI clips, played by scroll ----------
+const FRAMES = 420, src = i => `frames/f${String(i+1).padStart(4,'0')}.jpg`;
+const cv = document.getElementById('seq'), cx = cv.getContext('2d'), imgs = [];
+const state = {f:0};
+for (let i=0;i<FRAMES;i++){ const im=new Image(); im.src=src(i); imgs.push(im); }
+function draw(){
+  const im = imgs[Math.round(state.f)]; if(!im || !im.complete || !im.naturalWidth) return;
+  const dpr = Math.min(devicePixelRatio,2), w=innerWidth, h=innerHeight;
+  if (cv.width!==w*dpr){ cv.width=w*dpr; cv.height=h*dpr; }
+  const s = Math.max(w/im.width, h/im.height)*(1+state.f/FRAMES*.05);
+  const dw=im.width*s, dh=im.height*s;
+  cx.drawImage(im,(w-dw)/2*dpr,(h-dh)/2*dpr,dw*dpr,dh*dpr);
+}
+imgs[0].onload = draw; addEventListener('resize', ()=>{cv.width=0; draw();});
+
+const stages = ['The shell','The design','Services','Surfaces','The kitchen','Furnished','Home'];
+const caps = gsap.utils.toArray('.cap'), steps = [...document.querySelectorAll('#steps i')];
+const at = [0, 1/7, 2/7, 3/7, 4/7, 5/7, 6/7];
+const tl = gsap.timeline({scrollTrigger:{trigger:'#build',start:'top top',end:'+=800%',pin:true,scrub:true,
+  onUpdate:self=>{
+    const p=self.progress;
+    document.getElementById('pct').textContent = Math.round(p*100);
+    document.getElementById('barfill').style.width = p*100+'%';
+    const st = at.filter(a=>p>=a-.03).length-1;
+    document.getElementById('stagelabel').textContent = stages[Math.max(0,st)];
+    steps.forEach((s,i)=>s.classList.toggle('on', i<=st));
+  }}});
+tl.to(state,{f:FRAMES-1,ease:'none',duration:10,onUpdate:draw},0);
+tl.to('.scrollhint',{opacity:0,duration:.3},0);
+caps.forEach((c,i)=>{
+  const t0 = at[i]*10, x = c.classList.contains('r') ? 40 : -40;
+  if(i===0) gsap.set(c,{opacity:1});
+  else tl.fromTo(c,{opacity:0,x,filter:'blur(10px)'},{opacity:1,x:0,filter:'blur(0px)',duration:.45},t0-.3);
+  if(i<caps.length-1) tl.to(c,{opacity:0,x:-x/2,filter:'blur(10px)',duration:.35},at[i+1]*10-.6);
+});
+caps.forEach((c,i)=>{ if(i===0) return; const r=c.classList.contains('r'), t0=at[i]*10-.3;
+  tl.to('.build .shade.r',{opacity:r?1:0,duration:.4},t0).to('.build .shade:not(.r)',{opacity:r?0:1,duration:.4},t0); });
+
+document.fonts.ready.then(()=>{ initRest(); ScrollTrigger.refresh(); });
+function initRest(){
+
+// nav turns light once the film is over
+ScrollTrigger.create({trigger:'.say',start:'top 60px',end:'max',toggleClass:{targets:'.nav',className:'light'}});
+ScrollTrigger.create({trigger:'#end',start:'top 60px',end:'max',onToggle:s=>document.querySelector('.nav').classList.toggle('light',!s.isActive)});
+
+// statement: words light up with scroll
+const say=document.getElementById('say'); say.innerHTML=say.textContent.split(' ').map(w=>`<span>${w}</span>`).join(' ');
+const words=[...say.querySelectorAll('span')];
+ScrollTrigger.create({trigger:'.say',start:'top 80%',end:'bottom 45%',scrub:true,onUpdate:s=>{const n=Math.round(s.progress*words.length);words.forEach((w,i)=>w.style.opacity=i<n?1:.15)}});
+
+// materials
+const M=[
+ {k:'Kitchen island',h:'Travertine, honed',p:'One block of Italian travertine, cut to the island in our workshop. Sealed against wine and lemon.',sw:['#d9c7a8','#cdb48d','#e6d8c0']},
+ {k:'Lighting',h:'Brushed brass pendants',p:'Three pendants on a dimmer, plus a hidden light line in the ceiling for the evenings.',sw:['#b8904d','#d6b06a','#2a221b']},
+ {k:'Living',h:'Bouclé sofa, made to order',p:'Low, deep and built to the length of the wall. Covers come off for cleaning.',sw:['#efe6d8','#e2d6c3','#cfc1ab']},
+ {k:'Floor',h:'Oak herringbone',p:'Solid European oak, 14 mm, laid by hand and oiled on site. Warm under bare feet.',sw:['#b98a5a','#a2764a','#cfa477']},
+ {k:'Glass',h:'Slim sliding wall',p:'Floor-to-ceiling panels on a 2 cm frame. The terrace becomes part of the room.',sw:['#9fb4bf','#2a221b','#d9d4cc']},
+ {k:'Walls',h:'Lime plaster',p:'Hand-trowelled lime plaster with a soft movement in the light. Breathes, never peels.',sw:['#ece2d4','#e3d4bf','#d6c4ab']}
+];
+const room=document.getElementById('room'), card=document.getElementById('card'), dots=[...room.querySelectorAll('.dot')];
+function openM(i){
+  const m=M[i], d=dots[i];
+  dots.forEach(x=>x.classList.toggle('on',x===d)); room.classList.add('focus');
+  document.getElementById('ck').textContent=m.k; document.getElementById('ch').textContent=m.h; document.getElementById('cp').textContent=m.p;
+  document.getElementById('cs').innerHTML=m.sw.map(c=>`<i style="background:${c}"></i>`).join('');
+  const L=parseFloat(d.style.left), T=parseFloat(d.style.top);
+  card.style.left = L>55 ? `calc(${L}% - 330px)` : `calc(${L}% + 34px)`;
+  card.style.top = `calc(${Math.min(T,62)}% - 60px)`;
+  card.classList.remove('on'); void card.offsetWidth; card.classList.add('on');
+}
+function closeM(){ card.classList.remove('on'); dots.forEach(x=>x.classList.remove('on')); room.classList.remove('focus'); }
+dots.forEach((d,i)=>d.addEventListener('click',e=>{e.stopPropagation(); d.classList.contains('on')?closeM():openM(i)}));
+document.getElementById('cx').addEventListener('click',closeM);
+room.addEventListener('click',e=>{ if(e.target===room||e.target.tagName==='IMG') closeM(); });
+gsap.from('.dot',{scale:0,opacity:0,stagger:.12,duration:.5,ease:'back.out(2)',scrollTrigger:{trigger:'#room',start:'top 65%'}});
+ScrollTrigger.create({trigger:'#room',start:'top 45%',once:true,onEnter:()=>setTimeout(()=>openM(0),900)});
+
+// process
+gsap.to('#rail',{scaleY:1,ease:'none',scrollTrigger:{trigger:'.steps2',start:'top 55%',end:'bottom 55%',scrub:true}});
+const stImgs=[...document.querySelectorAll('#stick img')], stepEls=[...document.querySelectorAll('.step')];
+function showStep(i){ stepEls.forEach((s,j)=>s.classList.toggle('on',j===i)); stImgs.forEach((im,j)=>im.classList.toggle('on',j===i)); document.getElementById('week').textContent=stepEls[i].dataset.w; }
+stepEls.forEach((s,i)=>ScrollTrigger.create({trigger:s,start:'top 55%',end:'bottom 55%',onEnter:()=>showStep(i),onEnterBack:()=>showStep(i)}));
+
+// before / after
+const ba=document.getElementById('ba'), before=document.getElementById('before'), handle=document.getElementById('handle');
+const setBA=p=>{p=Math.max(.02,Math.min(.98,p)); before.style.width=p*100+'%'; handle.style.left=p*100+'%';};
+const bimg=before.querySelector('img'); const sizeBA=()=>{bimg.style.width=ba.clientWidth+'px'}; sizeBA(); addEventListener('resize',sizeBA);
+setBA(.5);
+ScrollTrigger.create({trigger:'#ba',start:'top 70%',once:true,onEnter:()=>{const o={p:.5};gsap.timeline().to(o,{p:.96,duration:1.4,ease:'power2.inOut',onUpdate:()=>setBA(o.p)}).to(o,{p:.35,duration:1.4,ease:'power2.inOut',onUpdate:()=>setBA(o.p)});}});
+let drag=false; const px=e=>setBA((e.clientX-ba.getBoundingClientRect().left)/ba.clientWidth);
+ba.addEventListener('pointerdown',e=>{e.preventDefault();drag=true;document.body.classList.add('dragging');ba.setPointerCapture(e.pointerId);px(e)});
+ba.addEventListener('pointermove',e=>{if(drag)px(e)}); const stop=()=>{drag=false;document.body.classList.remove('dragging')}; ba.addEventListener('pointerup',stop); ba.addEventListener('pointercancel',stop); addEventListener('pointerup',stop);
+gsap.from('.cmp .head > div > *, .cmp .head p, .ba',{y:40,opacity:0,stagger:.1,duration:.7,scrollTrigger:{trigger:'.cmp',start:'top 75%'}});
+
+// numbers
+gsap.from('.grid div',{y:40,opacity:0,stagger:.1,duration:.6,scrollTrigger:{trigger:'.nums',start:'top 80%'}});
+ScrollTrigger.create({trigger:'.nums',start:'top 75%',once:true,onEnter:()=>document.querySelectorAll('[data-n]').forEach(b=>{const n=+b.dataset.n,o={v:0};gsap.to(o,{v:n,duration:1.6,ease:'power2.out',onUpdate:()=>b.textContent=Math.round(o.v)})})});
+
+// night ending: slow parallax
+gsap.to('.night img',{yPercent:12,ease:'none',scrollTrigger:{trigger:'.night',start:'top bottom',end:'bottom top',scrub:true}});
+gsap.from('.night div > *',{y:30,opacity:0,stagger:.12,duration:.8,scrollTrigger:{trigger:'.night',start:'top 60%'}});
+}
+</script>
+</body>
+</html>
